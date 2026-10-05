@@ -9,7 +9,7 @@ Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, 
 | Colors | `docs/Identitat Visual/Colors_Vicity.pdf` |
 | Noms de token | `docs/Identitat Visual/Presentació/Manual destil_Vicity.pdf`, pàg. 12 |
 | Escala tipogràfica | `docs/Identitat Visual/tipografia.pdf` (= pàg. 13 del manual) |
-| Fitxers de font | `assets/fonts/` |
+| Fitxers de font | `assets/fonts/` (WOFF2 per a la web, TTF d'origen) |
 
 `docs/` és local (ignorat per Git). Aquest fitxer és la còpia versionada de referència.
 
@@ -49,8 +49,10 @@ Sense token al manual: **Gris `#B4B4B4`** (180, 180, 180). S'afegeix el token `g
 
 | Família | Rol | Pesos al manual | Càrrega |
 |---|---|---|---|
-| Red Hat Display | Titulars | 400, 500, 600, 700 | `@font-face` local, `assets/fonts/Red_Hat_Display/` |
-| Quicksand | Text de cos i interfície | no consta (etiqueta: 700) | `@font-face` local, `assets/fonts/Quicksand/` |
+| Red Hat Display | Titulars | 400, 500, 600, 700 | `@font-face` local, variable: `assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2` (eix `wght` 300–900, 40 356 B) |
+| Quicksand | Text de cos i interfície | no consta (etiqueta: 700) | `@font-face` local, variable: `assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2` (eix `wght` 300–700, 53 584 B) |
+
+Format: **WOFF2** (decisió de Pau, 2026-10-05). Es converteix el TTF variable d'origen sense subconjunt de glifos, un −58 % de pes. Els `.ttf` es conserven al repo com a original i no es carreguen a la web. `font-display: swap` i `preload` dels dos fitxers.
 
 Els noms `--font-head` i `--font-body` no són al manual: es reaprofiten de `index.html`.
 
