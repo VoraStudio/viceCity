@@ -1,7 +1,7 @@
 # 001 — Estructura de projecte: un repo per web
 
 **Stack**: arquitectura
-**Estat**: acceptat (amb un punt pendent)
+**Estat**: acceptat (amb un punt pendent: imatges i vídeos)
 **Data**: 2026-10-05
 
 ## Context
@@ -16,8 +16,9 @@ Cada web necessita historial, remot i context d'Engram propis. Calia fixar on vi
   - `index.html`
   - `assets/css`, `assets/js/modules`, `assets/fonts`, `assets/img`, `assets/video`
   - `docs/` (ignorada): PDFs, branding, disseny d'origen
-  - `source/` (ignorada): originals pesats
+  - No s'usa cap carpeta `source/`.
 - Es versiona el que cal per desplegar; el material d'origen i el sensible s'ignoren (`.gitignore`).
+- **Logos: dins del repo** (decisió de Pau, 2026-10-05). Viuen a `assets/img/Logotips`.
 
 ## Conseqüències
 
@@ -26,4 +27,4 @@ Cada web necessita historial, remot i context d'Engram propis. Calia fixar on vi
 
 ## Pendent
 
-Imatges, logos i vídeos finals: dins del repo o també ignorats i gestionats fora (la norma LOPD de VoraData diu que els brand assets de clients es gestionen fora). Per ara `assets/img` i `assets/video` són versionables. Decideix l'equip.
+Imatges i vídeos finals: dins del repo o ignorats i gestionats fora (la norma LOPD de VoraData diu que els brand assets de clients es gestionen fora, i els logos hi són per decisió expressa). Per ara `assets/img` i `assets/video` són versionables. Decideix l'equip.
