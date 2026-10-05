@@ -1,6 +1,3 @@
-# Material d'origen i sensible (no es desplega)
-docs/
-
 # Credencials
 .env
 .env.*

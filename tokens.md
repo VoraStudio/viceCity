@@ -11,7 +11,7 @@ Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, 
 | Escala tipogràfica | `docs/Identitat Visual/tipografia.pdf` (= pàg. 13 del manual) |
 | Fitxers de font | `assets/fonts/` (WOFF2 per a la web, TTF d'origen) |
 
-`docs/` és local (ignorat per Git). Aquest fitxer és la còpia versionada de referència.
+`docs/` es versiona des del 2026-10-05 (decisió de Pau). Aquest fitxer és la referència resumida.
 
 ## 1. Colors
 
