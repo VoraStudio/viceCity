@@ -1,6 +1,6 @@
 # Tokens — Vicity
 
-Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, escala tipogràfica) confirmada per Pau el 2026-10-05**. Parts 2 (components) i 3 (seccions) pendents.
+Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, escala tipogràfica) confirmada per Pau el 2026-10-05**. Part 2 (components) confirmada el mateix dia. Part 3 (seccions) pendent.
 
 ## Fonts d'origen
 
@@ -23,6 +23,7 @@ Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, 
   --color-purple-700: #5E35B1;
   --color-ink: #0D252F;
   --color-paper: #F7F8F6;
+  --color-gray: #B4B4B4;
 }
 ```
 
@@ -35,7 +36,7 @@ Referència de tokens del projecte. Estat: **Part 1 de l'INTAKE (colors, fonts, 
 | `ink` | `#0D252F` | 13, 37, 47 | Blau nit |
 | `paper` | `#F7F8F6` | 247, 248, 246 | Blanc trencat |
 
-Sense token al manual: **Gris `#B4B4B4`** (180, 180, 180). Pendent de Pau: nom del token.
+Sense token al manual: **Gris `#B4B4B4`** (180, 180, 180). S'afegeix el token `gray` (nom triat per fer-lo servir a les pestanyes).
 
 ## 2. Fonts
 
@@ -109,6 +110,48 @@ Lectura visual del PDF. **No hi ha mides** (alçades, paddings, radis de botó):
 | Pestanyes | Inactives | Fons `paper`, text `purple-700` bold |
 
 El PDF del manual anuncia també una secció «Alertes» (pàg. 11), però no té cap pàgina de contingut: **no consta**.
+
+### Classes Tailwind (Part 2, confirmada per Pau el 2026-10-05)
+
+Regla de Pau: **sempre mesures de Tailwind**, sense valors arbitraris. Les classes surten de `ui_metrics.py` sobre el `ui.pdf` apaïsat 1440×810 (còpia de `sdd-vd/sdd-local`, el mateix disseny que `ui_final.pdf`, que és un A4 vertical i no es pot mesurar). Quan la nota del PDF i la mesura difereixen, guanya la classe Tailwind mesurada.
+
+| Component | Variant | Classes |
+|---|---|---|
+| Botó | Primari | `h-11 rounded-full bg-purple-700 text-white` |
+| Botó | Secundari | `h-11 rounded-full border-2 border-purple-700 text-purple-700` |
+| Botó | Deshabilitat | `h-11 rounded-full bg-lav-100 text-purple-700` |
+| Targeta | Estàndard | `rounded-3xl border-2 border-purple-700` |
+| Targeta | Fosca | `rounded-3xl bg-purple-700 text-white` |
+| Camp de formulari | Text | `h-9 rounded-sm border bg-paper` |
+| Formulari | Contenidor | `rounded-xl bg-paper` |
+| Botó enviar | — | `h-9 rounded-xl bg-lav-300 text-ink` |
+| Etiqueta | Nou | `h-11 rounded-full bg-lav-100 text-purple-700 font-bold` |
+| Etiqueta | Urgent | `h-11 rounded-full bg-lav-300 text-white font-bold` |
+| Etiqueta | Vicity+ | `h-11 rounded-full bg-ink text-white font-bold` (mesurat `#0D2E32`, `SENSE_TOKEN`, es fa servir `ink`) |
+| Etiqueta | Termini obert | `h-11 rounded-full border border-purple-700 text-purple-700 font-bold` |
+| Etiqueta | Pendent de revisió | `h-11 rounded-full border border-ink text-ink font-bold` (mesurat `#2C2C2C`, `SENSE_TOKEN`, es fa servir `ink`) |
+| Pestanyes | Contenidor | `h-16 rounded-3xl border-2 border-gray` |
+| Pestanyes | Activa | `h-13 rounded-2xl bg-lav-100 text-purple-700 font-bold` |
+| Pestanyes | Inactiva | `h-13 rounded-2xl bg-paper text-purple-700 font-bold` |
+
+El contenidor de pestanyes fa servir `border-gray` amb el Gris `#B4B4B4` de marca, mesurat com a `SENSE_TOKEN`. Per poder-lo fer servir es defineix el token `gray` al `@theme`.
+
+```css
+@theme {
+  --color-gray: #B4B4B4;
+}
+```
+
+**Decisions de la discrepància nota/mesura:**
+
+| Tema | Nota del PDF | Mesura | Triat |
+|---|---|---|---|
+| Radi de targeta | 30 px | 23 px | `rounded-3xl` |
+| Vora dels camps | 1,5 px | 0,5 px | `border` (1 px, la mesura de Tailwind més propera) |
+
+**Estats:** hover, active i disabled: *no especificat*. Focus: només consta la nota «morat viu amb halo suau», `purple-500`. «Alertes» no consta.
+
+**`SENSE_TOKEN` sense resoldre** (mesurats als píxels): `#8C8C8C`, `#898989` (vora dels camps), `#D8D8D8` (casella). No s'han incorporat com a tokens.
 
 ## 5. Avisos i decisions pendents
 
