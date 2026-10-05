@@ -119,19 +119,19 @@ Regla de Pau: **sempre mesures de Tailwind**, sense valors arbitraris. Les class
 
 | Component | Variant | Classes |
 |---|---|---|
-| Botó | Primari | `h-11 rounded-full bg-purple-700 text-white` |
-| Botó | Secundari | `h-11 rounded-full border-2 border-purple-700 text-purple-700` |
-| Botó | Deshabilitat | `h-11 rounded-full bg-lav-100 text-purple-700` |
+| Botó | Primari | `h-11 rounded-full bg-purple-700 font-body font-medium text-white` |
+| Botó | Secundari | `h-11 rounded-full border-2 border-purple-700 font-body font-medium text-purple-700` |
+| Botó | Deshabilitat | `h-11 rounded-full bg-lav-100 font-body font-medium text-purple-700` |
 | Targeta | Estàndard | `rounded-3xl border-2 border-purple-700` |
 | Targeta | Fosca | `rounded-3xl bg-purple-700 text-white` |
 | Camp de formulari | Text | `h-9 rounded-sm border bg-paper` |
 | Formulari | Contenidor | `rounded-xl bg-paper` |
 | Botó enviar | — | `h-9 rounded-xl bg-lav-300 text-ink` |
-| Etiqueta | Nou | `h-11 rounded-full bg-lav-100 text-purple-700 font-bold` |
-| Etiqueta | Urgent | `h-11 rounded-full bg-lav-300 text-white font-bold` |
-| Etiqueta | Vicity+ | `h-11 rounded-full bg-ink text-white font-bold` (mesurat `#0D2E32`, `SENSE_TOKEN`, es fa servir `ink`) |
-| Etiqueta | Termini obert | `h-11 rounded-full border border-purple-700 text-purple-700 font-bold` |
-| Etiqueta | Pendent de revisió | `h-11 rounded-full border border-ink text-ink font-bold` (mesurat `#2C2C2C`, `SENSE_TOKEN`, es fa servir `ink`) |
+| Etiqueta | Nou | `h-11 rounded-full bg-lav-100 font-body text-label font-bold text-purple-700` |
+| Etiqueta | Urgent | `h-11 rounded-full bg-lav-300 font-body text-label font-bold text-white` |
+| Etiqueta | Vicity+ | `h-11 rounded-full bg-ink font-body text-label font-bold text-white` (mesurat `#0D2E32`, `SENSE_TOKEN`, es fa servir `ink`) |
+| Etiqueta | Termini obert | `h-11 rounded-full border border-purple-700 font-body text-label font-bold text-purple-700` |
+| Etiqueta | Pendent de revisió | `h-11 rounded-full border border-ink font-body text-label font-bold text-ink` (mesurat `#2C2C2C`, `SENSE_TOKEN`, es fa servir `ink`) |
 | Pestanyes | Contenidor | `h-16 rounded-3xl border-2 border-gray` |
 | Pestanyes | Activa | `h-13 rounded-2xl bg-lav-100 text-purple-700 font-bold` |
 | Pestanyes | Inactiva | `h-13 rounded-2xl bg-paper text-purple-700 font-bold` |
@@ -151,7 +151,11 @@ El contenidor de pestanyes fa servir `border-gray` amb el Gris `#B4B4B4` de marc
 | Radi de targeta | 30 px | 23 px | `rounded-3xl` |
 | Vora dels camps | 1,5 px | 0,5 px | `border` (1 px, la mesura de Tailwind més propera) |
 
-**Estats:** hover, active i disabled: *no especificat*. Focus: només consta la nota «morat viu amb halo suau», `purple-500`. «Alertes» no consta.
+**Tipografia dels components:** botons en Quicksand de pes mitjà (`font-body font-medium`); etiquetes en Quicksand bold a la mida d'etiqueta (`text-label`), sense majúscules.
+
+**Botó sobre targeta fosca:** no consta a `ui.pdf`. Es fa servir `bg-paper text-purple-700` (tokens).
+
+**Estats:** hover, active i disabled: *no especificat*. Focus: la nota diu «morat viu amb halo suau», i s'aplica `focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30`. «Alertes» no consta.
 
 **`SENSE_TOKEN` sense resoldre** (mesurats als píxels): `#8C8C8C`, `#898989` (vora dels camps), `#D8D8D8` (casella). No s'han incorporat com a tokens.
 
