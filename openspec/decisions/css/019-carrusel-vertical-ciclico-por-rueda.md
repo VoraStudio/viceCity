@@ -21,5 +21,5 @@ La sección 2 mostraba cuatro tarjetas en cascada (decisión 009). Se quiere un 
 - Sustituye a la cascada: la decisión 009 (atenuar con `:has`) deja de aplicar en `lg`.
 - Con el cursor sobre la pila la página no hace scroll, porque la rueda se bloquea. Se sale moviendo el cursor fuera de la pila.
 - **No incluye** teclado, `aria-live` ni `inert` para las tarjetas de detrás; la versión mínima prioriza la comprensión del código. Pendiente antes de dar la sección por accesible.
-- **No hay versión táctil**: en tablet y móvil sigue el grid. Pendiente: arrastrar (`Draggable`/`Observer`) con el mismo `render`.
+- **Táctil resuelto en la decisión 020**: por debajo de `lg` el mismo `render` se mueve arrastrando.
 - Los nombres de variables y los comentarios están en castellano y catalán, tal como se fueron construyendo en la sesión guiada.

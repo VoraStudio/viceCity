@@ -60,3 +60,48 @@ gsap.matchMedia().add("(min-width: 64rem) and (prefers-reduced-motion: no-prefer
     gsap.set(cards, { clearProps: "all" });
   };
 });
+
+// Tauleta i mòbil: s'arrossega la pila amb el dit (o el ratolí) i, en deixar anar, s'assenta a la targeta més propera
+gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-preference)", () => {
+  gsap.registerPlugin(Draggable);
+  section.dataset.stack = "on";
+
+  const estado = { activa: 0 };
+  let inicio = 0;
+  let yInicio = 0;
+
+  render(estado.activa);
+
+  // Draggable necessita un element que arrossegar: aquest és invisible i només en mesurem el desplaçament
+  const proxy = document.createElement("div");
+  const [arrastre] = Draggable.create(proxy, {
+    type: "y",
+    trigger: stage,
+    // Draggable acumula la y entre arrossegaments: es mesura el desplaçament des del punt on es prem
+    onPress: function () {
+      gsap.killTweensOf(estado);
+      inicio = estado.activa;
+      yInicio = this.y;
+    },
+    // Arrossegar cap amunt fa pujar la targeta següent: l'activa creix
+    onDrag: function () {
+      estado.activa = inicio - (this.y - yInicio) / 116;
+      render(estado.activa);
+    },
+    onRelease: () => {
+      gsap.to(estado, {
+        activa: Math.round(estado.activa),
+        duration: 0.4,
+        ease: "power2.out",
+        onUpdate: () => render(estado.activa),
+      });
+    },
+  });
+
+  // En sortir de tauleta es desfà tot
+  return () => {
+    arrastre.kill();
+    delete section.dataset.stack;
+    gsap.set(cards, { clearProps: "all" });
+  };
+});
