@@ -79,7 +79,7 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
   let inicio = 0;
   let yInicio = 0;
   let objetivo = 0; // posició a la qual segueix l'activa amb retard, com un scrub
-  const PX_POR_TARJETA = 400; // píxels de dit per passar una targeta: més alt, més lent
+  const PX_POR_TARJETA = 200; // píxels de dit per passar una targeta: més alt, més lent
 
   render(estado.activa);
 
