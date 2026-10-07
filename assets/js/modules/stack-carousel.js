@@ -72,7 +72,7 @@ gsap.matchMedia().add("(min-width: 64rem) and (prefers-reduced-motion: no-prefer
 
 // Tauleta i mòbil: s'arrossega la pila amb el dit (o el ratolí) i, en deixar anar, s'assenta a la targeta més propera
 gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-preference)", () => {
-  gsap.registerPlugin(Draggable);
+  gsap.registerPlugin(Draggable, InertiaPlugin);
   section.dataset.stack = "on";
 
   const estado = { activa: 0 };
@@ -97,11 +97,13 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
       estado.activa = inicio - (this.y - yInicio) / separacion;
       render(estado.activa);
     },
-    onRelease: () => {
+    onRelease: function () {
+      // La velocitat del dit (px/s) suma un impuls d'una targeta com a màxim; en pujar (velocitat negativa) l'activa creix
+      const impulso = gsap.utils.clamp(-1, 1, -this.getVelocity("y") / 1500);
       gsap.to(estado, {
-        activa: Math.round(estado.activa),
-        duration: 0.8,
-        ease: "power3.out",
+        activa: Math.round(estado.activa + impulso),
+        duration: 2.5,
+        ease: "power2.out",
         onUpdate: () => render(estado.activa),
       });
     },
