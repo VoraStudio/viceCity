@@ -20,7 +20,7 @@ Se quiere la animación «Skew» del ejemplo `20_examples_3d.html` en los títul
 ## Consecuencias
 
 - **Quedan fuera** los `<h2>` de las tarjetas de recursos (usan `rotate-180` y `writing-mode`, que el `transform` de GSAP pisaría), el `h1` del hero, el título de la franja de confianza y los del footer.
-- La animación se aplica al título entero, no línea a línea como el ejemplo; para eso haría falta SplitText.
+- **Línea a línea (2026-10-07):** se usa `SplitText` 3.15.0 (script con versión fija y SRI) con `type: "lines"`, `autoSplit` y `stagger: 0.12`. Se espera a `document.fonts.ready` antes de dividir, porque el corte de línea depende de la tipografía final, y la perspectiva pasa al propio título para que todas las líneas compartan el punto de fuga. El título del blog lleva una flecha SVG, que `SplitText` rompería, así que sigue animándose como bloque.
 - Medido en el navegador: 6 títulos enganchados y ocultos fuera de pantalla, sin scroll horizontal, altura de la página estable (6304 px) y sin recálculos de ScrollTrigger durante la animación.
 - **Tirón al final, resuelto (2026-10-07):** `transformPerspective` y `skewX` en la misma matriz de GSAP hacían divergir el término de perspectiva (`m43` pasaba de -0,0012 a -0,167 en los últimos fotogramas) y luego saltaba a identidad. Medido con `getComputedStyle(...).transform` por fotograma. `will-change` y `force3D` no lo arreglaban; sí lo hizo la perspectiva en el contenedor. Detalle en `voraData/tips/gsap-skew-perspective-snap.md`.
 - Compromiso: el punto de fuga es el centro del contenedor, no del título.
