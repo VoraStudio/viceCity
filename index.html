@@ -779,6 +779,26 @@
             </ol>
           </div>
 
+          <!-- Fletxes: només a mòbil i amb el carrusel actiu -->
+          <div class="mt-8 flex justify-center gap-3 md:hidden" data-stack-controls hidden>
+            <button
+              type="button"
+              data-stack-prev
+              aria-label="Targeta anterior"
+              class="inline-flex size-11 cursor-pointer items-center justify-center rounded-full bg-purple-100 text-purple-700 outline-1 -outline-offset-1 outline-purple-700 transition-transform active:scale-95 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 motion-reduce:transition-none"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6" /></svg>
+            </button>
+            <button
+              type="button"
+              data-stack-next
+              aria-label="Targeta següent"
+              class="inline-flex size-11 cursor-pointer items-center justify-center rounded-full bg-purple-100 text-purple-700 outline-1 -outline-offset-1 outline-purple-700 transition-transform active:scale-95 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 motion-reduce:transition-none"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+          </div>
+
           <p class="sr-only" aria-live="polite" data-stack-status></p>
         </div>
       </section>

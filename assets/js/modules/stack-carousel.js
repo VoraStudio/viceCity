@@ -79,7 +79,7 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
   let inicio = 0;
   let yInicio = 0;
   let objetivo = 0; // posició a la qual segueix l'activa amb retard, com un scrub
-  const PX_POR_TARJETA = 200; // píxels de dit per passar una targeta: més alt, més lent
+  const PX_POR_TARJETA = 100; // píxels de dit per passar una targeta: més alt, més lent
 
   render(estado.activa);
 
@@ -120,8 +120,33 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
     },
   });
 
+  // Fletxes de mòbil: cada clic mou una targeta amb la mateixa animació suau
+  const prev = section.querySelector("[data-stack-prev]");
+  const next = section.querySelector("[data-stack-next]");
+  const controls = section.querySelector("[data-stack-controls]");
+  if (controls) controls.hidden = false;
+
+  const mover = (paso) => {
+    objetivo = Math.round(objetivo) + paso;
+    gsap.to(estado, {
+      activa: objetivo,
+      duration: 1,
+      ease: "sine.inOut",
+      overwrite: true,
+      onUpdate: () => render(estado.activa),
+    });
+  };
+  const onPrev = () => mover(-1);
+  const onNext = () => mover(1);
+
+  prev?.addEventListener("click", onPrev);
+  next?.addEventListener("click", onNext);
+
   // En sortir de tauleta es desfà tot
   return () => {
+    if (controls) controls.hidden = true;
+    prev?.removeEventListener("click", onPrev);
+    next?.removeEventListener("click", onNext);
     arrastre.kill();
     delete section.dataset.stack;
     gsap.set(cards, { clearProps: "all" });
