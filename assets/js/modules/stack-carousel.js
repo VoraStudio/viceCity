@@ -3,6 +3,15 @@ const section = document.querySelector("[data-stack-carousel]");
 const stage = section.querySelector("[data-stack-stage]");
 const cards = gsap.utils.toArray("[data-stack-list] > li", section);
 
+// Separació vertical entre targetes: més petita a mòbil
+let separacion = 116;
+gsap.matchMedia().add("(max-width: 47.999rem)", () => {
+  separacion = 70;
+  return () => {
+    separacion = 116;
+  };
+});
+
 // Col·loca cada targeta segons la distància a la targeta activa
 const render = (activa) => {
   cards.forEach((card, i) => {
@@ -12,7 +21,7 @@ const render = (activa) => {
 
     gsap.set(card, {
       yPercent: -50,
-      y: distancia * 116,
+      y: distancia * separacion,
       scale: 1 - lejos * 0.1,
       // L'opacitat arriba a 0 a l'extrem, així el salt del bucle no es veu
       opacity: 1 - (lejos / (cards.length / 2)) ** 2,
@@ -85,7 +94,7 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
     },
     // Arrossegar cap amunt fa pujar la targeta següent: l'activa creix
     onDrag: function () {
-      estado.activa = inicio - (this.y - yInicio) / 116;
+      estado.activa = inicio - (this.y - yInicio) / separacion;
       render(estado.activa);
     },
     onRelease: () => {
