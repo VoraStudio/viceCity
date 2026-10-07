@@ -19,13 +19,13 @@ const initRipple = () => {
     button.addEventListener('mouseenter', (event) => {
       const { x, y } = getCursorOffset(event);
       gsap.fromTo(fill, { x, y, scale: 0 }, { scale: 60, duration: 1.5, ease: 'power2.out', overwrite: 'auto' });
-      gsap.to(text, { color: hoverColor, duration: 0.25, delay: 0.15, overwrite: 'auto' });
+      gsap.to(text, { color: hoverColor, duration: 0.25, delay: 0.15, overwrite: true });
     });
 
     button.addEventListener('mouseleave', (event) => {
       const { x, y } = getCursorOffset(event);
       gsap.to(fill, { x, y, scale: 0, duration: 0.70, ease: 'power3.out', overwrite: 'auto' });
-      gsap.to(text, { color: baseColor, duration: 0.25, delay: 0.1, overwrite: 'auto' });
+      gsap.to(text, { color: baseColor, duration: 0.25, delay: 0.1, overwrite: true });
     });
   });
 };
