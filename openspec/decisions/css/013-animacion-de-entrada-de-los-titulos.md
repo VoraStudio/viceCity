@@ -13,8 +13,8 @@ Se quiere la animación «Skew» del ejemplo `20_examples_3d.html` en los títul
 - **ScrollTrigger** se carga como script normal después de GSAP.
 - **Gancho:** los títulos llevan `data-title-reveal`: Gestiona avui, Especialització, Integració, Intel·ligència Artificial, Azure y el del blog. Se eligen explícitamente en lugar de seleccionar todos los `<h2>`.
 - **`assets/js/modules/title-reveal.js`:** `gsap.from` sobre cada título, con `start: 'top 85%'` y `toggleActions: 'play reset play reset'`, de modo que la animación se reproduce al entrar y se reinicia al salir, en las dos direcciones del scroll.
-- **Perspectiva:** el ejemplo anima un `<span>` dentro de un padre con `perspective: 1200px`. Aquí se usa `transformPerspective: 1200` en el propio título, sin tocar HTML ni CSS.
-- `force3D: true`: GSAP, por defecto, retira la aceleración 3D al terminar, lo que fuerza un repintado del texto. Es una hipótesis para el tirón al final de la animación.
+- **Perspectiva en el contenedor:** como el ejemplo, que anima un `<span>` dentro de un padre con `perspective: 1200px`, `title-reveal.js` hace `gsap.set(title.parentElement, { perspective: 1200 })`. Se descartó `transformPerspective` en el propio título (ver Consecuencias).
+- `force3D: true` se mantiene, aunque no era la causa del tirón final.
 - Respeta `prefers-reduced-motion` y llama a `ScrollTrigger.refresh()` tras la carga.
 
 ## Consecuencias
@@ -22,4 +22,5 @@ Se quiere la animación «Skew» del ejemplo `20_examples_3d.html` en los títul
 - **Quedan fuera** los `<h2>` de las tarjetas de recursos (usan `rotate-180` y `writing-mode`, que el `transform` de GSAP pisaría), el `h1` del hero, el título de la franja de confianza y los del footer.
 - La animación se aplica al título entero, no línea a línea como el ejemplo; para eso haría falta SplitText.
 - Medido en el navegador: 6 títulos enganchados y ocultos fuera de pantalla, sin scroll horizontal, altura de la página estable (6304 px) y sin recálculos de ScrollTrigger durante la animación.
-- **Pendiente de confirmar:** el tirón al final de la animación; no se ha podido reproducir. Si persiste, las sospechas son el `overflow-x-clip` de alguna sección y el coste de pintado de los blobs con `blur-3xl` del hero.
+- **Tirón al final, resuelto (2026-10-07):** `transformPerspective` y `skewX` en la misma matriz de GSAP hacían divergir el término de perspectiva (`m43` pasaba de -0,0012 a -0,167 en los últimos fotogramas) y luego saltaba a identidad. Medido con `getComputedStyle(...).transform` por fotograma. `will-change` y `force3D` no lo arreglaban; sí lo hizo la perspectiva en el contenedor. Detalle en `voraData/tips/gsap-skew-perspective-snap.md`.
+- Compromiso: el punto de fuga es el centro del contenedor, no del título.
