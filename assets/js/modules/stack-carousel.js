@@ -100,8 +100,8 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
     onRelease: () => {
       gsap.to(estado, {
         activa: Math.round(estado.activa),
-        duration: 0.4,
-        ease: "power2.out",
+        duration: 0.8,
+        ease: "power3.out",
         onUpdate: () => render(estado.activa),
       });
     },
