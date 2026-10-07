@@ -18,7 +18,7 @@ Cada web necessita historial, remot i context d'Engram propis. Calia fixar on vi
   - `docs/` (ignorada): PDFs, branding, disseny d'origen
   - No s'usa cap carpeta `source/`.
 - Es versiona el que cal per desplegar; el material d'origen i el sensible s'ignoren (`.gitignore`).
-- **Logos: dins del repo** (decisió de Pau, 2026-10-05). Viuen a `assets/img/Logotips`.
+- **Logos: dins del repo** (decisió de Pau, 2026-10-05). Viuen a `assets/img/logo` (renomenats el 2026-10-07 sense espais ni accents; el logo de client de mostra, a `assets/img/clients`).
 
 ## Conseqüències
 

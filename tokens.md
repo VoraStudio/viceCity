@@ -169,3 +169,24 @@ El contenidor de pestanyes fa servir `border-gray` amb el Gris `#B4B4B4` de marc
 | Regla de color | El manual diu que els tons lavanda no porten mai text a sobre, però els seus components en porten. Pendent de Pau. |
 | Gris | Sense token (vegeu l'apartat 1). |
 | Pesos de Quicksand | No consten al manual. |
+
+## 6. Opacitats usades
+
+Opacitats sobre els tokens que ja fa servir `index.html` (i les pàgines legals). No són tokens nous: són el modificador `/N` de Tailwind aplicat a un color del `@theme`. Quan calgui una opacitat nova, s'ha de triar d'aquesta llista abans d'afegir-ne una.
+
+| Classe | Ús |
+|---|---|
+| `text-ink/80` | Text de cos secundari (la majoria de paràgrafs) |
+| `text-ink/70` | Text auxiliar: etiquetes de dades, peu, text d'exemple en maquetes |
+| `bg-lav-100/40` | Fons de targetes i franges suaus (confiança, peu, blog, integració) |
+| `bg-lav-100/60`, `from-lav-100/60`, `to-lav-100/60` | Fons de la capçalera i degradats del hero i de la secció de plataforma |
+| `via-lav-100/40` | Punt intermedi del degradat de la secció de plataforma |
+| `bg-lav-300/20` | Taca de color borrosa del hero |
+| `from-purple-700/60` | Inici del degradat de la secció d'IA |
+| `border-purple-800/20` | Vora de les targetes blanques (vegeu l'avís de sota) |
+| `ring-purple-500/30` | Halo del focus (`focus-visible:ring-4`), tots els enllaços i botons |
+| `shadow-purple-700/10`, `shadow-purple-700/20` | Ombres de la barra de navegació, del menú mòbil i del visual del producte |
+| `opacity-60` | Logotips de clients del carrusel (amb `brightness-0`) |
+| `opacity-50` | Targetes de la cascada que no tenen el cursor a sobre |
+
+**Avís: colors que no són tokens.** `index.html` fa servir `purple-100`, `purple-300` i `purple-800` (`bg-purple-100`, `border-purple-300`, `bg-purple-300`, `border-purple-800/20`). El `@theme` només defineix `purple-500` i `purple-700`: aquests tres surten de la paleta per defecte de Tailwind, no de la marca. Pendent de Pau: substituir-los per tokens (`lav-100`, `lav-300`) o definir-los. Els components nous (formulari, pàgines legals, blog) no els fan servir.

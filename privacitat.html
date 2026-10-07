@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ca" class="motion-safe:scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Política de privacitat · Vicity</title>
+    <meta name="description" content="Política de privacitat de Vicity: responsable del tractament, finalitat, base jurídica i drets de les persones interessades." />
+    <link rel="canonical" href="https://EXAMPLE-DOMAIN.tld/privacitat.html" />
+    <meta name="theme-color" content="#5e35b1" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vicity" />
+    <meta property="og:locale" content="ca_ES" />
+    <meta property="og:title" content="Política de privacitat · Vicity" />
+    <meta property="og:description" content="Política de privacitat de Vicity: responsable del tractament, finalitat, base jurídica i drets de les persones interessades." />
+    <meta property="og:url" content="https://EXAMPLE-DOMAIN.tld/privacitat.html" />
+    <meta property="og:image" content="https://EXAMPLE-DOMAIN.tld/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png" />
+    <meta property="og:image:width" content="2156" />
+    <meta property="og:image:height" content="671" />
+    <meta property="og:image:alt" content="Logotip de Vicity" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preload" href="assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="assets/js/js-flag.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3/dist/index.global.js"
+      integrity="sha384-2ql948lIdLcGEE0/qxNiudyTjgauA3RDJERu5xW75kFCvSl5a9odyQYCb6tEjnmB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"
+      integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"
+      integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF"
+      crossorigin="anonymous"
+    ></script>
+    <style type="text/tailwindcss">
+      /* Fonts locals variables (WOFF2) */
+      @font-face {
+        font-family: "Red Hat Display";
+        src: url("assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2") format("woff2");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Quicksand";
+        src: url("assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2") format("woff2");
+        font-weight: 300 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Applies only when assets/js/js-flag.js has added the "js" class to <html> */
+      @custom-variant js (&:where(.js *));
+
+      @theme {
+        --color-lav-100: #d9c7ff;
+        --color-lav-300: #b08cff;
+        --color-purple-500: #8f63ff;
+        --color-purple-700: #5e35b1;
+        --color-ink: #0d252f;
+        --color-paper: #f7f8f6;
+        --color-gray: #b4b4b4;
+        /* Gris de les caixes de placeholder (imatges no disponibles) */
+        --color-placeholder: #d9d9d9;
+
+        /* El menú completo del header aparece desde 1360px (por debajo no caben los enlaces en una línea) */
+        --breakpoint-menu: 85rem;
+
+        --font-head: "Red Hat Display", sans-serif;
+        --font-body: "Quicksand", sans-serif;
+
+        --text-title-1: 3.75rem;
+        --text-title-2: 2.5rem;
+        --text-body: 1.375rem;
+        --text-label: 0.75rem;
+        --animate-marquee: marquee 20s linear infinite;
+
+        @keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+      }
+    </style>
+  </head>
+  <body class="bg-paper font-body text-base text-ink antialiased">
+    <a
+      href="#contingut"
+      class="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-purple-700 focus-visible:px-4 focus-visible:py-2 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+      >Vés al contingut</a
+    >
+
+    <header id="inici" class="bg-lav-100/60 pt-4 md:pt-6">
+      <div class="mx-auto w-full max-w-none px-4 md:px-8">
+        <nav
+          class="relative flex items-center justify-between gap-2 rounded-full bg-white px-4 py-3 shadow-lg shadow-purple-700/10 md:px-6 xl:px-16"
+          aria-label="Navegació principal"
+        >
+          <a
+            href="index.html"
+            class="shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+          >
+            <img
+              src="assets/img/logo/imagotip/svg/sense-area-seguretat/1-imagotip-fons-blanc.svg"
+              alt="Vicity"
+              width="129"
+              height="40"
+              class="h-8 w-auto md:h-10 mr-4"
+            />
+          </a>
+
+          <ul class="hidden items-center xl:gap-6 gap-2 font-head text-base font-medium menu:flex">
+            <li>
+              <a
+                href="index.html#solucions"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Solucions</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#plataforma"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Plataforma</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#administracions"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Administracions</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#recursos"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Recursos</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html#contacte"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Contacte</a
+              >
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-2 md:gap-3 menu:gap-6">
+            <a
+              href="index.html#contacte"
+              data-ripple
+              data-ripple-text-color="var(--color-white)"
+              class="relative hidden h-11 overflow-hidden whitespace-nowrap bg-purple-100 items-center justify-center rounded-full border-1 font-bold border-purple-300 px-6 font-body text-purple-700 menu:inline-flex focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
+              <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+            </a>
+            <a
+              href="index.html#demo"
+              data-ripple
+              data-ripple-text-color="var(--color-purple-700)"
+              class="relative inline-flex h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full bg-purple-700 px-6 font-body font-medium text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-300"></span>
+              <span data-ripple-text class="relative z-10">
+                <span class="sr-only menu:not-sr-only font-bold">Sol·licita una demo</span>
+                <span aria-hidden="true" class="menu:hidden">Demo</span>
+              </span>
+            </a>
+            <button
+              type="button"
+              class="inline-flex size-11 items-center justify-center rounded-full border-2 border-purple-700 text-purple-700 cursor-pointer xl:cursor-none menu:hidden focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+              aria-label="Obre el menú"
+              aria-expanded="false"
+              aria-controls="menu-mobil"
+              data-nav-toggle
+            >
+              <svg
+                data-icon-open
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-6"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg
+                data-icon-close
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="hidden size-6"
+                aria-hidden="true"
+              >
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+          </div>
+
+          <div
+            id="menu-mobil"
+            class="absolute inset-x-0 top-full z-40 mt-2 hidden rounded-3xl border-2 border-purple-700 bg-white p-4 shadow-lg shadow-purple-700/10 menu:hidden"
+            data-nav-menu
+          >
+            <ul class="flex flex-col font-head text-lg font-medium">
+              <li>
+                <a
+                  href="index.html#solucions"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Solucions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#plataforma"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Plataforma</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#administracions"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Administracions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#recursos"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Recursos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#contacte"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Contacte</a
+                >
+              </li>
+            </ul>
+            <a
+              href="index.html#contacte"
+              data-ripple
+              data-ripple-text-color="var(--color-white)"
+              class="relative mt-2 flex h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full border-1 border-purple-300 bg-purple-100 font-bold px-6 font-body text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
+              <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contingut">
+      <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="pagina-titol">
+        <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
+          <h1 id="pagina-titol" class="font-head text-4xl leading-tight font-bold text-balance md:text-5xl">Política de privacitat</h1>
+          
+        </div>
+      </section>
+
+      <section class="pb-16 md:pb-24">
+        <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Aquest text és un esborrany pendent de revisió jurídica. Els apartats marcats amb <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR]</mark> s'han d'omplir amb les dades reals de la titularitat del web abans de la publicació.</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Responsable del tractament</h2>
+          <ul class="mt-4 flex list-disc flex-col gap-2 pl-6 text-base text-ink/80 md:text-lg"><li>Identitat: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: raó social]</mark></li><li>NIF/CIF: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: NIF/CIF]</mark></li><li>Adreça postal: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: adreça completa]</mark></li><li>Correu electrònic: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: adreça de correu]</mark></li><li>Delegat de protecció de dades (si escau): <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: contacte del DPD]</mark></li></ul>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Dades que recollim</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Mitjançant el formulari de contacte es recullen les dades que la persona interessada introdueix: nom i cognoms, organització, càrrec (opcional), correu electrònic, telèfon (opcional), motiu de la consulta i missatge (opcional).</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Finalitat</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Atendre les sol·licituds de demostració i les consultes rebudes a través del web.</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Base jurídica</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">El consentiment de la persona interessada, que s'atorga en marcar la casella d'acceptació del formulari (article 6.1.a del Reglament (UE) 2016/679, RGPD).</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Destinataris</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Les dades no es cediran a tercers, tret d'obligació legal <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: indicar encarregats del tractament, com ara el proveïdor d'allotjament o de correu]</mark>.</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Termini de conservació</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg"><mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: indicar termini]</mark>, o fins que la persona interessada en sol·liciti la supressió.</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Drets de les persones interessades</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Pots exercir els drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat, així com retirar el consentiment en qualsevol moment, escrivint a l'adreça de correu indicada més amunt.</p>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Si consideres que el tractament no s'ajusta a la normativa, pots presentar una reclamació davant l'autoritat de control competent <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: confirmar autoritat: AEPD o Autoritat Catalana de Protecció de Dades]</mark>.</p>
+          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Més informació</h2>
+          <p class="mt-4 text-base text-ink/80 md:text-lg">Consulta també l'<a href="avis-legal.html" class="rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30">avís legal</a> i la <a href="cookies.html" class="rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30">política de cookies</a>.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="peu" class="overflow-hidden bg-lav-100/40 pt-12 md:pt-16">
+      <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
+        <div class="flex flex-col gap-6 border-b border-lav-100 pb-8 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <a
+              href="index.html"
+              class="inline-block rounded-full focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <img
+                src="assets/img/logo/imagotip/svg/sense-area-seguretat/1-imagotip-fons-blanc.svg"
+                alt="Vicity"
+                width="129"
+                height="40"
+                class="h-10 w-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p class="mt-3 text-base text-ink/80">Gestiona avui. Prepara't per demà.</p>
+          </div>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <a
+              href="index.html#contacte"
+              data-ripple
+              data-ripple-text-color="var(--color-white)"
+              class="relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full border-1 border-purple-300 bg-purple-100 font-bold px-6 font-body text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
+              <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+            </a>
+            <a
+              href="index.html#demo"
+              data-ripple
+              data-ripple-text-color="var(--color-purple-700)"
+              class="relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full bg-purple-700 px-6 font-body font-medium text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-300"></span>
+              <span data-ripple-text class="relative z-10">Sol·licita una demo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="grid gap-10 py-10 md:grid-cols-3">
+          <nav aria-labelledby="peu-enllacos">
+            <h2 id="peu-enllacos" class="font-head text-base font-bold">Enllaços</h2>
+            <ul class="mt-4 flex flex-col gap-3 text-base text-ink/80">
+              <li>
+                <a
+                  href="index.html#solucions"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Solucions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#plataforma"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Plataforma</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#administracions"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Administracions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#recursos"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Recursos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <nav aria-labelledby="peu-legal">
+            <h2 id="peu-legal" class="font-head text-base font-bold">Legal</h2>
+            <ul class="mt-4 flex flex-col gap-3 text-base text-ink/80">
+              <li>
+                <a
+                  href="avis-legal.html"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Avís legal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="privacitat.html"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Privacitat</a
+                >
+              </li>
+              <li>
+                <a
+                  href="cookies.html"
+                  class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Cookies</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div>
+            <h2 class="font-head text-base font-bold">Contacte</h2>
+            <dl class="mt-4 flex flex-col gap-3 text-base">
+              <div>
+                <dt class="text-label font-bold text-ink/70">Correu electrònic</dt>
+                <dd>
+                  <a
+                    href="mailto:info@vicity.cat"
+                    class="rounded-sm text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                    >info@vicity.cat</a
+                  >
+                </dd>
+              </div>
+              <div>
+                <dt class="text-label font-bold text-ink/70">Telèfon</dt>
+                <dd>
+                  <a
+                    href="tel:+34931234567"
+                    class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                    >+34 93 123 45 67</a
+                  >
+                </dd>
+              </div>
+              <div>
+                <dt class="text-label font-bold text-ink/70">Adreça</dt>
+                <dd>Avinguda Diagonal, 456, Barcelona</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="relative mt-4 overflow-hidden">
+          <p aria-hidden="true" class="font-head text-[18vw] text-center leading-none font-bold tracking-tight whitespace-nowrap bg-linear-to-b from-lav-100 to-transparent bg-clip-text text-transparent select-none">vicity</p>
+          <p class="absolute inset-x-0 bottom-4 text-center text-sm text-ink/70">© 2026 Vicity. Tots els drets reservats.</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="assets/js/modules/nav.js"></script>
+    <script type="module" src="assets/js/modules/ripple.js"></script>
+  </body>
+</html>
