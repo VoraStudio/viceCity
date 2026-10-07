@@ -78,6 +78,8 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
   const estado = { activa: 0 };
   let inicio = 0;
   let yInicio = 0;
+  let objetivo = 0; // posició a la qual segueix l'activa amb retard, com un scrub
+  const PX_POR_TARJETA = 400; // píxels de dit per passar una targeta: més alt, més lent
 
   render(estado.activa);
 
@@ -90,20 +92,29 @@ gsap.matchMedia().add("(max-width: 63.999rem) and (prefers-reduced-motion: no-pr
     onPress: function () {
       gsap.killTweensOf(estado);
       inicio = estado.activa;
+      objetivo = estado.activa;
       yInicio = this.y;
     },
     // Arrossegar cap amunt fa pujar la targeta següent: l'activa creix
+    // L'activa no salta al dit: l'hi segueix amb retard (efecte scrub), i overwrite evita acumular animacions
     onDrag: function () {
-      estado.activa = inicio - (this.y - yInicio) / separacion;
-      render(estado.activa);
+      objetivo = inicio - (this.y - yInicio) / PX_POR_TARJETA;
+      gsap.to(estado, {
+        activa: objetivo,
+        duration: 1.2,
+        ease: "sine.out",
+        overwrite: true,
+        onUpdate: () => render(estado.activa),
+      });
     },
     onRelease: function () {
-      // La velocitat del dit (px/s) suma un impuls d'una targeta com a màxim; en pujar (velocitat negativa) l'activa creix
-      const impulso = gsap.utils.clamp(-1, 1, -this.getVelocity("y") / 1500);
+      // Poca inèrcia: només un gest molt ràpid suma mitja targeta, que l'arrodoniment converteix en una
+      const impulso = gsap.utils.clamp(-0.5, 0.5, -this.getVelocity("y") / 6000);
       gsap.to(estado, {
-        activa: Math.round(estado.activa + impulso),
-        duration: 2.5,
-        ease: "power2.out",
+        activa: Math.round(objetivo + impulso),
+        duration: 1.8,
+        ease: "sine.inOut",
+        overwrite: true,
         onUpdate: () => render(estado.activa),
       });
     },
