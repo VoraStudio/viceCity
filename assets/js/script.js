@@ -173,7 +173,7 @@ const initIntegrationAnimation = () => {
 
     timeline
       .from(subtitle, { x: 60, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" })
-      .from(chars, charsDepthReveal, "-=0.4")
+      .from(chars, charsDepthReveal, "-=0.8")
       .fromTo(
         image,
         { clipPath: "inset(0% 100% 0% 0%)" },
@@ -186,10 +186,48 @@ const initIntegrationAnimation = () => {
   });
 };
 
+// ==========================================================================
+// IA
+// ==========================================================================
+const initAiAnimation = () => {
+  const section = document.querySelector("[data-ia]");
+  if (!section) return;
+
+  const subtitle = section.querySelector("[data-ia-subtitle]");
+  const items = section.querySelectorAll("[data-ia-item]");
+  const description = section.querySelector("[data-ia-description]");
+  const image = section.querySelector("[data-ia-image]");
+  if (!subtitle || !items.length || !description || !image) return;
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.fonts.ready.then(() => {
+    const chars = splitIntoChars(description);
+
+    const timeline = gsap.timeline({
+      scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
+    });
+
+    timeline
+      .from(subtitle, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" })
+      .from(items, { x: -60, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.2, clearProps: "transform,opacity" }, "-=0.4")
+      .from(chars, { ...charsDepthReveal, duration: 0.4, stagger: { amount: 0.5 } }, "-=0.8")
+      .fromTo(
+        image,
+        { clipPath: "inset(0% 0% 0% 100%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power2.inOut", clearProps: "clipPath" },
+        "-=1.6"
+      );
+
+    ScrollTrigger.refresh();
+  });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
   initSolutionsAnimation();
   initPlatformAnimation();
   initIntegrationAnimation();
+  initAiAnimation();
 }
