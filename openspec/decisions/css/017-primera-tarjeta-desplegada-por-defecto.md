@@ -1,24 +1,24 @@
-# 017 — Primera tarjeta de recursos desplegada por defecto
+# 017 — Primera targeta de recursos desplegada per defecte
 
 **Stack**: css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-07
+**Estat**: acceptat
+**Data**: 2026-10-07
 
-## Contexto
+## Context
 
-En `#recursos` las tres tarjetas nacían plegadas y solo se abrían con hover (`lg`) o con clic (móvil y tablet). La sección quedaba sin contenido visible al cargar, y las tarjetas plegadas eran demasiado anchas para un título vertical.
+A `#recursos` les tres targetes naixien plegades i només s'obrien amb hover (`lg`) o amb clic (mòbil i tauleta). La secció quedava sense contingut visible en carregar, i les targetes plegades eren massa amples per a un títol vertical.
 
-## Decisión
+## Decisió
 
-- **La tarjeta 1 nace desplegada en todos los breakpoints.** En `lg` pasa a `lg:flex-6`, `flex-col` y con el título horizontal. Se pliega solo cuando otra tarjeta recibe hover o foco, mediante `lg:group-has-[article:not(:first-child):hover]/list:*` y su variante `focus-within`. El contenedor lleva `group/list` para que la tarjeta 1 detecte a las demás.
-- **Proporción 6/1/1 (8/1/1 en la tarjeta 3).** Las desplegadas suben de `flex-3`/`flex-4` a `flex-6`/`flex-8`, en lugar de bajar las plegadas por debajo de `1`: así no hay valores arbitrarios decimales y las plegadas quedan en ~12,5 % del ancho.
-- **ARIA coherente con lo visible.** El botón de la tarjeta 1 nace con `aria-expanded="true"`. En `acordeon.js`, `syncAll` considera abierta la primera por defecto (siempre por debajo de `lg`; en `lg`, salvo que otra tarjeta esté activa), y los eventos `pointerenter`, `pointerleave`, `focusin` y `focusout` resincronizan todas las tarjetas, no solo la que recibe el evento.
-- **Móvil y tablet:** título `text-xl` hasta `md` y un círculo con chevron (`lg:hidden`) dentro del mismo `<button>`, centrado en el extremo opuesto. El chevron gira con `group-has-aria-expanded:rotate-180` y respeta `motion-reduce`.
-- **Texto de los paneles** de `text-base` (16 px) a `text-lg` (18 px), salvo los títulos. Las `article` llevan `overflow-hidden`.
+- **La targeta 1 neix desplegada a tots els breakpoints.** A `lg` passa a `lg:flex-6`, `flex-col` i amb el títol horitzontal. Es plega només quan una altra targeta rep hover o focus, mitjançant `lg:group-has-[article:not(:first-child):hover]/list:*` i la seva variant `focus-within`. El contenidor porta `group/list` perquè la targeta 1 detecti les altres.
+- **Proporció 6/1/1 (8/1/1 a la targeta 3).** Les desplegades pugen de `flex-3`/`flex-4` a `flex-6`/`flex-8`, en lloc de baixar les plegades per sota d'`1`: així no hi ha valors arbitraris decimals i les plegades queden a ~12,5 % de l'amplada.
+- **ARIA coherent amb el que es veu.** El botó de la targeta 1 neix amb `aria-expanded="true"`. A `acordeon.js`, `syncAll` considera oberta la primera per defecte (sempre per sota de `lg`; a `lg`, tret que una altra targeta estigui activa), i els esdeveniments `pointerenter`, `pointerleave`, `focusin` i `focusout` ressincronitzen totes les targetes, no només la que rep l'esdeveniment.
+- **Mòbil i tauleta:** títol `text-xl` fins a `md` i un cercle amb xevró (`lg:hidden`) dins del mateix `<button>`, centrat a l'extrem oposat. El xevró gira amb `group-has-aria-expanded:rotate-180` i respecta `motion-reduce`.
+- **Text dels panells** de `text-base` (16 px) a `text-lg` (18 px), tret dels títols. Els `article` porten `overflow-hidden`.
 
-## Consecuencias
+## Conseqüències
 
-- El estado ARIA se calcula en un único sitio (`syncAll`), así que el atributo siempre refleja lo que ve el usuario.
-- `overflow-hidden` puede recortar el anillo de foco (`ring-4`) de los elementos pegados al borde de la tarjeta; si pasa, añadir margen interno o `ring-inset`.
-- `text-lg` no es un token capturado del manual (el cuerpo es `text-body`, 22 px); queda como ajuste local hasta resolver la discrepancia 18/22 px.
-- Sigue sin probarse en un dispositivo táctil real ni con lector de pantalla.
+- L'estat ARIA es calcula en un únic lloc (`syncAll`), de manera que l'atribut sempre reflecteix el que veu l'usuari.
+- `overflow-hidden` pot retallar l'anell de focus (`ring-4`) dels elements enganxats a la vora de la targeta; si passa, afegir marge intern o `ring-inset`.
+- `text-lg` no és un token capturat del manual (el cos és `text-body`, 22 px); queda com a ajust local fins a resoldre la discrepància 18/22 px.
+- Continua sense provar-se en un dispositiu tàctil real ni amb lector de pantalla.

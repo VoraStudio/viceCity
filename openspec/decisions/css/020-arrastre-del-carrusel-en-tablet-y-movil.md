@@ -1,24 +1,24 @@
-# 020 — Arrastre del carrusel en tablet y móvil
+# 020 — Arrossegament del carrusel en tauleta i mòbil
 
 **Stack**: js
-**Estado**: aceptado
-**Fecha**: 2026-10-07
+**Estat**: acceptat
+**Data**: 2026-10-07
 
-## Contexto
+## Context
 
-La decisión 019 deja el carrusel de «Especialització» solo en escritorio, con la rueda. En tablet y móvil no existe la rueda y se quería el mismo apilado cíclico, manejado con el dedo.
+La decisió 019 deixa el carrusel d'«Especialització» només a escriptori, amb la roda. En tauleta i mòbil no hi ha roda i es volia el mateix apilat cíclic, manejat amb el dit.
 
-## Decisión
+## Decisió
 
-- **Un segundo bloque `gsap.matchMedia`** en `stack-carousel.js`, activo por debajo de `lg` (`max-width: 63.999rem`) y sin `prefers-reduced-motion`. El bloque de escritorio no se toca.
-- **`Draggable` 3.15.0** (script con versión fija y SRI) sobre un elemento invisible, con `trigger: stage` y `type: "y"`. Mientras se arrastra, `activa = inicio - (y - yInicio) / 116`, así que las tarjetas siguen al dedo; el `116` es la misma separación vertical que usa `render`. Al soltar, `activa` se anima al entero más cercano (0,4 s, `power2.out`).
-- **`render` y el bucle `wrap` se reutilizan** tal cual: un único sitio decide la posición de cada tarjeta.
-- **`Draggable` acumula la `y` entre arrastres**, por eso se guarda `yInicio` en `onPress` y se mide el desplazamiento desde ese punto. Sin ello, el segundo arrastre empezaría desplazado.
-- Margen superior del contenedor: `mt-16` en todos los tamaños (antes `mt-10` / `md:mt-14`), para separar la pila de la descripción.
+- **Un segon bloc `gsap.matchMedia`** a `stack-carousel.js`, actiu per sota de `lg` (`max-width: 63.999rem`) i sense `prefers-reduced-motion`. El bloc d'escriptori no es toca.
+- **`Draggable` 3.15.0** (script amb versió fixa i SRI) sobre un element invisible, amb `trigger: stage` i `type: "y"`. Mentre s'arrossega, `activa = inici - (y - yInici) / 116`, així que les targetes segueixen el dit; el `116` és la mateixa separació vertical que fa servir `render`. En deixar anar, `activa` s'anima a l'enter més proper (0,4 s, `power2.out`).
+- **`render` i el bucle `wrap` es reutilitzen** tal qual: un únic lloc decideix la posició de cada targeta.
+- **`Draggable` acumula la `y` entre arrossegaments**, per això es guarda `yInici` a `onPress` i es mesura el desplaçament des d'aquest punt. Sense això, el segon arrossegament començaria desplaçat.
+- Marge superior del contenidor: `mt-16` a totes les mides (abans `mt-10` / `md:mt-14`), per separar la pila de la descripció.
 
-## Consecuencias
+## Conseqüències
 
-- Con el dedo sobre la pila no se hace scroll de página (`Draggable` captura el gesto vertical); se sale tocando fuera de ella.
-- Sigue sin teclado, `aria-live` ni `inert` para las tarjetas de detrás.
-- **No probado en un dispositivo táctil real**, solo comprobado el código. En móvil el texto de cada tarjeta es más largo: `min-h-88` y `h-136` pueden quedarse cortos.
-- Los comentarios están en catalán y los nombres de variables en castellano, como el resto del módulo.
+- Amb el dit sobre la pila no es fa scroll de pàgina (`Draggable` captura el gest vertical); se'n surt tocant fora d'ella.
+- Continua sense teclat, `aria-live` ni `inert` per a les targetes de darrere.
+- **No provat en un dispositiu tàctil real**, només comprovat el codi. En mòbil el text de cada targeta és més llarg: `min-h-88` i `h-136` poden quedar-se curts.
+- Els comentaris són en català i els noms de variables en castellà, com la resta del mòdul.

@@ -1,26 +1,26 @@
-# 004 — Header y footer como Web Components
+# 004 — Header i footer com a Web Components
 
 **Stack**: arquitectura (html + js)
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-El header (~177 líneas) y el footer (~173) estaban copiados a mano en las 5 páginas (`index`, `avis-legal`, `privacitat`, `cookies`, `blog`). Ya se habían desincronizado: las páginas internas no tenían el crédito de Vora Studio ni la composición móvil del footer, y no cargaban `script.js`, así que no se animaban.
+El header (~177 línies) i el footer (~173) estaven copiats a mà a les 5 pàgines (`index`, `avis-legal`, `privacitat`, `cookies`, `blog`). Ja s'havien desincronitzat: les pàgines internes no tenien el crèdit de Vora Studio ni la composició mòbil del footer, i no carregaven `script.js`, de manera que no s'animaven.
 
-## Decisión
+## Decisió
 
-- **Dos custom elements** vanilla, `<site-header>` y `<site-footer>`, en `assets/js/components/` (`site-header.js`, `site-footer.js`, `site-components.js` como punto de entrada y `home-href.js` como helper).
-- **Light DOM, sin Shadow DOM**: los estilos son clases de Tailwind de una hoja global, que el Shadow DOM no vería. El markup se pinta con `innerHTML` en `connectedCallback`, con guarda contra doble render.
-- **Enlaces de ancla resueltos al pintar**: en la página de inicio son `#solucions`, `#contacte`... y en las demás `index.html#solucions`, mediante `isHome`, `home` y `logoHref` de `home-href.js`.
-- **El módulo de componentes se carga el primero** en cada página, antes de `nav.js`, `ripple.js`, etc.: esos scripts consultan el DOM del header y del footer al arrancar. Definir el elemento mejora las etiquetas ya parseadas de forma síncrona.
-- **Las 4 páginas internas cargan también SplitText y `script.js`**, así su header y su footer se animan igual que en el inicio. `script.js` no hace nada cuando faltan los elementos de una sección.
-- **`display: block`** para `site-header` y `site-footer` en el CSS de cada página, para limitar el salto de maquetación.
-- Las plantillas son idénticas, salvo los enlaces, a los bloques que sustituyen (comprobado línea a línea contra git).
+- **Dos custom elements** vanilla, `<site-header>` i `<site-footer>`, a `assets/js/components/` (`site-header.js`, `site-footer.js`, `site-components.js` com a punt d'entrada i `home-href.js` com a helper).
+- **Light DOM, sense Shadow DOM**: els estils són classes de Tailwind d'un full global, que el Shadow DOM no veuria. El markup es pinta amb `innerHTML` a `connectedCallback`, amb guarda contra doble render.
+- **Enllaços d'àncora resolts en pintar**: a la pàgina d'inici són `#solucions`, `#contacte`... i a les altres `index.html#solucions`, mitjançant `isHome`, `home` i `logoHref` de `home-href.js`.
+- **El mòdul de components es carrega el primer** a cada pàgina, abans de `nav.js`, `ripple.js`, etc.: aquests scripts consulten el DOM del header i del footer en arrencar. Definir l'element millora les etiquetes ja parsejades de manera síncrona.
+- **Les 4 pàgines internes carreguen també SplitText i `script.js`**, així el seu header i el seu footer s'animen igual que a l'inici. `script.js` no fa res quan falten els elements d'una secció.
+- **`display: block`** per a `site-header` i `site-footer` al CSS de cada pàgina, per limitar el salt de maquetació.
+- Les plantilles són idèntiques, llevat dels enllaços, als blocs que substitueixen (comprovat línia a línia contra git).
 
-## Consecuencias
+## Conseqüències
 
-- Header y footer viven en un único sitio: un cambio se propaga a las 5 páginas.
-- **Sin JS desaparecen** el header y el footer, con la navegación.
-- Antes de pintarse, las etiquetas no tienen altura: puede haber un pequeño salto al cargar.
-- No probado en un navegador, solo comprobado el código.
+- Header i footer viuen en un únic lloc: un canvi es propaga a les 5 pàgines.
+- **Sense JS desapareixen** el header i el footer, amb la navegació.
+- Abans de pintar-se, les etiquetes no tenen alçada: pot haver-hi un petit salt en carregar.
+- No provat en un navegador, només comprovat el codi.

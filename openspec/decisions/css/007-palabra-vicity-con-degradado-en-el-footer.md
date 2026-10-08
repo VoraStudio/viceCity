@@ -1,23 +1,23 @@
-# 007 — Palabra «vicity» con degradado en el pie del footer
+# 007 — Paraula «vicity» amb degradat al peu del footer
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-El pie del footer mostraba la palabra «vicity» en `text-lav-100` plano, recortada por una caja de altura fija (`h-24 md:h-32 lg:h-36`) y con el copyright a la izquierda. La referencia pide una palabra grande que se desvanece hacia abajo, con el copyright centrado encima.
+El peu del footer mostrava la paraula «vicity» en `text-lav-100` pla, retallada per una caixa d'alçada fixa (`h-24 md:h-32 lg:h-36`) i amb el copyright a l'esquerra. La referència demana una paraula gran que s'esvaeix cap avall, amb el copyright centrat a sobre.
 
-## Decisión
+## Decisió
 
-- **Degradado en el texto:** `bg-linear-to-b from-lav-100 to-transparent bg-clip-text text-transparent`. El degradado es un fondo recortado con la forma de las letras; el color del texto se hace transparente para que se vea.
-- **Tamaño proporcional al ancho:** `text-[18vw]` en lugar de `text-9xl`. Medido en el navegador, la palabra ocupa 2,36 veces el tamaño de fuente de ancho: a `18vw` llena el 48 % del contenedor de 1200 px, a `27vw` el 73 % y a `37vw` el 100 %.
-- **Sin altura fija:** el contenedor pierde `h-24 md:h-32 lg:h-36` y conserva `relative overflow-hidden`. La caja mide lo que mide el texto, así que el degradado recorre toda la altura de las letras y desaparece abajo sin corte seco.
-- **Centrado:** `text-center` en la palabra y `absolute inset-x-0 bottom-4 text-center` en el copyright. Un elemento estirado con `inset-x-0` centra su contenido sin calcular desplazamientos.
+- **Degradat al text:** `bg-linear-to-b from-lav-100 to-transparent bg-clip-text text-transparent`. El degradat és un fons retallat amb la forma de les lletres; el color del text es fa transparent perquè es vegi.
+- **Mida proporcional a l'amplada:** `text-[18vw]` en lloc de `text-9xl`. Mesurat al navegador, la paraula ocupa 2,36 vegades la mida de la font d'amplada: a `18vw` omple el 48 % del contenidor de 1200 px, a `27vw` el 73 % i a `37vw` el 100 %.
+- **Sense alçada fixa:** el contenidor perd `h-24 md:h-32 lg:h-36` i conserva `relative overflow-hidden`. La caixa mesura el que mesura el text, de manera que el degradat recorre tota l'alçada de les lletres i desapareix cap avall sense tall sec.
+- **Centrat:** `text-center` a la paraula i `absolute inset-x-0 bottom-4 text-center` al copyright. Un element estirat amb `inset-x-0` centra el seu contingut sense calcular desplaçaments.
 
-## Consecuencias
+## Conseqüències
 
-- `text-[18vw]` es un valor arbitrario y rompe la regla «solo medidas de Tailwind» de `tokens.md`. Es inevitable: Tailwind no tiene escala en `vw`. Se registra como excepción.
-- El texto sigue marcado `aria-hidden="true"`: es decorativo, y el copyright es el contenido accesible.
-- A anchos muy pequeños la palabra puede desbordar por la derecha; `overflow-hidden` la recorta en lugar de provocar scroll horizontal.
-- No se ha comprobado visualmente en móvil.
+- `text-[18vw]` és un valor arbitrari i trenca la regla «només mesures de Tailwind» de `tokens.md`. És inevitable: Tailwind no té escala en `vw`. Es registra com a excepció.
+- El text continua marcat `aria-hidden="true"`: és decoratiu, i el copyright és el contingut accessible.
+- A amplades molt petites la paraula pot desbordar per la dreta; `overflow-hidden` la retalla en lloc de provocar scroll horitzontal.
+- No s'ha comprovat visualment en mòbil.

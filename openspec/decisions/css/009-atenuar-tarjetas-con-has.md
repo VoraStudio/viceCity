@@ -1,25 +1,26 @@
-# 009 — Atenuar las demás tarjetas de «Especialització» con :has
+# 009 — Atenuar les altres targetes d'«Especialització» amb :has
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
+**Substituïda per**: 019 (a `lg` l'atenuació de les targetes amb `:has` queda substituïda pel carrusel vertical cíclic)
 
-## Contexto
+## Context
 
-La sección 2 muestra cuatro tarjetas en cascada. En `lg` se apilan en la misma celda del grid con desplazamientos, de modo que el `<ol>` es una caja grande con huecos vacíos. Se quiere que, al pasar el ratón por una tarjeta, las demás se atenúen.
+La secció 2 mostra quatre targetes en cascada. A `lg` s'apilen a la mateixa cel·la del grid amb desplaçaments, de manera que l'`<ol>` és una caixa gran amb buits. Es vol que, en passar el ratolí per una targeta, les altres s'atenuïn.
 
-## Decisión
+## Decisió
 
-- **Selector relacional en el padre:** al `<ol>` se le añade `[&:has(li:hover)>li:not(:hover)]:opacity-50`. Se lee: «si el `ol` contiene una `li` en hover, las `li` hijas que no están en hover pasan a `opacity-50`».
-- Se elige `:has` frente a `group` + `group-hover`: `group` se activaría al pasar por los huecos vacíos del `<ol>` y atenuaría también la tarjeta señalada. Con `:has(li:hover)` solo se activa con el ratón sobre una tarjeta real.
-- **Transición** en cada `<li>`: `transition-opacity duration-300 ease-out motion-reduce:transition-none`. Va en la `<li>`, que es quien cambia de opacidad, no en el `<ol>`.
-- **Tarjeta al frente:** `lg:hover:z-50` en cada `<li>`, por encima de la cascada (`lg:z-10` a `lg:z-40`), para que una tarjeta parcialmente tapada salga entera en hover.
-- **Alturas:** se quita `items-start` del `<ol>`. Las tarjetas de una misma fila de la rejilla pasan a igualar su altura (`items-stretch` por defecto).
+- **Selector relacional al pare:** a l'`<ol>` s'afegeix `[&:has(li:hover)>li:not(:hover)]:opacity-50`. Es llegeix: «si l'`ol` conté una `li` en hover, les `li` filles que no són en hover passen a `opacity-50`».
+- Es tria `:has` davant de `group` + `group-hover`: `group` s'activaria en passar pels buits de l'`<ol>` i atenuaria també la targeta assenyalada. Amb `:has(li:hover)` només s'activa amb el ratolí sobre una targeta real.
+- **Transició** a cada `<li>`: `transition-opacity duration-300 ease-out motion-reduce:transition-none`. Va a la `<li>`, que és qui canvia d'opacitat, no a l'`<ol>`.
+- **Targeta al davant:** `lg:hover:z-50` a cada `<li>`, per sobre de la cascada (`lg:z-10` a `lg:z-40`), perquè una targeta parcialment tapada surti sencera en hover.
+- **Alçades:** es treu `items-start` de l'`<ol>`. Les targetes d'una mateixa fila de la graella passen a igualar la seva alçada (`items-stretch` per defecte).
 
-## Consecuencias
+## Conseqüències
 
-- **No está hecho:** el fondo distinto en la tarjeta en hover. Hay que elegir color, y los fondos lavanda con texto siguen sin resolver desde la decisión 004.
-- **No está hecho:** igualar la altura de todas las tarjetas entre filas distintas (`auto-rows-fr`). En móvil la tarjeta 04 sigue siendo más baja, porque no tiene la fila de la etiqueta.
-- Con `opacity-50` las tarjetas que se solapan en `lg` dejan ver la que tienen debajo a través de ellas. No se ha comprobado visualmente.
-- `z-index` no se anima: al soltar el hover vuelve de golpe al valor original.
-- Varias listas de clases se han partido en dos líneas dentro del atributo `class`. Funciona, pero conviene volver a una sola línea.
+- **No està fet:** el fons diferent a la targeta en hover. Cal triar color, i els fons lavanda amb text continuen sense resoldre des de la decisió 004.
+- **No està fet:** igualar l'alçada de totes les targetes entre files diferents (`auto-rows-fr`). En mòbil la targeta 04 continua sent més baixa, perquè no té la fila de l'etiqueta.
+- Amb `opacity-50` les targetes que se solapen a `lg` deixen veure la que tenen a sota a través d'elles. No s'ha comprovat visualment.
+- `z-index` no s'anima: en deixar el hover torna de cop al valor original.
+- Diverses llistes de classes s'han partit en dues línies dins de l'atribut `class`. Funciona, però convé tornar a una sola línia.

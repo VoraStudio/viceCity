@@ -1,25 +1,25 @@
-# 021 — Animación de entrada del header
+# 021 — Animació d'entrada del header
 
 **Stack**: js
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Se quiere animar la entrada de los elementos de cada sección con GSAP, ligada a una timeline por sección. Las animaciones viven en un único `assets/js/script.js`, separado por comentarios de sección. El header es la primera.
+Es vol animar l'entrada dels elements de cada secció amb GSAP, lligada a una timeline per secció. Les animacions viuen en un únic `assets/js/script.js`, separat per comentaris de secció. El header és la primera.
 
-## Decisión
+## Decisió
 
-- **Un solo `script.js` general**, cargado como `type="module"` tras `title-reveal.js`. Usa `gsap` global, como el resto de módulos. Los únicos comentarios son los separadores de sección.
-- **El header se anima al cargar, sin `ScrollTrigger`.** Está en pantalla con el scroll en 0, así que su `start` ya estaría superado y el `reset` de `play reset play reset` nunca se dispararía.
-- **Una timeline de dos pasos**: el `nav` cae con fade (`y: -40`, 0,8 s, `power3.out`) y los elementos (logo, `li` del menú, CTAs y hamburguesa) entran con `stagger: 0.08`, solapados con `"-=0.6"`.
-- **Selectores con `:scope`** para coger solo los hijos directos del `nav` y excluir el `ul` del menú móvil (`#menu-mobil`).
-- **`clearProps: "transform,opacity"`** en los `defaults` de la timeline, para devolver los estilos a Tailwind y no romper los hover.
-- **`prefers-reduced-motion`** corta la animación con un early return.
+- **Un sol `script.js` general**, carregat com a `type="module"` després de `title-reveal.js`. Fa servir `gsap` global, com la resta de mòduls. Els únics comentaris són els separadors de secció.
+- **El header s'anima en carregar, sense `ScrollTrigger`.** És en pantalla amb el scroll a 0, així que el seu `start` ja estaria superat i el `reset` de `play reset play reset` mai es dispararia.
+- **Una timeline de dos passos**: el `nav` cau amb fade (`y: -40`, 0,8 s, `power3.out`) i els elements (logo, `li` del menú, CTAs i hamburguesa) entren amb `stagger: 0.08`, solapats amb `"-=0.6"`.
+- **Selectors amb `:scope`** per agafar només els fills directes del `nav` i excloure l'`ul` del menú mòbil (`#menu-mobil`).
+- **`clearProps: "transform,opacity"`** als `defaults` de la timeline, per tornar els estils a Tailwind i no trencar els hover.
+- **`prefers-reduced-motion`** talla l'animació amb un early return.
 
-## Consecuencias
+## Conseqüències
 
-- Los elementos `display: none` según el breakpoint (los enlaces en móvil) entran en el `stagger` y retrasan a los siguientes.
-- Puede verse un parpadeo antes de que GSAP oculte el header, porque los módulos cargan diferidos. Pendiente: ocultarlo con la variante `js:` y pasar a `fromTo`.
-- No probado en navegador, solo comprobado el código.
-- Las secciones siguientes añaden su bloque en el mismo `script.js`.
+- Els elements `display: none` segons el breakpoint (els enllaços en mòbil) entren a l'`stagger` i endarrereixen els següents.
+- Es pot veure un parpelleig abans que GSAP amagui el header, perquè els mòduls carreguen diferits. Pendent: amagar-lo amb la variant `js:` i passar a `fromTo`.
+- No provat al navegador, només comprovat el codi.
+- Les seccions següents afegeixen el seu bloc al mateix `script.js`.

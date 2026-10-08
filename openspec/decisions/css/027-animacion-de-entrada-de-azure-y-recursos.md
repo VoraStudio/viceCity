@@ -1,24 +1,25 @@
-# 027 — Animación de entrada de «Microsoft Azure», las cards de recursos y la franja del blog
+# 027 — Animació d'entrada de «Microsoft Azure», les cards de recursos i la franja del blog
 
 **Stack**: js + css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
+**Parcialment substituïda per**: 030 (l'efecte caràcter a caràcter de la descripció queda substituït pel fade up per línies)
 
-## Contexto
+## Context
 
-Continúa las decisiones 021-026. La sección `#azure` y lo que viene debajo (las 3 cards del acordeón de `#recursos` y la franja «Descobreix el nostre blog») entran con una sola timeline en `script.js`, como ya se hizo con las cards y el carrusel de logos (decisión 023).
+Continua les decisions 021-026. La secció `#azure` i el que ve a sota (les 3 cards de l'acordió de `#recursos` i la franja «Descobreix el nostre blog») entren amb una sola timeline a `script.js`, com ja es va fer amb les cards i el carrusel de logos (decisió 023).
 
-## Decisión
+## Decisió
 
-- **Una timeline** (`data-azure*`, `data-resources-card` y `data-blog-strip` en el HTML), con `ScrollTrigger` en `top 70%` de `#azure`, `endTrigger: "#recursos"` y `end: "bottom top"`. Las cards y la franja están en otra `<section>`: sin el `endTrigger`, el `reset` ocurriría al salir `#azure` por arriba con ellas aún en pantalla.
-- **Descripción**: efecto de profundidad en X con `charsDepthReveal`.
-- **Los 4 bloques** (Escalabilitat, Disponibilitat, Seguretat, Innovació): fade desde abajo (`y: 40`, 0,8 s, `stagger: 0.2`, `"-=0.4"`).
-- **Las 3 cards del acordeón**: la primera con fade desde la izquierda (`x: -60`) y las otras dos desde abajo (`y: 40`), en un solo tween con valores por función según el índice. Algo más lentas (1,1 s, `stagger: 0.3`).
-- **Franja del blog**: fade desde abajo al final de la secuencia, con `clearProps: "opacity"`. El `<h2>` de la franja usa `data-title-reveal`, y `title-reveal.js` pone `perspective` en su elemento padre, que es la propia franja: no se ha comprobado si `clearProps: "transform"` también lo borraría, así que se evita.
-- **`overflow-x-clip` en `#azure`**, por el desplazamiento horizontal de los caracteres.
+- **Una timeline** (`data-azure*`, `data-resources-card` i `data-blog-strip` a l'HTML), amb `ScrollTrigger` a `top 70%` d'`#azure`, `endTrigger: "#recursos"` i `end: "bottom top"`. Les cards i la franja són en una altra `<section>`: sense l'`endTrigger`, el `reset` passaria en sortir `#azure` per dalt amb elles encara en pantalla.
+- **Descripció**: efecte de profunditat a X amb `charsDepthReveal`.
+- **Els 4 blocs** (Escalabilitat, Disponibilitat, Seguretat, Innovació): fade des de baix (`y: 40`, 0,8 s, `stagger: 0.2`, `"-=0.4"`).
+- **Les 3 cards de l'acordió**: la primera amb fade des de l'esquerra (`x: -60`) i les altres dues des de baix (`y: 40`), en un sol tween amb valors per funció segons l'índex. Una mica més lentes (1,1 s, `stagger: 0.3`).
+- **Franja del blog**: fade des de baix al final de la seqüència, amb `clearProps: "opacity"`. L'`<h2>` de la franja fa servir `data-title-reveal`, i `title-reveal.js` posa `perspective` al seu element pare, que és la pròpia franja: no s'ha comprovat si `clearProps: "transform"` també l'esborraria, així que s'evita.
+- **`overflow-x-clip` a `#azure`**, pel desplaçament horitzontal dels caràcters.
 
-## Consecuencias
+## Conseqüències
 
-- Las cards del acordeón se animan con `transform` y `opacity` pero su transición de escritorio es de `flex`: no hay conflicto, aunque conviene probar el hover en `lg`.
-- Las cards y la franja del blog pueden hacer su fade antes de verse, porque se animan con el trigger de `#azure`.
-- No probado en un navegador, solo comprobado el código.
+- Les cards de l'acordió s'animen amb `transform` i `opacity` però la seva transició d'escriptori és de `flex`: no hi ha conflicte, tot i que convé provar el hover a `lg`.
+- Les cards i la franja del blog poden fer el seu fade abans de veure's, perquè s'animen amb el trigger d'`#azure`.
+- No provat en un navegador, només comprovat el codi.

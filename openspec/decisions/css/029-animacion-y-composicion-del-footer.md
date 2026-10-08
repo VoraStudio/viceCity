@@ -1,23 +1,23 @@
-# 029 — Animación, crédito y composición responsive del footer
+# 029 — Animació, crèdit i composició responsive del footer
 
 **Stack**: html + css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Continúa las decisiones 021-028. El footer entra con una timeline en `script.js`, recibe el crédito de Vora Studio y se recompone en móvil y tablet.
+Continua les decisions 021-028. El footer entra amb una timeline a `script.js`, rep el crèdit de Vora Studio i es recompon en mòbil i tauleta.
 
-## Decisión
+## Decisió
 
-- **Animación de los 6 bloques** (`data-footer-item`), con `stagger: 0.15` y mezcla de direcciones: logo y lema desde la izquierda, CTAs desde la derecha, Enllaços y Contacte desde abajo, Legal y la franja final con fade simple. La dirección la da el valor del atributo (`left`, `right`, `up`, `fade`) y un objeto `footerDirections` la traduce a `x` e `y` mediante valores por función en un único `from`.
-- **Palabra `vicity` final** (`data-footer-logo`): segundo paso de la timeline, sube con `yPercent: 100` (3,5 s, `power3.out`, `"-=1.6"`). Emerge por el borde inferior porque su caja tiene `overflow-hidden`.
-- **Crédito «Desenvolupat per»** junto al copyright, con el logo de Vora Studio (`assets/img/clients/vora.png`, `h-4`, `brightness-0 opacity-60`) enlazado a `https://vorastudio.cat` con `target="_blank"` y `rel="noopener noreferrer"`. El enlace lleva `aria-label` que avisa de la pestaña nueva. El copyright pasa de `<p>` a un `<div>` con dos `<p>`, porque un `<p>` no puede contener otro. Texto en catalán, como el resto de la web.
-- **Composición en móvil y tablet** (hasta `lg`): Enllaços y Contacte en dos columnas y Legal debajo, a todo el ancho (`col-span-2`, `order-last`) con sus enlaces en fila y `flex-wrap`. Desde `md` el grid vuelve a tres columnas, pero Legal pasa a columna (`md:flex-col`, `md:order-none`). `order` solo cambia el orden visual: el del HTML y el del teclado se mantienen.
-- **Palabra `vicity`** más grande hasta `lg` (`text-[38vw] lg:text-[18vw]`) y con menos hueco sobre ella (`pb-2` y `mt-0`, hasta `lg:pb-10` y `lg:mt-4`).
+- **Animació dels 6 blocs** (`data-footer-item`), amb `stagger: 0.15` i barreja de direccions: logo i lema des de l'esquerra, CTAs des de la dreta, Enllaços i Contacte des de baix, Legal i la franja final amb fade simple. La direcció la dona el valor de l'atribut (`left`, `right`, `up`, `fade`) i un objecte `footerDirections` la tradueix a `x` i `y` mitjançant valors per funció en un únic `from`.
+- **Paraula `vicity` final** (`data-footer-logo`): segon pas de la timeline, puja amb `yPercent: 100` (3,5 s, `power3.out`, `"-=1.6"`). Emergeix per la vora inferior perquè la seva caixa té `overflow-hidden`.
+- **Crèdit «Desenvolupat per»** al costat del copyright, amb el logo de Vora Studio (`assets/img/clients/vora.png`, `h-4`, `brightness-0 opacity-60`) enllaçat a `https://vorastudio.cat` amb `target="_blank"` i `rel="noopener noreferrer"`. L'enllaç porta `aria-label` que avisa de la pestanya nova. El copyright passa de `<p>` a un `<div>` amb dos `<p>`, perquè un `<p>` no pot contenir-ne un altre. Text en català, com la resta de la web.
+- **Composició en mòbil i tauleta** (fins a `lg`): Enllaços i Contacte en dues columnes i Legal a sota, a tota l'amplada (`col-span-2`, `order-last`) amb els seus enllaços en fila i `flex-wrap`. Des de `md` el grid torna a tres columnes, però Legal passa a columna (`md:flex-col`, `md:order-none`). `order` només canvia l'ordre visual: el de l'HTML i el del teclat es mantenen.
+- **Paraula `vicity`** més gran fins a `lg` (`text-[38vw] lg:text-[18vw]`) i amb menys buit a sobre (`pb-2` i `mt-0`, fins a `lg:pb-10` i `lg:mt-4`).
 
-## Consecuencias
+## Conseqüències
 
-- A 38vw la palabra puede quedar más ancha que la pantalla y recortarse por los lados (`overflow-hidden`): es un recurso visual, no se ha medido.
-- Los datos de contacto del footer son placeholder y se duplican en la sección «Contacte» (decisión 028).
-- No probado en un navegador ni en dispositivos reales, solo comprobado el código.
+- A 38vw la paraula pot quedar més ampla que la pantalla i retallar-se pels costats (`overflow-hidden`): és un recurs visual, no s'ha mesurat.
+- Les dades de contacte del footer són placeholder i es dupliquen a la secció «Contacte» (decisió 028).
+- No provat en un navegador ni en dispositius reals, només comprovat el codi.

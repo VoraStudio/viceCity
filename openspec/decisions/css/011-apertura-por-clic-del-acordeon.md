@@ -1,26 +1,26 @@
-# 011 — Apertura por clic del acordeón en tablet y móvil
+# 011 — Obertura per clic de l'acordió en tauleta i mòbil
 
 **Stack**: css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-La decisión 010 abría las tarjetas de `#recursos` con `group-hover`, que en Tailwind v4 va dentro de `@media (hover: hover)`: en un móvil o tablet táctil no se aplica. Comprobado en el CSS generado. Además, las tarjetas no eran enfocables, así que tocar una no activaba `group-focus-within`.
+La decisió 010 obria les targetes de `#recursos` amb `group-hover`, que a Tailwind v4 va dins de `@media (hover: hover)`: en un mòbil o tauleta tàctil no s'aplica. Comprovat al CSS generat. A més, les targetes no eren enfocables, de manera que tocar-ne una no activava `group-focus-within`.
 
-## Decisión
+## Decisió
 
-- **El título pasa a ser un `<button>`** dentro del `<h2>`: `type="button"`, `aria-expanded="false"`, `aria-controls="recursos-panel-N"` y `data-accordion-toggle`. Cada panel lleva el `id` correspondiente.
-- **El estado vive en ARIA.** El envoltorio plegable se abre con `group-has-aria-expanded:grid-rows-[1fr]`, que Tailwind genera como `:is(:where(.group):has([aria-expanded="true"]) *)`. No hay una clase `open` duplicada. Comprobado en el navegador: pasa de `0fr` a `1fr` al cambiar el atributo.
-- **Se quitan `group-hover` y `group-focus-within` del envoltorio.** Con ellos, el hover y el foco mantenían la tarjeta abierta aunque `aria-expanded` valiera `false`, y el segundo clic no cerraba. Por debajo de `lg` queda una sola fuente de verdad.
-- **JavaScript** en `assets/js/modules/acordeon.js`: `initAccordion` selecciona los botones con `selectAll`, sale pronto si no hay ninguno y, al hacer clic, lee `aria-expanded` como texto y escribe el contrario. Se carga con `<script type="module">` junto a `nav.js`.
-- En `lg` no cambia nada: el envoltorio es `display: contents` y el efecto horizontal sigue usando `lg:group-hover` y `lg:group-focus-within`.
+- **El títol passa a ser un `<button>`** dins de l'`<h2>`: `type="button"`, `aria-expanded="false"`, `aria-controls="recursos-panel-N"` i `data-accordion-toggle`. Cada panell porta l'`id` corresponent.
+- **L'estat viu a ARIA.** L'envoltori plegable s'obre amb `group-has-aria-expanded:grid-rows-[1fr]`, que Tailwind genera com `:is(:where(.group):has([aria-expanded="true"]) *)`. No hi ha una classe `open` duplicada. Comprovat al navegador: passa de `0fr` a `1fr` en canviar l'atribut.
+- **Es treuen `group-hover` i `group-focus-within` de l'envoltori.** Amb ells, el hover i el focus mantenien la targeta oberta encara que `aria-expanded` valgués `false`, i el segon clic no tancava. Per sota de `lg` queda una sola font de veritat.
+- **JavaScript** a `assets/js/modules/acordeon.js`: `initAccordion` selecciona els botons amb `selectAll`, surt aviat si no n'hi ha cap i, en fer clic, llegeix `aria-expanded` com a text i escriu el contrari. Es carrega amb `<script type="module">` al costat de `nav.js`.
+- A `lg` no canvia res: l'envoltori és `display: contents` i l'efecte horitzontal continua fent servir `lg:group-hover` i `lg:group-focus-within`.
 
-## Consecuencias
+## Conseqüències
 
-- Por debajo de `lg` el hover ya no abre las tarjetas: solo el clic, el toque o el teclado (Enter o Espacio). Es el mismo comportamiento con ratón, dedo y teclado.
-- `return` no puede usarse a nivel superior de un módulo (`SyntaxError: Illegal return statement`, comprobado con Node), por eso el early return vive dentro de `initAccordion`.
-- Si el selector del JS no coincide con el atributo del HTML, el script falla en silencio, porque la lista queda vacía y sale por el early return.
-- **Pendiente:** el archivo se llama `acordeon.js` y las convenciones piden nombres en inglés (`accordion.js`).
-- **Pendiente en `lg`:** `lg:shrink-0` en los `<h2>` y `lg:overflow-hidden` en las `<article>` para que el título vertical ocupe todo el alto.
-- No se ha probado en un móvil real.
+- Per sota de `lg` el hover ja no obre les targetes: només el clic, el toc o el teclat (Enter o Espai). És el mateix comportament amb ratolí, dit i teclat.
+- `return` no es pot fer servir a nivell superior d'un mòdul (`SyntaxError: Illegal return statement`, comprovat amb Node), per això l'early return viu dins d'`initAccordion`.
+- Si el selector del JS no coincideix amb l'atribut de l'HTML, l'script falla en silenci, perquè la llista queda buida i surt per l'early return.
+- **Pendent:** l'arxiu es diu `acordeon.js` i les convencions demanen noms en anglès (`accordion.js`).
+- **Pendent a `lg`:** `lg:shrink-0` als `<h2>` i `lg:overflow-hidden` als `<article>` perquè el títol vertical ocupi tota l'alçada.
+- No s'ha provat en un mòbil real.

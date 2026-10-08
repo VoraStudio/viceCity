@@ -1,24 +1,25 @@
-# 022 — Animación de entrada del hero
+# 022 — Animació d'entrada del hero
 
 **Stack**: js
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
+**Parcialment substituïda per**: 030 (l'efecte caràcter a caràcter fet servir per a les DESCRIPCIONS, aquí el subtítol, queda substituït pel fade up per línies)
 
-## Contexto
+## Context
 
-Continúa la decisión 021. El hero (título, subtítulo, dos CTAs y maqueta del producto) entra en secuencia con una timeline en `script.js`.
+Continua la decisió 021. El hero (títol, subtítol, dos CTAs i maqueta del producte) entra en seqüència amb una timeline a `script.js`.
 
-## Decisión
+## Decisió
 
-- **El título reutiliza `title-reveal.js`** con `data-title-reveal` en el `<h1>`, sin duplicar su efecto.
-- **El subtítulo, los CTAs y la maqueta van en una sola timeline** enganchada con `data-hero-subtitle`, `data-hero-ctas` y `data-hero-visual`.
-- **Subtítulo**: `SplitText` con `words,chars`, ambos en `display: inline-block` (las transformaciones no actúan sobre elementos inline, y así las palabras no se parten). Efecto de profundidad en X: `x`, `z`, `rotateX`, `opacity`, `power4.out`, `transformOrigin: "50% 0% -50px"`, con `perspective: 1000` en el párrafo. Arranca en `0.6` para dejar entrar al título.
-- **`stagger: { amount }` en vez de un valor fijo por carácter**: el reparto total no depende de la longitud del texto.
-- **CTAs** con fade up (`y: 30`) y `stagger`, y **maqueta** con fade de opacidad. Ambos con `clearProps`.
-- **`ScrollTrigger` con `endTrigger: visual` y `end: "bottom top"`.** Sin `end`, `play reset play reset` hacía `reset` cuando el subtítulo salía por arriba, y la maqueta, aún visible, desaparecía. La zona activa debe cubrir todo lo que anima la timeline.
+- **El títol reutilitza `title-reveal.js`** amb `data-title-reveal` a l'`<h1>`, sense duplicar-ne l'efecte.
+- **El subtítol, els CTAs i la maqueta van en una sola timeline** enganxada amb `data-hero-subtitle`, `data-hero-ctas` i `data-hero-visual`.
+- **Subtítol**: `SplitText` amb `words,chars`, tots dos en `display: inline-block` (les transformacions no actuen sobre elements inline, i així les paraules no es parteixen). Efecte de profunditat a X: `x`, `z`, `rotateX`, `opacity`, `power4.out`, `transformOrigin: "50% 0% -50px"`, amb `perspective: 1000` al paràgraf. Arrenca a `0.6` per deixar entrar el títol.
+- **`stagger: { amount }` en lloc d'un valor fix per caràcter**: el repartiment total no depèn de la longitud del text.
+- **CTAs** amb fade up (`y: 30`) i `stagger`, i **maqueta** amb fade d'opacitat. Tots dos amb `clearProps`.
+- **`ScrollTrigger` amb `endTrigger: visual` i `end: "bottom top"`.** Sense `end`, `play reset play reset` feia `reset` quan el subtítol sortia per dalt, i la maqueta, encara visible, desapareixia. La zona activa ha de cobrir tot el que anima la timeline.
 
-## Consecuencias
+## Conseqüències
 
-- La timeline se dispara al cargar (el subtítulo ya está en pantalla), así que la maqueta, más abajo, puede hacer su fade fuera de la vista.
-- El título tiene su propio trigger y el subtítulo arranca a `0.6` s: si el título pasa de dos líneas, puede hacer falta subir ese tiempo.
-- No probado en un navegador, solo comprobado el código.
+- La timeline es dispara en carregar (el subtítol ja és en pantalla), així que la maqueta, més avall, pot fer el seu fade fora de la vista.
+- El títol té el seu propi trigger i el subtítol arrenca a `0.6` s: si el títol passa de dues línies, pot caldre pujar aquest temps.
+- No provat en un navegador, només comprovat el codi.

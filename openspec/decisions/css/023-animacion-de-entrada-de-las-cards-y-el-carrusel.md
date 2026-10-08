@@ -1,24 +1,24 @@
-# 023 — Animación de entrada de las cards y el carrusel de logos
+# 023 — Animació d'entrada de les cards i el carrusel de logos
 
 **Stack**: js + css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Continúa las decisiones 021 y 022. Las 4 cards de «Gestiona avui» (`#solucions`) y la franja de logos de `#administracions` entran con una sola timeline en `script.js`.
+Continua les decisions 021 i 022. Les 4 cards de «Gestiona avui» (`#solucions`) i la franja de logos d'`#administracions` entren amb una sola timeline a `script.js`.
 
-## Decisión
+## Decisió
 
-- **Una timeline para las dos secciones**: la franja forma parte del bloque `SOLUCIONS` y no tiene bloque propio.
-- **Cards**: entran con fade y `stagger: 0.2`, alternando el lado por índice (`x: (index) => index % 2 === 0 ? -80 : 80`, valor basado en función). Marcadas con `data-solutions-card`.
-- **Franja de logos**: sube con fade (`y: 40`) después de las cards, con la posición `"-=0.9"`, marcada con `data-trust-strip`. Se anima la caja exterior y no el marquee, que ya usa `transform` en su `animate-marquee`.
-- **`ScrollTrigger` con `endTrigger: "#administracions"` y `end: "bottom top"`.** La franja vive en otra `<section>` y el `reset` de `play reset play reset` no debe dispararse mientras siga en pantalla.
-- **`overflow-x-clip` en `#solucions`**: las cards arrancan fuera del ancho (`x: ±80`) y sin él habría scroll horizontal durante la animación. `clip`, a diferencia de `hidden`, no crea un contenedor de scroll.
-- **Padding de `#solucions` en `lg`**: de `lg:py-20` a `lg:pt-20 lg:pb-10`, para subir la franja. Se separó en `pt` y `pb` para no depender del orden del CSS generado.
+- **Una timeline per a les dues seccions**: la franja forma part del bloc `SOLUCIONS` i no té bloc propi.
+- **Cards**: entren amb fade i `stagger: 0.2`, alternant el costat per índex (`x: (index) => index % 2 === 0 ? -80 : 80`, valor basat en funció). Marcades amb `data-solutions-card`.
+- **Franja de logos**: puja amb fade (`y: 40`) després de les cards, amb la posició `"-=0.9"`, marcada amb `data-trust-strip`. S'anima la caixa exterior i no el marquee, que ja fa servir `transform` al seu `animate-marquee`.
+- **`ScrollTrigger` amb `endTrigger: "#administracions"` i `end: "bottom top"`.** La franja viu en una altra `<section>` i el `reset` de `play reset play reset` no s'ha de disparar mentre continuï en pantalla.
+- **`overflow-x-clip` a `#solucions`**: les cards arrenquen fora de l'amplada (`x: ±80`) i sense ell hi hauria scroll horitzontal durant l'animació. `clip`, a diferència de `hidden`, no crea un contenidor de scroll.
+- **Padding de `#solucions` a `lg`**: de `lg:py-20` a `lg:pt-20 lg:pb-10`, per pujar la franja. Es va separar en `pt` i `pb` per no dependre de l'ordre del CSS generat.
 
-## Consecuencias
+## Conseqüències
 
-- La franja se anima con el trigger de las cards: si queda por debajo del pantallazo, su fade puede ocurrir antes de verse.
-- Se mantiene la sección `#administracions` separada en el HTML porque el menú enlaza a su id.
-- No probado en un navegador, solo comprobado el código.
+- La franja s'anima amb el trigger de les cards: si queda per sota de la pantallada, el seu fade pot passar abans de veure's.
+- Es manté la secció `#administracions` separada a l'HTML perquè el menú enllaça al seu id.
+- No provat en un navegador, només comprovat el codi.

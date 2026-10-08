@@ -1,21 +1,21 @@
-# 032 — Degradado en las cards del carrusel
+# 032 — Degradat a les cards del carrusel
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Las 4 cards del carrusel de «Especialització» (decisiones 019 y 020) eran blancas planas. Se quiere un degradado con la paleta de la marca, sin pasar de `lav-50`.
+Les 4 cards del carrusel d'«Especialització» (decisions 019 i 020) eren blanques planes. Es vol un degradat amb la paleta de la marca, sense passar de `lav-50`.
 
-## Decisión
+## Decisió
 
-- **`bg-linear-to-br from-white to-lav-50`** en las 4 cards, en lugar de `bg-white`: diagonal de blanco a lavanda muy clara.
-- **Token nuevo `--color-lav-50: #ece3ff`** en el `@theme` de `index.html`. Es el punto medio entre blanco y `lav-100` (`#d9c7ff`). Se descartaron las variantes con `lav-300` y con parada intermedia en `lav-100`: el degradado era demasiado intenso para las tarjetas apiladas.
+- **`bg-linear-to-br from-white to-lav-50`** a les 4 cards, en lloc de `bg-white`: diagonal de blanc a lavanda molt clara.
+- **Token nou `--color-lav-50: #ece3ff`** a l'`@theme` d'`index.html`. És el punt mitjà entre blanc i `lav-100` (`#d9c7ff`). Es van descartar les variants amb `lav-300` i amb parada intermèdia a `lav-100`: el degradat era massa intens per a les targetes apilades.
 
-## Consecuencias
+## Conseqüències
 
-- El degradado es muy sutil. Si se ve plano, se oscurece el token `--color-lav-50` y cambia en todas las cards sin tocar el HTML.
-- **`lav-50` es un valor propio, no sale de la guía de identidad visual.** Si existe un valor oficial, hay que sustituirlo.
-- El token solo está en `index.html`, la única página que lo usa: cada página tiene su propio `@theme` copiado.
-- No probado en un navegador, solo comprobado el código.
+- El degradat és molt subtil. Si es veu pla, s'enfosqueix el token `--color-lav-50` i canvia a totes les cards sense tocar l'HTML.
+- **`lav-50` és un valor propi, no surt de la guia d'identitat visual.** Si existeix un valor oficial, cal substituir-lo.
+- El token només és a `index.html`, l'única pàgina que l'usa: cada pàgina té el seu propi `@theme` copiat.
+- No provat en un navegador, només comprovat el codi.

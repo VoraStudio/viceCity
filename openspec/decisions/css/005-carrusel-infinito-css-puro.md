@@ -1,28 +1,28 @@
-# 005 — Carrusel infinito de logos en CSS puro
+# 005 — Carrusel infinit de logos en CSS pur
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-La franja de confianza («Administracions que ja confien...») mostraba cuatro cajas de placeholder en una cuadrícula. Se quiere un carrusel de logos que se mueva sin fin y se detenga al pasar el ratón por encima.
+La franja de confiança («Administracions que ja confien...») mostrava quatre caixes de placeholder en una quadrícula. Es vol un carrusel de logos que es mogui sense fi i s'aturi en passar-hi el ratolí per sobre.
 
-## Decisión
+## Decisió
 
-Marquee en CSS puro, sin JavaScript:
+Marquee en CSS pur, sense JavaScript:
 
-- La `<ul>` pasa a pista de una sola fila: `flex w-max items-center gap-12 pr-12`.
-- Un `<div class="min-w-0 overflow-hidden">` la envuelve y recorta. El `overflow-hidden` va en el contenedor, no en la lista: una lista `w-max` mide lo que miden sus logos y no habría nada que recortar.
-- Los logos se duplican (8 elementos, dos mitades idénticas). La segunda mitad lleva `aria-hidden="true"` para que los lectores de pantalla no repitan el logo.
-- La animación vive en el `@theme`: `--animate-marquee: marquee 20s linear infinite`, con `@keyframes marquee { to { transform: translateX(-50%) } }`. Tailwind v4 genera la clase `animate-marquee`.
-- Pausa en hover: `hover:[animation-play-state:paused]` sobre la lista.
-- `pr-12` iguala el hueco final al `gap-12`. Sin él, cada mitad mediría 4 logos y 3,5 huecos y el bucle daría un tirón de medio hueco.
-- Los logos se pasan a negro suave con `brightness-0 opacity-60`, porque `logoVora.png` es blanco roto sobre transparente y no se vería sobre `lav-100/40`.
+- La `<ul>` passa a pista d'una sola fila: `flex w-max items-center gap-12 pr-12`.
+- Un `<div class="min-w-0 overflow-hidden">` l'envolta i la retalla. L'`overflow-hidden` va al contenidor, no a la llista: una llista `w-max` mesura el que mesuren els seus logos i no hi hauria res a retallar.
+- Els logos es dupliquen (8 elements, dues meitats idèntiques). La segona meitat porta `aria-hidden="true"` perquè els lectors de pantalla no repeteixin el logo.
+- L'animació viu a l'`@theme`: `--animate-marquee: marquee 20s linear infinite`, amb `@keyframes marquee { to { transform: translateX(-50%) } }`. Tailwind v4 genera la classe `animate-marquee`.
+- Pausa en hover: `hover:[animation-play-state:paused]` sobre la llista.
+- `pr-12` iguala el buit final al `gap-12`. Sense ell, cada meitat mesuraria 4 logos i 3,5 buits i el bucle donaria una estrebada de mig buit.
+- Els logos es passen a negre suau amb `brightness-0 opacity-60`, perquè `logoVora.png` és blanc trencat sobre transparent i no es veuria sobre `lav-100/40`.
 
-## Consecuencias
+## Conseqüències
 
-- El número de elementos debe ser par y las dos mitades idénticas, o el desplazamiento del 50 % no cuadra.
-- Los 8 elementos son hoy el mismo logo de Vora. Con logos reales de clientes de distinto ancho, el cálculo sigue valiendo mientras las dos mitades sean iguales.
-- Queda sin resolver `prefers-reduced-motion`: la animación no se desactiva para quien lo pide (`motion-reduce:animate-none`).
-- El `cursor-pointer` de los `<li>` promete un clic que no existe mientras los logos no sean enlaces.
+- El nombre d'elements ha de ser parell i les dues meitats idèntiques, o el desplaçament del 50 % no quadra.
+- Els 8 elements són avui el mateix logo de Vora. Amb logos reals de clients d'amplada diferent, el càlcul continua valent mentre les dues meitats siguin iguals.
+- Queda sense resoldre `prefers-reduced-motion`: l'animació no es desactiva per a qui ho demana (`motion-reduce:animate-none`).
+- El `cursor-pointer` dels `<li>` promet un clic que no existeix mentre els logos no siguin enllaços.

@@ -1,24 +1,24 @@
-# 014 — Acordeón accesible y degradación sin JavaScript
+# 014 — Acordió accessible i degradació sense JavaScript
 
 **Stack**: css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-07
+**Estat**: acceptat
+**Data**: 2026-10-07
 
-## Contexto
+## Context
 
-El acordeón de `#recursos` (decisiones 010 y 011) arrancaba con `aria-expanded="false"` escrito a mano y las tarjetas colapsadas por CSS. Dos problemas: si el módulo JS no cargaba, el contenido quedaba plegado sin forma de abrirlo, y `aria-expanded` solo cambiaba con el clic, aunque en escritorio las tarjetas se abren con hover o foco.
+L'acordió de `#recursos` (decisions 010 i 011) arrencava amb `aria-expanded="false"` escrit a mà i les targetes col·lapsades per CSS. Dos problemes: si el mòdul JS no carregava, el contingut quedava plegat sense manera d'obrir-lo, i `aria-expanded` només canviava amb el clic, tot i que a escriptori les targetes s'obren amb hover o focus.
 
-## Decisión
+## Decisió
 
-- **`assets/js/js-flag.js`**: script externo, síncrono y mínimo en el `<head>` que añade la clase `js` a `<html>`. No es un `<script>` inline, así que respeta la regla; y al ejecutarse antes del primer pintado evita ver el contenido desplegado y replegándose.
-- **`@custom-variant js (&:where(.js *))`** en el bloque `text/tailwindcss`. Solo el estado plegado depende de él: `js:grid-rows-[0fr]` y `js:lg:opacity-0`. Sin la clase `js`, el contenido se ve. El `:where()` deja la especificidad en cero, de modo que `group-has-aria-expanded:grid-rows-[1fr]`, `lg:group-hover:opacity-100` y `lg:group-focus-within:opacity-100` siguen ganando sin depender del orden en el CSS generado.
-- **`aria-expanded` ya no está en el HTML**: lo escribe `acordeon.js` al arrancar, porque sin JS el botón no abre nada y declararlo «cerrado» sería falso. `aria-controls` sí se queda en el HTML.
-- **`acordeon.js`** sincroniza `aria-expanded` con lo que se ve: por debajo de `lg` alterna con el clic; desde `lg` (`min-width: 64rem`) sigue a hover y foco (`pointerenter/leave`, `focusin/out`) y el clic no hace nada, para no contradecir al CSS, que ya mantiene la tarjeta abierta con el cursor encima. Al cambiar de breakpoint se resincroniza.
-- **`inert`** en el panel plegado por debajo de `lg`: el enlace del CTA de la tercera tarjeta ya no es enfocable ni se lee mientras está oculto.
-- **Títulos verticales**: `<h2>` con `<button>` dentro. El nombre accesible es el texto del botón, y `writing-mode` + `rotate-180` no cambian el orden del DOM, así que los lectores de pantalla lo leen en orden normal. No ha hecho falta tocar el HTML.
+- **`assets/js/js-flag.js`**: script extern, síncron i mínim al `<head>` que afegeix la classe `js` a `<html>`. No és un `<script>` inline, així que respecta la regla; i en executar-se abans del primer pintat evita veure el contingut desplegat i replegant-se.
+- **`@custom-variant js (&:where(.js *))`** al bloc `text/tailwindcss`. Només l'estat plegat en depèn: `js:grid-rows-[0fr]` i `js:lg:opacity-0`. Sense la classe `js`, el contingut es veu. El `:where()` deixa l'especificitat a zero, de manera que `group-has-aria-expanded:grid-rows-[1fr]`, `lg:group-hover:opacity-100` i `lg:group-focus-within:opacity-100` continuen guanyant sense dependre de l'ordre al CSS generat.
+- **`aria-expanded` ja no és a l'HTML**: l'escriu `acordeon.js` en arrencar, perquè sense JS el botó no obre res i declarar-lo «tancat» seria fals. `aria-controls` sí que es queda a l'HTML.
+- **`acordeon.js`** sincronitza `aria-expanded` amb el que es veu: per sota de `lg` alterna amb el clic; des de `lg` (`min-width: 64rem`) segueix hover i focus (`pointerenter/leave`, `focusin/out`) i el clic no fa res, per no contradir el CSS, que ja manté la targeta oberta amb el cursor a sobre. En canviar de breakpoint es ressincronitza.
+- **`inert`** al panell plegat per sota de `lg`: l'enllaç del CTA de la tercera targeta ja no és enfocable ni es llegeix mentre està ocult.
+- **Títols verticals**: `<h2>` amb `<button>` a dins. El nom accessible és el text del botó, i `writing-mode` + `rotate-180` no canvien l'ordre del DOM, de manera que els lectors de pantalla el llegeixen en ordre normal. No ha calgut tocar l'HTML.
 
-## Consecuencias
+## Conseqüències
 
-- Sin JavaScript no se carga Tailwind (es el script de navegador), así que la página entera queda sin estilos y el contenido sigue legible. La clase `js` cubre el caso intermedio: Tailwind carga pero el módulo no.
-- En escritorio un lector de pantalla ve `aria-expanded` cambiar con hover o foco, no con Enter. Es el comportamiento visual real.
-- Los paneles siguen en el árbol de accesibilidad en escritorio aunque tengan `opacity-0` (es intencionado: el foco los abre).
+- Sense JavaScript no es carrega Tailwind (és l'script de navegador), així que la pàgina sencera queda sense estils i el contingut continua llegible. La classe `js` cobreix el cas intermedi: Tailwind carrega però el mòdul no.
+- A escriptori un lector de pantalla veu `aria-expanded` canviar amb hover o focus, no amb Enter. És el comportament visual real.
+- Els panells continuen a l'arbre d'accessibilitat a escriptori encara que tinguin `opacity-0` (és intencionat: el focus els obre).

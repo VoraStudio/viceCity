@@ -1,23 +1,23 @@
-# 028 — Datos de contacto y animación de entrada de «Contacte»
+# 028 — Dades de contacte i animació d'entrada de «Contacte»
 
 **Stack**: html + js
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Continúa las decisiones 021-027. La sección `#contacte` tenía en la columna izquierda solo el título y un párrafo. Se añaden los datos de contacto y la sección entra con una timeline en `script.js`.
+Continua les decisions 021-027. La secció `#contacte` tenia a la columna esquerra només el títol i un paràgraf. S'afegeixen les dades de contacte i la secció entra amb una timeline a `script.js`.
 
-## Decisión
+## Decisió
 
-- **Lista de contacto en la columna izquierda**: teléfono, correo y dirección, en columna, cada uno con un icono SVG en un círculo (`aria-hidden`, `stroke="currentColor"`), una etiqueta y el dato. Los datos se copian del footer para que no haya dos versiones; el teléfono usa `&nbsp;` entre los grupos de cifras para que no se parta, y la dirección va en un `<address>` con `not-italic`.
-- **Las dos columnas entran a la vez por lados opuestos**: la izquierda con fade desde la izquierda (`x: -80`) y el formulario desde la derecha (`x: 80`), ambas de 1 s con `power3.out`. El formulario arranca con la posición `"<"` (mismo inicio que el tween anterior).
-- **`ScrollTrigger`** en `top 70%` y `end: "bottom top"` de la sección, con `data-contact`, `data-contact-info` y `data-contact-form`.
-- **`overflow-x-clip` en `#contacte`**: las dos columnas arrancan fuera del ancho.
-- **`clearProps: "transform,opacity"`** en ambas, para no dejar estilos inline sobre el formulario.
+- **Llista de contacte a la columna esquerra**: telèfon, correu i adreça, en columna, cadascun amb una icona SVG en un cercle (`aria-hidden`, `stroke="currentColor"`), una etiqueta i la dada. Les dades es copien del footer perquè no hi hagi dues versions; el telèfon fa servir `&nbsp;` entre els grups de xifres perquè no es parteixi, i l'adreça va en un `<address>` amb `not-italic`.
+- **Les dues columnes entren alhora per costats oposats**: l'esquerra amb fade des de l'esquerra (`x: -80`) i el formulari des de la dreta (`x: 80`), totes dues d'1 s amb `power3.out`. El formulari arrenca amb la posició `"<"` (mateix inici que el tween anterior).
+- **`ScrollTrigger`** a `top 70%` i `end: "bottom top"` de la secció, amb `data-contact`, `data-contact-info` i `data-contact-form`.
+- **`overflow-x-clip` a `#contacte`**: les dues columnes arrenquen fora de l'amplada.
+- **`clearProps: "transform,opacity"`** a totes dues, per no deixar estils inline sobre el formulari.
 
-## Consecuencias
+## Conseqüències
 
-- Los datos son placeholder (copiados del footer): si cambian allí, hay que cambiarlos también aquí.
-- Los CTAs que apuntan a `#demo` hacen scroll al formulario: si se pulsan mientras la animación está en curso, el scroll puede aterrizar algo desplazado hasta que termina.
-- No probado en un navegador, solo comprobado el código.
+- Les dades són placeholder (copiades del footer): si canvien allà, cal canviar-les també aquí.
+- Els CTAs que apunten a `#demo` fan scroll al formulari: si es premen mentre l'animació és en curs, el scroll pot aterrar una mica desplaçat fins que acaba.
+- No provat en un navegador, només comprovat el codi.

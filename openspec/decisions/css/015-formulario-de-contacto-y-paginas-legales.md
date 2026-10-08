@@ -1,26 +1,26 @@
-# 015 — Formulario de contacto y páginas legales
+# 015 — Formulari de contacte i pàgines legals
 
 **Stack**: html
-**Estado**: aceptado (parcial: falta endpoint real y textos legales)
-**Fecha**: 2026-10-07
+**Estat**: acceptat (parcial: falta endpoint real i textos legals)
+**Data**: 2026-10-07
 
-## Contexto
+## Context
 
-Los enlaces del pie y del acceso al blog eran `href="#"`, y `#contacte` / `#demo` apuntaban al pie y a una tarjeta del acordeón, sin formulario. No hay backend.
+Els enllaços del peu i de l'accés al blog eren `href="#"`, i `#contacte` / `#demo` apuntaven al peu i a una targeta de l'acordió, sense formulari. No hi ha backend.
 
-## Decisión
+## Decisió
 
-- **Páginas**: `avis-legal.html`, `privacitat.html`, `cookies.html` y `blog.html`, con el mismo `@theme`, fuentes, cabecera y pie que `index.html`. Se generaron a partir de ellos (los enlaces `#id` pasan a `index.html#id`), un solo `<h1>` por página y el mismo skip-link. Cargan solo `nav.js` y `ripple.js`.
-- **Textos legales**: borrador con marcadores `[A COMPLETAR]` (elemento `<mark>`). No hay razón social, CIF ni dirección inventados. Se cita la normativa (LSSI-CE, RGPD) pero no se afirman plazos, destinatarios ni cookies concretas.
-- **`blog.html`**: maqueta «Aviat» sin artículos y con `noindex, follow`; no está en `sitemap.xml` hasta que haya contenido.
-- **Formulario** en `<section id="contacte">` con `<form id="demo">`: la cabecera, el hero y el pie ya apuntaban a esos dos ids. El `id="demo"` salió de la tarjeta del acordeón (su CTA ahora lleva al formulario) y el `id` del pie pasó a `peu`.
-  - Etiquetas asociadas, `required`, `autocomplete` (`name`, `organization`, `organization-title`, `email`, `tel`), casilla de privacidad obligatoria enlazada a `privacitat.html`.
-  - `action="mailto:info@vicity.cat" method="post" enctype="text/plain"`, con el correo que ya había en el pie. El texto del formulario avisa de que se abrirá el programa de correo.
-  - Campos con las clases de `tokens.md` (`rounded-sm border`, `bg-white` por contraste con el contenedor `bg-paper`), pero con `h-9` y el botón en `h-11` como pide la regla táctil. Estados: hover, `focus-visible`, `active:scale-95`, `disabled:` (`bg-lav-100`), `user-invalid:border-purple-700`, todo con `motion-reduce`.
-  - El relleno del ripple de los componentes nuevos es `bg-lav-100`, no `bg-purple-300` (ese color no es un token; ver `tokens.md`, sección 6).
+- **Pàgines**: `avis-legal.html`, `privacitat.html`, `cookies.html` i `blog.html`, amb el mateix `@theme`, fonts, capçalera i peu que `index.html`. Es van generar a partir d'ells (els enllaços `#id` passen a `index.html#id`), un sol `<h1>` per pàgina i el mateix skip-link. Carreguen només `nav.js` i `ripple.js`.
+- **Textos legals**: esborrany amb marcadors `[A COMPLETAR]` (element `<mark>`). No hi ha raó social, CIF ni adreça inventats. Es cita la normativa (LSSI-CE, RGPD) però no s'afirmen terminis, destinataris ni cookies concretes.
+- **`blog.html`**: maqueta «Aviat» sense articles i amb `noindex, follow`; no és a `sitemap.xml` fins que hi hagi contingut.
+- **Formulari** a `<section id="contacte">` amb `<form id="demo">`: la capçalera, el hero i el peu ja apuntaven a aquests dos ids. L'`id="demo"` va sortir de la targeta de l'acordió (el seu CTA ara porta al formulari) i l'`id` del peu va passar a `peu`.
+  - Etiquetes associades, `required`, `autocomplete` (`name`, `organization`, `organization-title`, `email`, `tel`), casella de privacitat obligatòria enllaçada a `privacitat.html`.
+  - `action="mailto:info@vicity.cat" method="post" enctype="text/plain"`, amb el correu que ja hi havia al peu. El text del formulari avisa que s'obrirà el programa de correu.
+  - Camps amb les classes de `tokens.md` (`rounded-sm border`, `bg-white` per contrast amb el contenidor `bg-paper`), però amb `h-9` i el botó a `h-11` com demana la regla tàctil. Estats: hover, `focus-visible`, `active:scale-95`, `disabled:` (`bg-lav-100`), `user-invalid:border-purple-700`, tot amb `motion-reduce`.
+  - L'emplenament del ripple dels components nous és `bg-lav-100`, no `bg-purple-300` (aquest color no és un token; vegeu `tokens.md`, secció 6).
 
-## Consecuencias
+## Conseqüències
 
-- **`mailto:` no es un envío fiable**: depende del cliente de correo del visitante y no registra nada. Hay que sustituirlo por un endpoint real (y quitar `enctype`) y retirar la frase del formulario que lo explica.
-- El correo, el teléfono y la dirección del pie parecen datos de ejemplo; hay que confirmarlos con el cliente.
-- Las páginas duplican cabecera y pie: no hay build ni includes. Un cambio en esos bloques se replica a mano en las cuatro páginas.
+- **`mailto:` no és un enviament fiable**: depèn del client de correu del visitant i no registra res. Cal substituir-lo per un endpoint real (i treure `enctype`) i retirar la frase del formulari que ho explica.
+- El correu, el telèfon i l'adreça del peu semblen dades d'exemple; cal confirmar-los amb el client.
+- Les pàgines dupliquen capçalera i peu: no hi ha build ni includes. Un canvi en aquests blocs es replica a mà a les quatre pàgines.

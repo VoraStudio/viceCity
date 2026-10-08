@@ -1,27 +1,27 @@
-# 012 — Efecto ripple en los CTA
+# 012 — Efecte ripple als CTA
 
 **Stack**: css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-Los botones de la web no tenían animación de hover. Se quiere el efecto «botón líquido» del ejemplo 4 de `03a_interaccion.html`: un círculo que nace donde entra el cursor y cubre el botón.
+Els botons de la web no tenien animació de hover. Es vol l'efecte «botó líquid» de l'exemple 4 de `03a_interaccion.html`: un cercle que neix on entra el cursor i cobreix el botó.
 
-## Decisión
+## Decisió
 
-- **GSAP** se carga como script normal (`gsap@3`, jsDelivr) antes de los módulos, de modo que `gsap` existe como global cuando se ejecutan.
-- **Marcado:** cada CTA es `relative overflow-hidden` y contiene un círculo (`data-ripple-fill`, `size-2.5`, `absolute top-0 left-0`) y el texto envuelto en `data-ripple-text` con `relative z-10`. El `<a>` lleva `data-ripple` y `data-ripple-text-color` con el color final del texto, como variable del tema.
-- **`assets/js/modules/ripple.js`:** `initRipple` recorre los `[data-ripple]`; en `mouseenter` coloca el círculo en la posición del cursor relativa al botón y lo escala a 60 (`power2.out`), con el texto cambiando de color con retraso; en `mouseleave` lo encoge hacia el punto de salida.
-- **No se usa `scale-0` de Tailwind:** v4 lo implementa con la propiedad `scale`, que se multiplica con el `transform` de GSAP y dejaría el círculo en escala 0. El estado inicial lo pone `gsap.set`.
-- **Colores:** los primarios rellenan con `purple-300` y el texto pasa a `purple-700`; los secundarios rellenan con `purple-700` y el texto pasa a blanco; el de la card oscura rellena con `purple-500`.
-- Aplicado a los 9 CTA: hero (2), header (2), menú móvil (1), card 3 (1), blog (1) y footer (2).
-- Respeta `prefers-reduced-motion`: sin animación si el usuario la desactiva.
+- **GSAP** es carrega com a script normal (`gsap@3`, jsDelivr) abans dels mòduls, de manera que `gsap` existeix com a global quan s'executen.
+- **Marcatge:** cada CTA és `relative overflow-hidden` i conté un cercle (`data-ripple-fill`, `size-2.5`, `absolute top-0 left-0`) i el text envoltat en `data-ripple-text` amb `relative z-10`. L'`<a>` porta `data-ripple` i `data-ripple-text-color` amb el color final del text, com a variable del tema.
+- **`assets/js/modules/ripple.js`:** `initRipple` recorre els `[data-ripple]`; a `mouseenter` col·loca el cercle a la posició del cursor relativa al botó i l'escala a 60 (`power2.out`), amb el text canviant de color amb retard; a `mouseleave` l'encongeix cap al punt de sortida.
+- **No es fa servir `scale-0` de Tailwind:** v4 l'implementa amb la propietat `scale`, que es multiplica amb el `transform` de GSAP i deixaria el cercle a escala 0. L'estat inicial el posa `gsap.set`.
+- **Colors:** els primaris emplenen amb `purple-300` i el text passa a `purple-700`; els secundaris emplenen amb `purple-700` i el text passa a blanc; el de la card fosca emplena amb `purple-500`.
+- Aplicat als 9 CTA: hero (2), header (2), menú mòbil (1), card 3 (1), blog (1) i footer (2).
+- Respecta `prefers-reduced-motion`: sense animació si l'usuari la desactiva.
 
-## Consecuencias
+## Conseqüències
 
-- Los tiempos del texto llevan retraso porque, con el círculo todavía pequeño, el texto ya cambiado quedaba morado sobre morado e invisible.
-- `scale: 60` es una estimación para botones de unos 240 px; con una entrada por una esquina podría no cubrir.
-- `purple-700` sobre `purple-300` tiene menos contraste que sobre blanco; sin medir.
-- El efecto usa `mouseenter` y `mouseleave`: en táctil no se ve, aunque el botón sigue funcionando.
-- No se ha podido ver la animación a velocidad real: la pestaña de pruebas no se pinta y GSAP avanza lento.
+- Els temps del text porten retard perquè, amb el cercle encara petit, el text ja canviat quedava lila sobre lila i invisible.
+- `scale: 60` és una estimació per a botons d'uns 240 px; amb una entrada per una cantonada podria no cobrir.
+- `purple-700` sobre `purple-300` té menys contrast que sobre blanc; sense mesurar.
+- L'efecte fa servir `mouseenter` i `mouseleave`: en tàctil no es veu, tot i que el botó continua funcionant.
+- No s'ha pogut veure l'animació a velocitat real: la pestanya de proves no es pinta i GSAP avança lent.

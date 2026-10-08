@@ -1,24 +1,24 @@
-# 030 — Descripciones con fade up por líneas
+# 030 — Descripcions amb fade up per línies
 
 **Stack**: js
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-Las descripciones del hero, Especialització, Integració, IA y Azure usaban el efecto de profundidad en X por caracteres (decisiones 022, 024, 025, 026 y 027). Solucions y Contacte no tenían efecto en su descripción. Se prueba primero en el hero y se extiende a todas.
+Les descripcions del hero, Especialització, Integració, IA i Azure feien servir l'efecte de profunditat a X per caràcters (decisions 022, 024, 025, 026 i 027). Solucions i Contacte no tenien efecte a la seva descripció. Es prova primer al hero i s'estén a totes.
 
-## Decisión
+## Decisió
 
-- **Un único efecto**: fade up con `stagger` por líneas, con `SplitText` (`type: "lines"`). `linesFadeUp` (`y: 30`, 0,8 s, `power3.out`, `stagger: 0.15`) y `splitIntoLines` viven en el bloque `COMUNES` de `script.js`.
-- **Se aplica a las 7 descripciones**: hero, Solucions (nueva), Especialització, Integració (2 párrafos), IA, Azure y Contacte (nueva). En Solucions y Contacte se añaden `data-solutions-description` y `data-contact-description` y la animación se coloca con posición absoluta (`0.4` y `0.3`) para no mover el resto de la timeline.
-- **IA conserva su tempo más rápido** con un override local: `{ ...linesFadeUp, duration: 0.5, stagger: 0.1 }`.
-- Se eliminan `charsDepthReveal` y `splitIntoChars`, que quedan sin uso. Los dos efectos siguen en el historial de git.
-- Solucions y Contacte pasan a esperar `document.fonts.ready` antes de dividir en líneas, igual que el resto.
+- **Un únic efecte**: fade up amb `stagger` per línies, amb `SplitText` (`type: "lines"`). `linesFadeUp` (`y: 30`, 0,8 s, `power3.out`, `stagger: 0.15`) i `splitIntoLines` viuen al bloc `COMUNES` de `script.js`.
+- **S'aplica a les 7 descripcions**: hero, Solucions (nova), Especialització, Integració (2 paràgrafs), IA, Azure i Contacte (nova). A Solucions i Contacte s'afegeixen `data-solutions-description` i `data-contact-description` i l'animació es col·loca amb posició absoluta (`0.4` i `0.3`) per no moure la resta de la timeline.
+- **IA conserva el seu tempo més ràpid** amb un override local: `{ ...linesFadeUp, duration: 0.5, stagger: 0.1 }`.
+- S'eliminen `charsDepthReveal` i `splitIntoChars`, que queden sense ús. Els dos efectes continuen a l'historial de git.
+- Solucions i Contacte passen a esperar `document.fonts.ready` abans de dividir en línies, igual que la resta.
 
-## Consecuencias
+## Conseqüències
 
-- **El split por líneas se calcula una sola vez**: al girar el dispositivo o redimensionar, las líneas no se recalculan. `title-reveal.js` lo resuelve con `autoSplit: true`; si se nota, se pueden pasar las secciones a `autoSplit`.
-- Solucions tiene una descripción de una sola línea, así que no hay `stagger` que ver.
-- Sustituye al efecto de caracteres de las decisiones 022, 024, 025, 026 y 027 en lo que se refiere a las descripciones.
-- No probado en un navegador, solo comprobado el código.
+- **El split per línies es calcula una sola vegada**: en girar el dispositiu o redimensionar, les línies no es recalculen. `title-reveal.js` ho resol amb `autoSplit: true`; si es nota, es poden passar les seccions a `autoSplit`.
+- Solucions té una descripció d'una sola línia, així que no hi ha `stagger` per veure.
+- Substitueix l'efecte de caràcters de les decisions 022, 024, 025, 026 i 027 pel que fa a les descripcions.
+- No provat en un navegador, només comprovat el codi.

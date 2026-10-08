@@ -1,22 +1,22 @@
-# 008 — Efecto hover de los enlaces del menú hamburguesa
+# 008 — Efecte hover dels enllaços del menú hamburguesa
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-El menú de escritorio marca el enlace con hover mediante texto en `purple-700` y una rayita de 16 × 4 px bajo la palabra. El menú hamburguesa, visible por debajo de 1360 px (también en portátiles con ratón y ventanas estrechas), no tenía ese efecto.
+El menú d'escriptori marca l'enllaç amb hover mitjançant text en `purple-700` i una ratlleta de 16 × 4 px sota la paraula. El menú hamburguesa, visible per sota de 1360 px (també en portàtils amb ratolí i finestres estretes), no tenia aquest efecte.
 
-## Decisión
+## Decisió
 
-- Los cinco enlaces de `#menu-mobil` reutilizan las clases del escritorio: `relative transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none`.
-- `relative` es necesario: la rayita es un `::after` y se posiciona respecto al enlace.
-- `w-fit` hace que el enlace mida lo que su texto más el `px-4`. Sin él, el enlace es un bloque a todo el ancho y `left-1/2` centra la rayita en la fila, no bajo la palabra.
-- El botón «Parla amb un especialista» del final del panel no cambia: no es un enlace de navegación.
+- Els cinc enllaços de `#menu-mobil` reutilitzen les classes de l'escriptori: `relative transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none`.
+- `relative` és necessari: la ratlleta és un `::after` i es posiciona respecte a l'enllaç.
+- `w-fit` fa que l'enllaç mesuri el que el seu text més el `px-4`. Sense ell, l'enllaç és un bloc a tota l'amplada i `left-1/2` centra la ratlleta a la fila, no sota la paraula.
+- El botó «Parla amb un especialista» del final del panell no canvia: no és un enllaç de navegació.
 
-## Consecuencias
+## Conseqüències
 
-- El área clicable de cada enlace pasa de la fila entera al texto más 16 px por lado. La altura (`py-3`) no cambia.
-- En Tailwind v4 `hover:` solo se aplica en dispositivos con hover (`@media (hover: hover)`). En un móvil táctil el efecto no aparece; para feedback al tocar haría falta `active:`.
-- No se ha podido comprobar visualmente: la ventana del navegador de pruebas no baja de 1360 px y el panel móvil queda oculto.
+- L'àrea clicable de cada enllaç passa de la fila sencera al text més 16 px per costat. L'alçada (`py-3`) no canvia.
+- A Tailwind v4 `hover:` només s'aplica en dispositius amb hover (`@media (hover: hover)`). En un mòbil tàctil l'efecte no apareix; per a feedback en tocar caldria `active:`.
+- No s'ha pogut comprovar visualment: la finestra del navegador de proves no baixa de 1360 px i el panell mòbil queda ocult.

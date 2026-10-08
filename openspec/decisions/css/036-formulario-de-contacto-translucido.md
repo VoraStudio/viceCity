@@ -1,18 +1,18 @@
-# 036 — Formulario de contacto translúcido
+# 036 — Formulari de contacte translúcid
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-El formulario de `#contacte` tenía `bg-paper` (`#f7f8f6`), el mismo color que la parte alta del degradado de la sección (decisión 029), así que arriba casi no se distinguía del fondo.
+El formulari de `#contacte` tenia `bg-paper` (`#f7f8f6`), el mateix color que la part alta del degradat de la secció (decisió 029), així que a dalt gairebé no es distingia del fons.
 
-## Decisión
+## Decisió
 
-- `bg-paper` pasa a **`bg-white/40`**: blanco puro al 40 % de opacidad. Deja ver el degradado de la sección: casi blanco arriba y lavanda clara abajo. Se mantiene el borde `border-lav-100`.
+- `bg-paper` passa a **`bg-white/40`**: blanc pur al 40 % d'opacitat. Deixa veure el degradat de la secció: gairebé blanc a dalt i lavanda clara a baix. Es manté la vora `border-lav-100`.
 
-## Consecuencias
+## Conseqüències
 
-- El contraste del texto de los campos depende ahora del fondo de la sección; hay que comprobarlo con los `input` y `textarea` en el navegador.
-- No probado en un navegador, solo comprobado el código.
+- El contrast del text dels camps depèn ara del fons de la secció; cal comprovar-ho amb els `input` i `textarea` al navegador.
+- No provat en un navegador, només comprovat el codi.

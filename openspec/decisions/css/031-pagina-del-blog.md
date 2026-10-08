@@ -1,25 +1,25 @@
-# 031 — Página del blog
+# 031 — Pàgina del blog
 
 **Stack**: html + css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
 
-## Contexto
+## Context
 
-`blog.html` era un placeholder de página legal. Los diseños están en `docs/Disseny web/Blog` (`vicity-blog-desktop.pdf`, `vicity-blog-ipad.pdf` y `vicity-blog-iphone.pdf`) y la página se construyó con un agente a partir de ellos. El menú, el footer y la franja del inicio enlazan a `blog.html`, así que se reescribe en su sitio.
+`blog.html` era un placeholder de pàgina legal. Els dissenys són a `docs/Disseny web/Blog` (`vicity-blog-desktop.pdf`, `vicity-blog-ipad.pdf` i `vicity-blog-iphone.pdf`) i la pàgina es va construir amb un agent a partir d'ells. El menú, el footer i la franja de l'inici enllacen a `blog.html`, així que es reescriu al seu lloc.
 
-## Decisión
+## Decisió
 
-- **Mobile first con los tres diseños**: base = iPhone, `md:` = iPad y `lg:` = escritorio. Sin media queries `max-width` ni `style=""`.
-- **Tres secciones**: cabecera (pill «Blog», `h1`, subtítulo y barra de categorías en un `<nav aria-label>`), artículo destacado (card de dos columnas en escritorio) y últimos artículos (6 cards en 1, 2 o 3 columnas).
-- **Reutiliza lo existente**: `<site-header>`, `<site-footer>`, los tokens del `@theme` (sin tokens nuevos), el botón primario con `data-ripple` y las clases de foco. Los módulos se cargan con `site-components.js` primero.
-- **Sin imágenes reales**: las portadas son bloques de color del diseño (blanco, `purple-700` y `ink`), con `aspect-2/1`.
-- **Accesibilidad**: un solo `h1`, orden de encabezados válido, `<time datetime>`, `aria-current` en la categoría activa y un texto oculto con el título en cada enlace «Llegir l'article» para distinguirlos.
-- **Ganchos de animación sin cablear**: `data-blog-hero`, `data-blog-featured` y `data-blog-card`. `script.js` no se toca.
+- **Mobile first amb els tres dissenys**: base = iPhone, `md:` = iPad i `lg:` = escriptori. Sense media queries `max-width` ni `style=""`.
+- **Tres seccions**: capçalera (pill «Blog», `h1`, subtítol i barra de categories en un `<nav aria-label>`), article destacat (card de dues columnes a escriptori) i últims articles (6 cards en 1, 2 o 3 columnes).
+- **Reutilitza el que ja existeix**: `<site-header>`, `<site-footer>`, els tokens de l'`@theme` (sense tokens nous), el botó primari amb `data-ripple` i les classes de focus. Els mòduls es carreguen amb `site-components.js` primer.
+- **Sense imatges reals**: les portades són blocs de color del disseny (blanc, `purple-700` i `ink`), amb `aspect-2/1`.
+- **Accessibilitat**: un sol `h1`, ordre d'encapçalaments vàlid, `<time datetime>`, `aria-current` a la categoria activa i un text ocult amb el títol a cada enllaç «Llegir l'article» per distingir-los.
+- **Ganxos d'animació sense cablejar**: `data-blog-hero`, `data-blog-featured` i `data-blog-card`. `script.js` no es toca.
 
-## Consecuencias
+## Conseqüències
 
-- **Los 7 enlaces «Llegir l'article» son `href="#"`**: aún no hay páginas de artículo.
-- **Los filtros enlazan a `blog.html?categoria=...` pero no filtran.** Los diseños no muestran paginación ni bloque de newsletter, así que no se han añadido.
-- Decisiones del agente por confirmar: chip lavanda en las etiquetas de las cards de portada blanca (en el PDF eran invisibles), `aspect-2/1` en las portadas, título móvil en `text-3xl` (el diseño ronda 32 px y ningún token encaja) y las dos manchas difuminadas copiadas del hero.
-- No probado en un navegador, solo comprobado el código.
+- **Els 7 enllaços «Llegir l'article» són `href="#"`**: encara no hi ha pàgines d'article.
+- **Els filtres enllacen a `blog.html?categoria=...` però no filtren.** Els dissenys no mostren paginació ni bloc de newsletter, així que no s'han afegit.
+- Decisions de l'agent per confirmar: xip lavanda a les etiquetes de les cards de portada blanca (al PDF eren invisibles), `aspect-2/1` a les portades, títol mòbil a `text-3xl` (el disseny ronda els 32 px i cap token encaixa) i les dues taques difuminades copiades del hero.
+- No provat en un navegador, només comprovat el codi.

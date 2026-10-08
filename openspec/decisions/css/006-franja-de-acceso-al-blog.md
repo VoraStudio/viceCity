@@ -1,24 +1,24 @@
-# 006 — Franja de acceso al blog antes del footer
+# 006 — Franja d'accés al blog abans del footer
 
 **Stack**: css
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-Antes del footer, dentro de `#recursos`, quedaba una copia vacía de la franja lavanda de confianza, con el `id="confianca-titol"` repetido. Se necesita un acceso al blog.
+Abans del footer, dins de `#recursos`, quedava una còpia buida de la franja lavanda de confiança, amb l'`id="confianca-titol"` repetit. Cal un accés al blog.
 
-## Decisión
+## Decisió
 
-- La copia se reutiliza como franja de acceso: título «Descobreix el nostre blog», flecha SVG y un CTA «Visitar el blog».
-- El título usa la escala de los `<h2>` de sección: `text-3xl md:text-title-2`.
-- La flecha es decorativa (`aria-hidden`) y hereda el color con `currentColor`. En móvil apunta hacia abajo (`rotate-90`) y desde `lg` hacia la derecha (`lg:rotate-0`), hacia el botón.
-- El CTA es el botón primario de `tokens.md`: `h-11 rounded-full bg-purple-700 font-body font-medium text-white`, con el foco del resto de botones.
-- El `id` del título pasa a `blog-titol`: un `id` repetido es HTML inválido y rompe `aria-labelledby`.
+- La còpia es reutilitza com a franja d'accés: títol «Descobreix el nostre blog», fletxa SVG i un CTA «Visitar el blog».
+- El títol fa servir l'escala dels `<h2>` de secció: `text-3xl md:text-title-2`.
+- La fletxa és decorativa (`aria-hidden`) i hereta el color amb `currentColor`. En mòbil apunta cap avall (`rotate-90`) i des de `lg` cap a la dreta (`lg:rotate-0`), cap al botó.
+- El CTA és el botó primari de `tokens.md`: `h-11 rounded-full bg-purple-700 font-body font-medium text-white`, amb el focus de la resta de botons.
+- L'`id` del títol passa a `blog-titol`: un `id` repetit és HTML invàlid i trenca `aria-labelledby`.
 
-## Consecuencias
+## Conseqüències
 
-- El `href` es `#` porque la URL del blog no existe todavía. Hay que sustituirlo cuando se conozca.
-- La franja queda dentro de `<section id="recursos">`, cuyo `aria-label` describe solo las tres tarjetas. Conviene decidir si debe ser su propia sección.
-- La flecha mide `size-6` frente a un título de 40 px; puede quedar pequeña.
-- La superficie `bg-lav-100/40` lleva texto, caso ya abierto en la decisión 004.
+- L'`href` és `#` perquè l'URL del blog encara no existeix. Cal substituir-lo quan es conegui.
+- La franja queda dins de `<section id="recursos">`, l'`aria-label` de la qual descriu només les tres targetes. Convé decidir si ha de ser la seva pròpia secció.
+- La fletxa mesura `size-6` davant d'un títol de 40 px; pot quedar petita.
+- La superfície `bg-lav-100/40` porta text, cas ja obert a la decisió 004.

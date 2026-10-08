@@ -1,26 +1,26 @@
-# 013 — Animación de entrada de los títulos de sección
+# 013 — Animació d'entrada dels títols de secció
 
 **Stack**: css + js
-**Estado**: aceptado
-**Fecha**: 2026-10-06
+**Estat**: acceptat
+**Data**: 2026-10-06
 
-## Contexto
+## Context
 
-Se quiere la animación «Skew» del ejemplo `20_examples_3d.html` en los títulos de sección, ligada al scroll: `rotateX: -90`, `skewX: 45`, `opacity: 0`, 1 segundo, `power2.out`.
+Es vol l'animació «Skew» de l'exemple `20_examples_3d.html` als títols de secció, lligada al scroll: `rotateX: -90`, `skewX: 45`, `opacity: 0`, 1 segon, `power2.out`.
 
-## Decisión
+## Decisió
 
-- **ScrollTrigger** se carga como script normal después de GSAP.
-- **Gancho:** los títulos llevan `data-title-reveal`: Gestiona avui, Especialització, Integració, Intel·ligència Artificial, Azure y el del blog. Se eligen explícitamente en lugar de seleccionar todos los `<h2>`.
-- **`assets/js/modules/title-reveal.js`:** `gsap.from` sobre cada título, con `start: 'top 85%'` y `toggleActions: 'play reset play reset'`, de modo que la animación se reproduce al entrar y se reinicia al salir, en las dos direcciones del scroll.
-- **Perspectiva en el contenedor:** como el ejemplo, que anima un `<span>` dentro de un padre con `perspective: 1200px`, `title-reveal.js` hace `gsap.set(title.parentElement, { perspective: 1200 })`. Se descartó `transformPerspective` en el propio título (ver Consecuencias).
-- `force3D: true` se mantiene, aunque no era la causa del tirón final.
-- Respeta `prefers-reduced-motion` y llama a `ScrollTrigger.refresh()` tras la carga.
+- **ScrollTrigger** es carrega com a script normal després de GSAP.
+- **Ganxo:** els títols porten `data-title-reveal`: Gestiona avui, Especialització, Integració, Intel·ligència Artificial, Azure i el del blog. Es trien explícitament en lloc de seleccionar tots els `<h2>`.
+- **`assets/js/modules/title-reveal.js`:** `gsap.from` sobre cada títol, amb `start: 'top 85%'` i `toggleActions: 'play reset play reset'`, de manera que l'animació es reprodueix en entrar i es reinicia en sortir, en les dues direccions del scroll.
+- **Perspectiva al contenidor:** com l'exemple, que anima un `<span>` dins d'un pare amb `perspective: 1200px`, `title-reveal.js` fa `gsap.set(title.parentElement, { perspective: 1200 })`. Es va descartar `transformPerspective` al propi títol (vegeu Conseqüències).
+- `force3D: true` es manté, tot i que no era la causa de l'estrebada final.
+- Respecta `prefers-reduced-motion` i crida `ScrollTrigger.refresh()` després de la càrrega.
 
-## Consecuencias
+## Conseqüències
 
-- **Quedan fuera** los `<h2>` de las tarjetas de recursos (usan `rotate-180` y `writing-mode`, que el `transform` de GSAP pisaría), el `h1` del hero, el título de la franja de confianza y los del footer.
-- **Línea a línea (2026-10-07):** se usa `SplitText` 3.15.0 (script con versión fija y SRI) con `type: "lines"`, `autoSplit` y `stagger: 0.12`. Se espera a `document.fonts.ready` antes de dividir, porque el corte de línea depende de la tipografía final, y la perspectiva pasa al propio título para que todas las líneas compartan el punto de fuga. El título del blog lleva una flecha SVG, que `SplitText` rompería, así que sigue animándose como bloque.
-- Medido en el navegador: 6 títulos enganchados y ocultos fuera de pantalla, sin scroll horizontal, altura de la página estable (6304 px) y sin recálculos de ScrollTrigger durante la animación.
-- **Tirón al final, resuelto (2026-10-07):** `transformPerspective` y `skewX` en la misma matriz de GSAP hacían divergir el término de perspectiva (`m43` pasaba de -0,0012 a -0,167 en los últimos fotogramas) y luego saltaba a identidad. Medido con `getComputedStyle(...).transform` por fotograma. `will-change` y `force3D` no lo arreglaban; sí lo hizo la perspectiva en el contenedor. Detalle en `voraData/tips/gsap-skew-perspective-snap.md`.
-- Compromiso: el punto de fuga es el centro del contenedor, no del título.
+- **Queden fora** els `<h2>` de les targetes de recursos (fan servir `rotate-180` i `writing-mode`, que el `transform` de GSAP trepitjaria), l'`h1` del hero, el títol de la franja de confiança i els del footer.
+- **Línia a línia (2026-10-07):** es fa servir `SplitText` 3.15.0 (script amb versió fixa i SRI) amb `type: "lines"`, `autoSplit` i `stagger: 0.12`. S'espera a `document.fonts.ready` abans de dividir, perquè el tall de línia depèn de la tipografia final, i la perspectiva passa al propi títol perquè totes les línies comparteixin el punt de fuga. El títol del blog porta una fletxa SVG, que `SplitText` trencaria, així que continua animant-se com a bloc.
+- Mesurat al navegador: 6 títols enganxats i ocults fora de pantalla, sense scroll horitzontal, alçada de la pàgina estable (6304 px) i sense recàlculs de ScrollTrigger durant l'animació.
+- **Estrebada al final, resolta (2026-10-07):** `transformPerspective` i `skewX` a la mateixa matriu de GSAP feien divergir el terme de perspectiva (`m43` passava de -0,0012 a -0,167 en els últims fotogrames) i després saltava a identitat. Mesurat amb `getComputedStyle(...).transform` per fotograma. `will-change` i `force3D` no ho arreglaven; sí que ho va fer la perspectiva al contenidor. Detall a `voraData/tips/gsap-skew-perspective-snap.md`.
+- Compromís: el punt de fuga és el centre del contenidor, no del títol.

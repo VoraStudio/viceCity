@@ -1,23 +1,24 @@
-# 025 — Animación de entrada de la sección «Integració»
+# 025 — Animació d'entrada de la secció «Integració»
 
 **Stack**: js + css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
+**Parcialment substituïda per**: 030 (l'efecte caràcter a caràcter de la descripció queda substituït pel fade up per línies)
 
-## Contexto
+## Context
 
-Continúa las decisiones 021-024. La sección «Integració sense barreres» (imagen SVG a la izquierda, texto a la derecha, card morada final) entra con una timeline en `script.js`. El título ya lo anima `title-reveal.js`.
+Continua les decisions 021-024. La secció «Integració sense barreres» (imatge SVG a l'esquerra, text a la dreta, card lila final) entra amb una timeline a `script.js`. El títol ja l'anima `title-reveal.js`.
 
-## Decisión
+## Decisió
 
-- **Una timeline** (`data-integration*` en el HTML), con `ScrollTrigger` en `top 70%` y `end: "bottom top"` de la sección: todo lo que se anima está dentro de ella.
-- **Subtítulo**: fade desde el lado (`x: 60`), entra desde la derecha, donde está su columna.
-- **Descripción** (dos párrafos): efecto de profundidad en X (`charsDepthReveal`), con un único `stagger` repartido entre los caracteres de ambos.
-- **Imagen**: revelación de cortina horizontal de izquierda a derecha con `clip-path`, de `inset(0% 100% 0% 0%)` a `inset(0% 0% 0% 0%)` (1,5 s, `power2.inOut`), solapada con la descripción (`"-=1.6"`). Se usa `fromTo` porque un `clip-path` sin definir vale `none` y GSAP no puede interpolar desde ahí.
-- **Card morada final**: fade up (`y: 30`), al final de la secuencia.
-- **`overflow-x-clip` en la sección**: el efecto de caracteres desplaza `x: 100` y en móvil crearía scroll horizontal.
+- **Una timeline** (`data-integration*` a l'HTML), amb `ScrollTrigger` a `top 70%` i `end: "bottom top"` de la secció: tot el que s'anima és a dins seu.
+- **Subtítol**: fade des del costat (`x: 60`), entra des de la dreta, on és la seva columna.
+- **Descripció** (dos paràgrafs): efecte de profunditat a X (`charsDepthReveal`), amb un únic `stagger` repartit entre els caràcters d'ambdós.
+- **Imatge**: revelació de cortina horitzontal d'esquerra a dreta amb `clip-path`, de `inset(0% 100% 0% 0%)` a `inset(0% 0% 0% 0%)` (1,5 s, `power2.inOut`), solapada amb la descripció (`"-=1.6"`). Es fa servir `fromTo` perquè un `clip-path` sense definir val `none` i GSAP no pot interpolar des d'allà.
+- **Card lila final**: fade up (`y: 30`), al final de la seqüència.
+- **`overflow-x-clip` a la secció**: l'efecte de caràcters desplaça `x: 100` i en mòbil crearia scroll horitzontal.
 
-## Consecuencias
+## Conseqüències
 
-- El orden de la secuencia es subtítulo, descripción, imagen y card; cambia moviendo la posición de cada paso.
-- No probado en un navegador, solo comprobado el código.
+- L'ordre de la seqüència és subtítol, descripció, imatge i card; canvia movent la posició de cada pas.
+- No provat en un navegador, només comprovat el codi.

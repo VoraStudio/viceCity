@@ -1,23 +1,24 @@
-# 024 — Animación de entrada de la sección «Especialització»
+# 024 — Animació d'entrada de la secció «Especialització»
 
 **Stack**: js + css
-**Estado**: aceptado
-**Fecha**: 2026-10-08
+**Estat**: acceptat
+**Data**: 2026-10-08
+**Parcialment substituïda per**: 030 (l'efecte caràcter a caràcter de la descripció queda substituït pel fade up per línies); 037 (l'animació d'entrada de les targetes queda substituïda pel fade del contenidor)
 
-## Contexto
+## Context
 
-Continúa las decisiones 021-023. La descripción y las tarjetas del carrusel apilado (decisiones 019 y 020) entran con una timeline en `script.js`. Las tarjetas ya las posiciona `render` en `stack-carousel.js`.
+Continua les decisions 021-023. La descripció i les targetes del carrusel apilat (decisions 019 i 020) entren amb una timeline a `script.js`. Les targetes ja les posiciona `render` a `stack-carousel.js`.
 
-## Decisión
+## Decisió
 
-- **Bloque `COMUNES` en `script.js`** con `charsDepthReveal` (valores del efecto de profundidad en X) y `splitIntoChars` (`SplitText` en `words,chars` con `inline-block` y `perspective`). El hero y esta sección los comparten, sin duplicar el efecto.
-- **Descripción** (`data-platform-description`): mismo efecto que el subtítulo del hero.
-- **Tarjetas**: fade y `stagger: 0.2`, con direcciones horizontales opuestas por índice (`x: (index) => index % 2 === 0 ? -80 : 80`), solapadas con `"-=0.4"` sobre la descripción.
-- **Sin `clearProps` en las tarjetas.** `render` controla `yPercent`, `y`, `scale`, `opacity` y `zIndex`: `"transform"` borraría su `y` y `scale`, y `"opacity"` su opacidad. `x` queda libre porque `render` no lo toca.
-- **`ScrollTrigger` con `endTrigger: section` y `end: "bottom top"`**, para que el `reset` no ocurra mientras el carrusel siga en pantalla.
-- **Flechas de móvil**: `mt-8` a `mt-2`, para acercarlas a la pila.
+- **Bloc `COMUNES` a `script.js`** amb `charsDepthReveal` (valors de l'efecte de profunditat a X) i `splitIntoChars` (`SplitText` en `words,chars` amb `inline-block` i `perspective`). El hero i aquesta secció els comparteixen, sense duplicar l'efecte.
+- **Descripció** (`data-platform-description`): mateix efecte que el subtítol del hero.
+- **Targetes**: fade i `stagger: 0.2`, amb direccions horitzontals oposades per índex (`x: (index) => index % 2 === 0 ? -80 : 80`), solapades amb `"-=0.4"` sobre la descripció.
+- **Sense `clearProps` a les targetes.** `render` controla `yPercent`, `y`, `scale`, `opacity` i `zIndex`: `"transform"` esborraria la seva `y` i `scale`, i `"opacity"` la seva opacitat. `x` queda lliure perquè `render` no la toca.
+- **`ScrollTrigger` amb `endTrigger: section` i `end: "bottom top"`**, perquè el `reset` no passi mentre el carrusel continuï en pantalla.
+- **Fletxes de mòbil**: `mt-8` a `mt-2`, per acostar-les a la pila.
 
-## Consecuencias
+## Conseqüències
 
-- **Frágil**: el `from` de `opacity` guarda las opacidades que `render` tenía al crearlo. Si se gira el carrusel, se sale de la sección y se vuelve a entrar, el replay las deja como estaban antes del giro y la siguiente rueda da un pequeño salto. Se arregla haciendo que `stack-carousel.js` exponga su estado.
-- No probado en un navegador, solo comprobado el código.
+- **Fràgil**: el `from` d'`opacity` guarda les opacitats que `render` tenia en crear-lo. Si es gira el carrusel, se surt de la secció i es torna a entrar, el replay les deixa com estaven abans del gir i la roda següent dona un petit salt. S'arregla fent que `stack-carousel.js` exposi el seu estat.
+- No provat en un navegador, només comprovat el codi.
