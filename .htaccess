@@ -1,0 +1,21 @@
+# Sense llistat de directoris
+Options -Indexes
+
+# Fitxers ocults (.git, .env, .gitignore...). No afecta /.well-known/ perquè és un directori.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Documentació del projecte i bases de dades
+<FilesMatch "(\.md|\.sqlite|\.sqlite-.*)$">
+  Require all denied
+</FilesMatch>
+
+# <DirectoryMatch> no és vàlid a .htaccess: es bloquegen les carpetes amb RedirectMatch.
+# includes/ i data/ també tenen el seu propi .htaccess (doble barrera)
+RedirectMatch 403 ^/(.*/)?(openspec|docs|includes|data|\.git|\.github|\.atl)(/|$)
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

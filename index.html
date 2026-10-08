@@ -1067,9 +1067,8 @@
 
           <form data-contact-form
             id="demo"
-            action="mailto:info@vicity.cat"
+            action="contacto.php"
             method="post"
-            enctype="text/plain"
             aria-labelledby="contacte-titol"
             class="scroll-mt-20 lg:scroll-mt-[16vh] grid gap-4 rounded-xl border border-lav-100 bg-white/40 p-6 md:grid-cols-2 md:p-8 lg:col-span-3"
           >
@@ -1173,8 +1172,11 @@
               </label>
               <p id="err-privacitat" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex w-full"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
             </div>
+            <div class="hidden" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <p class="text-sm text-ink/80 md:col-span-2">
-              Els camps marcats amb * són obligatoris. En enviar el formulari, s'obrirà el teu programa de correu amb el missatge preparat.
+              Els camps marcats amb * són obligatoris. Respondrem el més aviat possible.
             </p>
             <div class="md:col-span-2">
               <button
