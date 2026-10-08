@@ -273,6 +273,28 @@ const initAzureAnimation = () => {
   });
 };
 
+// ==========================================================================
+// CONTACTE
+// ==========================================================================
+const initContactAnimation = () => {
+  const section = document.querySelector("[data-contact]");
+  if (!section) return;
+
+  const info = section.querySelector("[data-contact-info]");
+  const form = section.querySelector("[data-contact-form]");
+  if (!info || !form) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const timeline = gsap.timeline({
+    scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
+  });
+
+  timeline
+    .from(info, { x: -80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" })
+    .from(form, { x: 80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" }, "<");
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
@@ -281,4 +303,5 @@ if (!prefersReducedMotion) {
   initIntegrationAnimation();
   initAiAnimation();
   initAzureAnimation();
+  initContactAnimation();
 }
