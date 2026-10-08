@@ -1,6 +1,6 @@
 # Vicity — web
 
-Web corporativa de Vicity, plataforma de gestió tributària i recaptació per a administracions locals. És un lloc estàtic: HTML, Tailwind CSS i JavaScript, sense backend ni pas de compilació.
+Web corporativa de Vicity, plataforma de gestió tributària i recaptació per a administracions locals. Són pàgines HTML, Tailwind CSS i JavaScript sense pas de compilació, més un blog amb PHP i SQLite (no hi ha panell d'administració: les entrades són a `data/posts.php`).
 
 Domini: <https://www.vicity.cat>
 
@@ -15,7 +15,8 @@ Domini: <https://www.vicity.cat>
 | Components | Web Components propis (`<site-header>`, `<site-footer>`), sense Shadow DOM |
 | Tipografies | Red Hat Display (títols) i Quicksand (text), en local, WOFF2 variable |
 | Format | Prettier (`.prettierrc`) |
-| Desplegament | GitHub Pages, amb `.github/workflows/pages.yml` |
+| Blog | PHP 8 amb PDO SQLite (extensió `pdo_sqlite`), BD a `data/blog.sqlite` |
+| Desplegament | Pàgines estàtiques: GitHub Pages (`.github/workflows/pages.yml`). El blog necessita un allotjament amb PHP |
 
 ## Dependències
 
@@ -31,27 +32,34 @@ No hi ha `package.json`, ni `npm install`, ni `node_modules`. Totes les dependè
 
 Cal connexió a internet: sense ella no es carrega Tailwind i la web es veu sense estils. Segons la documentació de Tailwind, el mode navegador està pensat per a desenvolupament i prototips. Es manté així de manera deliberada: l'allotjament és bàsic i no hi ha compilador (decisió 042).
 
-## Com executar-lo (sense XAMPP)
+## Com executar-lo
 
-No cal XAMPP ni cap servidor PHP. Només cal servir la carpeta per HTTP, perquè els mòduls ES i els Web Components no funcionen obrint els fitxers amb `file://`. Qualsevol d'aquestes opcions serveix:
+Cal servir la carpeta per HTTP, perquè els mòduls ES i els Web Components no funcionen obrint els fitxers amb `file://`.
+
+**Amb el blog (recomanat)**: el blog necessita PHP amb l'extensió `pdo_sqlite` (es comprova amb `php -m`). Des de l'arrel del projecte:
 
 ```bash
-# Python 3
-python -m http.server 8080
-
-# Node.js
-npx serve .
+php -S localhost:8080
 ```
 
-També es pot usar l'extensió **Live Server** de VS Code. Després s'obre <http://localhost:8080/> al navegador.
+Després s'obre <http://localhost:8080/>. La primera visita a `blog.php` crea `data/blog.sqlite` (carpeta `data/` escrivible). Per afegir o editar articles, es modifica `data/posts.php` i es refresca la pàgina.
 
-Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor o des d'una subcarpeta.
+**Només les pàgines estàtiques** (sense blog): també serveix un servidor estàtic, i `blog.php` no funcionarà.
+
+```bash
+python -m http.server 8080
+```
+
+Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor o des d'una subcarpeta. A l'allotjament, `data/` i `includes/` porten un `.htaccess` amb `Require all denied` (cal que Apache permeti `.htaccess`).
 
 ## Estructura
 
 ```
 .
-├── index.html, blog.html, avis-legal.html, privacitat.html, cookies.html
+├── index.html, avis-legal.html, privacitat.html, cookies.html
+├── blog.php, articulo.php      Llistat (amb filtre ?categoria=) i detall del blog
+├── includes/                  PHP del blog: BD, categories, helpers i capçalera/peu comuns
+├── data/                      posts.php (les entrades) i blog.sqlite (generada, no es versiona)
 ├── robots.txt, sitemap.xml
 ├── tokens.md                  Tokens de disseny (colors, fonts, escala tipogràfica)
 ├── assets/
@@ -69,7 +77,7 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 ## Convencions
 
 - **Mobile first**: la base és mòbil i es puja amb `md:` i `lg:`.
-- **Tokens**: els colors, tipografies i breakpoints viuen al bloc `@theme` de cada pàgina. Ara mateix està copiat a les 5 pàgines: un canvi s'ha de fer a totes.
+- **Tokens**: els colors, tipografies i breakpoints viuen al bloc `@theme` de cada pàgina. Està copiat a les 4 pàgines HTML i a `includes/head.php` (blog): un canvi s'ha de fer als 5 llocs.
 - **Header i footer**: viuen en un sol lloc (`assets/js/components/`) i es pinten amb JavaScript.
 - **Animacions**: `assets/js/script.js`, una funció `init…Animation` per secció, amb separadors per comentari.
 - **Decisions**: cada decisió es documenta a `openspec/decisions/` i porta el seu commit.

@@ -26,6 +26,9 @@
       [data-contact-info],
       [data-contact-form],
       [data-contact-description],
+      [data-blog-hero],
+      [data-blog-featured],
+      [data-blog-card],
       [data-footer-item],
       [data-footer-logo]
     ) {

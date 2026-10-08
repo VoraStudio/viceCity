@@ -1,20 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Capçalera comuna de les pàgines del blog (fins a <site-header>).
+ * Espera $page = ['title', 'description', 'path'] definit abans de fer l'include.
+ */
+$canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
+?>
 <!doctype html>
 <html lang="ca" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Política de cookies · Vicity</title>
-    <meta name="description" content="Política de cookies del web de Vicity: què són, quines s'utilitzen i com gestionar-les." />
-    <link rel="canonical" href="https://www.vicity.cat/cookies.html" />
+    <title><?= e($page['title']) ?></title>
+    <meta name="description" content="<?= e($page['description']) ?>" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
     <meta name="theme-color" content="#5e35b1" />
     <link rel="icon" type="image/svg+xml" href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vicity" />
     <meta property="og:locale" content="ca_ES" />
-    <meta property="og:title" content="Política de cookies · Vicity" />
-    <meta property="og:description" content="Política de cookies del web de Vicity: què són, quines s'utilitzen i com gestionar-les." />
-    <meta property="og:url" content="https://www.vicity.cat/cookies.html" />
+    <meta property="og:title" content="<?= e($page['title']) ?>" />
+    <meta property="og:description" content="<?= e($page['description']) ?>" />
+    <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
     <meta property="og:image" content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png" />
     <meta property="og:image:width" content="2156" />
     <meta property="og:image:height" content="671" />
@@ -131,37 +142,3 @@
     </noscript>
 
     <site-header></site-header>
-
-    <main id="contingut">
-      <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="pagina-titol">
-        <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <h1 id="pagina-titol" class="font-head text-4xl leading-tight font-bold text-balance md:text-5xl">Política de cookies</h1>
-          
-        </div>
-      </section>
-
-      <section class="pb-16 md:pb-24">
-        <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <p class="mt-4 text-lg text-ink/80">Aquest text és un esborrany pendent de revisió jurídica. Els apartats marcats amb <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR]</mark> s'han d'omplir amb les dades reals de la titularitat del web abans de la publicació.</p>
-          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Què són les cookies</h2>
-          <p class="mt-4 text-lg text-ink/80">Les cookies són petits fitxers que un web desa al dispositiu de l'usuari per recordar informació sobre la seva visita.</p>
-          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Cookies que utilitza aquest web</h2>
-          <p class="mt-4 text-lg text-ink/80"><mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: confirmar l'inventari real de cookies i tecnologies similars abans de la publicació; si només s'utilitzen cookies tècniques, indicar-ho aquí]</mark>.</p>
-          <ul class="mt-4 flex list-disc flex-col gap-2 pl-6 text-lg text-ink/80"><li>Cookies tècniques: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark></li><li>Cookies d'anàlisi: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark></li><li>Cookies publicitàries: <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark></li></ul>
-          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Recursos de tercers</h2>
-          <p class="mt-4 text-lg text-ink/80">Aquest web carrega biblioteques de codi des d'una xarxa de distribució de contingut (jsDelivr). <mark class="rounded-sm bg-lav-100 px-1 font-bold text-purple-700">[A COMPLETAR: confirmar si implica tractament de dades i, si escau, informar-ne]</mark>.</p>
-          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Com gestionar o eliminar les cookies</h2>
-          <p class="mt-4 text-lg text-ink/80">Pots permetre, bloquejar o eliminar les cookies des de la configuració del teu navegador. Consulta l'ajuda del navegador que utilitzis per conèixer-ne el procediment.</p>
-          <h2 class="mt-10 font-head text-2xl leading-tight font-bold md:text-3xl">Més informació</h2>
-          <p class="mt-4 text-lg text-ink/80">Consulta també l'<a href="avis-legal.html" class="rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30">avís legal</a> i la <a href="privacitat.html" class="rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30">política de privacitat</a>.</p>
-        </div>
-      </section>
-    </main>
-
-    <site-footer></site-footer>
-    <script type="module" src="assets/js/components/site-components.js"></script>
-    <script type="module" src="assets/js/modules/nav.js"></script>
-    <script type="module" src="assets/js/modules/ripple.js"></script>
-    <script type="module" src="assets/js/script.js"></script>
-  </body>
-</html>

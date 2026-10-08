@@ -81,7 +81,7 @@ class SiteFooter extends HTMLElement {
               </li>
               <li>
                 <a
-                  href="blog.html"
+                  href="blog.php"
                   class="rounded-sm focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
                   >Blog</a
                 >

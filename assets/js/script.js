@@ -375,6 +375,28 @@ const initContactAnimation = () => {
 };
 
 // ==========================================================================
+// BLOG
+// ==========================================================================
+const initBlogAnimation = () => {
+  const hero = document.querySelector("[data-blog-hero]");
+  const featured = document.querySelector("[data-blog-featured]");
+  const cards = document.querySelectorAll("[data-blog-card]");
+  if (!hero) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const fadeUp = { y: 40, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" };
+  const onScroll = (trigger) => ({ trigger, start: "top 85%", toggleActions: "play reset play reset" });
+
+  gsap.from(hero, fadeUp);
+  // El destacat i les cards poden no existir (categoria filtrada sense entrades o sense destacat)
+  if (featured) gsap.from(featured, { ...fadeUp, scrollTrigger: onScroll(featured) });
+  if (cards.length) gsap.from(cards, { ...fadeUp, stagger: 0.15, scrollTrigger: onScroll(cards[0].parentElement) });
+
+  reveal(hero, featured ?? [], cards);
+};
+
+// ==========================================================================
 // FOOTER
 // ==========================================================================
 const footerDirections = {
@@ -422,6 +444,7 @@ if (!prefersReducedMotion) {
   initAiAnimation();
   initAzureAnimation();
   initContactAnimation();
+  initBlogAnimation();
   initFooterAnimation();
 }
 

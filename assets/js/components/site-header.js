@@ -55,6 +55,13 @@ class SiteHeader extends HTMLElement {
             </li>
             <li>
               <a
+                href="blog.php"
+                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
                 href="${home}#contacte"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
                 >Contacte</a
@@ -159,6 +166,13 @@ class SiteHeader extends HTMLElement {
                   href="${home}#recursos"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
                   >Recursos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.php"
+                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Blog</a
                 >
               </li>
               <li>
