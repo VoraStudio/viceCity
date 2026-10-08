@@ -115,29 +115,236 @@
     <site-header></site-header>
 
     <main id="contingut">
-      <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="pagina-titol">
-        <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
-          <h1 id="pagina-titol" class="font-head text-4xl leading-tight font-bold text-balance md:text-5xl">Blog</h1>
-          <p class="mt-5 text-base leading-relaxed text-ink/80 md:text-lg">Aviat publicarem els primers articles sobre gestió tributària i transformació digital.</p>
+      <!-- ===================  CAPÇALERA DEL BLOG  =================== -->
+      <section class="relative overflow-hidden bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-16 md:pb-12 lg:pt-20" aria-labelledby="blog-titol">
+        <div aria-hidden="true" class="absolute -top-16 -right-24 size-96 rounded-full bg-lav-300/20 blur-3xl"></div>
+        <div aria-hidden="true" class="absolute top-64 -left-32 size-96 rounded-full bg-lav-100/60 blur-3xl"></div>
+
+        <div data-blog-hero class="relative mx-auto flex w-full max-w-7xl flex-col items-start px-4 md:items-center md:px-8 lg:px-10">
+          <p class="inline-flex h-7 items-center rounded-full border-1 border-lav-300 bg-lav-100/60 px-3 font-body text-label font-bold tracking-wide text-purple-700 uppercase">Blog</p>
+          <h1 id="blog-titol" class="mt-6 max-w-4xl font-head text-3xl leading-tight font-bold text-balance md:text-center md:text-5xl lg:text-title-1">
+            Idees i recursos per a la gestió tributària municipal
+          </h1>
+          <p class="mt-5 max-w-4xl text-base leading-relaxed text-ink/80 md:text-center md:text-lg lg:mt-6">
+            Articles pràctics sobre recaptació, control i seguiment, integració i intel·ligència artificial per a ajuntaments, diputacions i consells
+            comarcals.
+          </p>
+
+          <nav aria-label="Categories d'articles" class="mt-8 max-w-full md:mt-10">
+            <ul class="flex items-center gap-1 overflow-x-auto rounded-full border-1 border-lav-100 bg-white p-1">
+              <li>
+                <a
+                  href="blog.html"
+                  aria-current="page"
+                  class="inline-flex h-10 items-center rounded-full px-4 font-head text-sm font-semibold whitespace-nowrap transition-colors motion-reduce:transition-none bg-purple-700 text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Tots</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html?categoria=ia"
+                  class="inline-flex h-10 items-center rounded-full px-4 font-head text-sm font-semibold whitespace-nowrap transition-colors motion-reduce:transition-none text-ink hover:text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >IA</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html?categoria=recaptacio"
+                  class="inline-flex h-10 items-center rounded-full px-4 font-head text-sm font-semibold whitespace-nowrap transition-colors motion-reduce:transition-none text-ink hover:text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Recaptació</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html?categoria=integracio"
+                  class="inline-flex h-10 items-center rounded-full px-4 font-head text-sm font-semibold whitespace-nowrap transition-colors motion-reduce:transition-none text-ink hover:text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Integració</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html?categoria=casos-us"
+                  class="inline-flex h-10 items-center rounded-full px-4 font-head text-sm font-semibold whitespace-nowrap transition-colors motion-reduce:transition-none text-ink hover:text-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >Casos d'ús</a
+                >
+              </li>
+            </ul>
+          </nav>
         </div>
       </section>
 
-      <section class="pb-16 md:pb-24">
-        <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
-          <div class="flex flex-col items-start gap-5 rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-8">
-            <p class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">Aviat</p>
-            <h2 class="font-head text-2xl leading-tight font-bold md:text-3xl">Estem preparant els primers continguts</h2>
-            <p class="text-base text-ink/80 md:text-lg">Mentrestant, pots descobrir què pot aportar Vicity a la teva organització.</p>
-            <a
-              href="index.html#demo"
-              data-ripple
-              data-ripple-text-color="var(--color-purple-700)"
-              class="relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full px-6 font-body focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-700 text-white outline-2 -outline-offset-1 outline-purple-700 font-bold"
-            >
-              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"></span>
-              <span data-ripple-text class="relative z-10">Sol·licita una demo</span>
-            </a>
-          </div>
+      <!-- ===================  ARTICLE DESTACAT  =================== -->
+      <section class="pb-12 md:pb-14 lg:pb-16" aria-labelledby="destacat-titol">
+        <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
+          <article data-blog-featured class="grid overflow-hidden rounded-3xl border-1 border-lav-100 bg-white lg:grid-cols-2">
+            <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-white lg:aspect-auto lg:min-h-96">
+              <span class="absolute top-8 left-10 hidden font-body text-label font-bold tracking-wide text-purple-700 uppercase lg:block">Destacat</span>
+              <span class="absolute -right-16 -bottom-16 hidden size-96 rounded-full bg-lav-100/60 blur-3xl lg:block"></span>
+              <span class="absolute bottom-16 left-10 hidden font-head text-6xl font-bold text-lav-100 lg:block">vicity</span>
+              <span class="absolute bottom-8 left-10 hidden font-body text-sm text-lav-300 lg:block">Innovació en fiscalitat local</span>
+            </div>
+            <div class="flex flex-col items-start gap-4 p-5 md:p-8 lg:justify-center lg:p-10">
+              <p class="text-label font-medium text-ink/70">
+                Destacat · <time datetime="2026-09-18">18 set. 2026</time> · 7 min
+              </p>
+              <h2 id="destacat-titol" class="font-head text-xl leading-snug font-bold text-balance md:text-2xl lg:text-3xl">
+                Per què els grans proveïdors generalistes no encaixen amb un ajuntament petit o mitjà
+              </h2>
+              <p class="text-base leading-relaxed text-ink/70">
+                Una mirada al que diferencia una eina pensada des de dins de l'administració local d'un ERP genèric adaptat a cop de mòdul.
+              </p>
+              <a
+                href="#"
+                data-ripple
+                data-ripple-text-color="var(--color-purple-700)"
+                class="relative mt-2 inline-flex h-11 w-full items-center justify-center overflow-hidden rounded-full px-6 font-body focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-700 text-white outline-2 -outline-offset-1 outline-purple-700 font-bold md:w-auto"
+              >
+                <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"></span>
+                <span data-ripple-text class="relative z-10">Llegir l'article</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================  ÚLTIMS ARTICLES  =================== -->
+      <section class="pb-16 md:pb-20 lg:pb-24" aria-labelledby="ultims-titol">
+        <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
+          <h2 id="ultims-titol" class="font-head text-xl leading-tight font-bold md:text-2xl">Últims articles publicats</h2>
+          <ul class="mt-6 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-white">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-lav-300 bg-lav-100/60 text-purple-700">IA</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-lav-100/60"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-09-12">12 set. 2026</time> · 5 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">Com la IA pot detectar expedients estancats abans que sigui tard</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">Tres casos pràctics de com el llenguatge natural agilita la revisió d'expedients tributaris.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: Com la IA pot detectar expedients estancats abans que sigui tard</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-purple-700">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-white/40 bg-white/20 text-white">Recaptació</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-white/15"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-09-03">3 set. 2026</time> · 4 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">5 indicadors que qualsevol interventor hauria de seguir cada mes</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">Una guia ràpida per prioritzar el control i seguiment de la recaptació municipal.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: 5 indicadors que qualsevol interventor hauria de seguir cada mes</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-ink">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-white/40 bg-white/20 text-white">Integració</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-white/15"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-08-28">28 ag. 2026</time> · 6 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">Interoperabilitat sense reescriure res</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">El cas d'un consell comarcal que va integrar Vicity sense tocar els seus sistemes existents.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: Interoperabilitat sense reescriure res</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-white">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-lav-300 bg-lav-100/60 text-purple-700">Casos d'ús</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-lav-100/60"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-08-14">14 ag. 2026</time> · 5 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">Del paper al tauler: la digitalització d'un ajuntament de 8.000 habitants</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">Com van reduir a la meitat el temps de gestió de rebuts en tres mesos.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: Del paper al tauler: la digitalització d'un ajuntament de 8.000 habitants</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-purple-700">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-white/40 bg-white/20 text-white">Recaptació</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-white/15"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-08-02">2 ag. 2026</time> · 4 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">Calendari fiscal 2026-2027: dates clau per a la gestió tributària local</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">Un resum de terminis i finestres de recaptació que cap tècnic hauria de perdre's.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: Calendari fiscal 2026-2027: dates clau per a la gestió tributària local</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li class="flex">
+              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-ink">
+                  <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold border border-white/40 bg-white/20 text-white">IA</span>
+                  <span class="absolute -right-8 -bottom-8 size-24 rounded-full bg-white/15"></span>
+                </div>
+                <div class="flex flex-1 flex-col gap-3 p-4 md:p-5">
+                  <p class="text-label font-medium text-ink/70">
+                    <time datetime="2026-07-20">20 jul. 2026</time> · 6 min
+                  </p>
+                  <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl">Preguntar en llenguatge natural: el nou estàndard dels informes municipals</h3>
+                  <p class="text-sm leading-relaxed text-ink/70">Per què cada cop més tècnics prefereixen preguntar abans que filtrar taules.</p>
+                  <a
+                    href="#"
+                    class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  >
+                    Llegir l'article<span class="sr-only">: Preguntar en llenguatge natural: el nou estàndard dels informes municipals</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+                  </a>
+                </div>
+              </article>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
