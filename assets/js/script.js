@@ -295,6 +295,41 @@ const initContactAnimation = () => {
     .from(form, { x: 80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" }, "<");
 };
 
+// ==========================================================================
+// FOOTER
+// ==========================================================================
+const footerDirections = {
+  left: { x: -60, y: 0 },
+  right: { x: 60, y: 0 },
+  up: { x: 0, y: 40 },
+  fade: { x: 0, y: 0 },
+};
+
+const initFooterAnimation = () => {
+  const footer = document.querySelector("#peu");
+  const items = document.querySelectorAll("[data-footer-item]");
+  const logo = document.querySelector("[data-footer-logo]");
+  if (!footer || !items.length || !logo) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const timeline = gsap.timeline({
+    scrollTrigger: { trigger: footer, start: "top 85%", end: "bottom top", toggleActions: "play reset play reset" },
+  });
+
+  timeline
+    .from(items, {
+      x: (index, item) => footerDirections[item.dataset.footerItem].x,
+      y: (index, item) => footerDirections[item.dataset.footerItem].y,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.15,
+      clearProps: "transform,opacity",
+    })
+    .from(logo, { yPercent: 100,  duration: 3.5, ease: "power3.out", clearProps: "transform,opacity" }, "-=1.6");
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
@@ -304,4 +339,5 @@ if (!prefersReducedMotion) {
   initAiAnimation();
   initAzureAnimation();
   initContactAnimation();
+  initFooterAnimation();
 }
