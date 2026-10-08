@@ -98,7 +98,6 @@
         font-display: swap;
       }
 
-      /* Applies only when assets/js/js-flag.js has added the "js" class to <html> */
       @custom-variant js (&:where(.js *));
 
       @theme {
@@ -366,7 +365,7 @@
           <!-- Visual del producte: maqueta en HTML (substituir per captura real quan estigui llesta) -->
           <div
             data-hero-visual
-            class="mt-12 rounded-3xl bg-purple-500 p-3 shadow-2xl shadow-purple-700/20 md:mt-20 md:p-4 lg:mt-32"
+            class="mt-12 rounded-3xl [--border-angle:0deg] bg-[conic-gradient(from_var(--border-angle),var(--color-purple-700),var(--color-lav-300),var(--color-purple-500),var(--color-lav-100),var(--color-purple-700))] p-3 shadow-2xl shadow-purple-700/20 md:mt-20 md:p-4 lg:mt-32"
             role="img"
             aria-label="Interfície de la plataforma Vicity amb tauler de dades, gràfic d'evolució de la recaptació i assistent d'intel·ligència artificial"
           >
@@ -575,7 +574,6 @@
             <h2 id="confianca-titol" class="lg:max-w-xs font-head text-base leading-snug font-bold">
               Administracions que ja confien en la transformació digital municipal
             </h2>
-            <!-- Client logos: the repeated entries are placeholders until real client logos are supplied -->
             <div class="min-w-0 overflow-hidden">
               <div class="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
                 <ul aria-labelledby="confianca-titol" class="flex shrink-0 items-center gap-12 pr-12">
@@ -680,7 +678,7 @@
       <section
         id="plataforma"
         data-stack-carousel
-        class="overflow-x-clip bg-linear-to-b from-paper via-lav-100/40 to-lav-100/60 py-16 data-[stack=on]:flex data-[stack=on]:min-h-screen data-[stack=on]:flex-col data-[stack=on]:justify-center md:py-24"
+        class="overflow-x-clip bg-linear-to-b from-paper via-lav-100/40 to-white py-16 data-[stack=on]:flex data-[stack=on]:min-h-screen data-[stack=on]:flex-col data-[stack=on]:justify-center md:py-24"
         aria-labelledby="plataforma-titol"
       >
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
@@ -1032,7 +1030,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="m6 9 6 6 6-6" /></svg
+                    <path d="m6 9 6 6 6-6"/></svg
                 ></span>
               </button>
             </h2>
@@ -1047,7 +1045,7 @@
                   necessària per actuar amb més agilitat i confiança.
                 </p>
                 <ul class="mt-auto flex flex-col gap-3 pt-6 font-head text-lg font-bold">
-                  <li class="border-l-4 border-purple-700 pl-3">Veure més enllà de les dades.</li>
+                  <li class="border-l-4 border-purple-700 pl-3">Veure més esinllà de les dades.</li>
                   <li class="border-l-4 border-purple-700 pl-3">Entendre què està passant.</li>
                   <li class="border-l-4 border-purple-700 pl-3">Decidir amb criteri.</li>
                 </ul>
@@ -1192,7 +1190,7 @@
       </section>
 
       <!-- ===================  CONTACTE / DEMO  =================== -->
-      <section id="contacte" data-contact class="overflow-x-clip pb-16 md:pb-24" aria-labelledby="contacte-titol">
+      <section id="contacte" data-contact class="overflow-x-clip bg-linear-to-b from-paper to-lav-100/40 pb-16 md:pb-24" aria-labelledby="contacte-titol">
         <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-5 lg:gap-16 lg:px-10">
           <div data-contact-info class="lg:col-span-2">
             <h2 id="contacte-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">Parlem de la teva organització</h2>
@@ -1284,7 +1282,6 @@
             </ul>
           </div>
 
-          <!-- TODO: no backend yet. Replace the mailto action with a real endpoint (and drop enctype) when available -->
           <form data-contact-form
             id="demo"
             action="mailto:info@vicity.cat"

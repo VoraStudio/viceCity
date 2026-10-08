@@ -1,7 +1,3 @@
-// Accordion of the resource cards. Keeps aria-expanded in sync with what the user actually sees:
-// - below lg: the first card starts open; click/tap toggles each card (CSS reads aria-expanded through group-has-aria-expanded)
-// - from lg: the first card is open unless another one is hovered or focused; the others open on hover or keyboard focus
-// Collapsed panels below lg are made inert so their links cannot be focused or read while hidden.
 const selectAll = (selector) => [...document.querySelectorAll(selector)];
 
 const desktop = window.matchMedia("(min-width: 64rem)");
