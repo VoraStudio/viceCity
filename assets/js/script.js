@@ -149,9 +149,47 @@ const initPlatformAnimation = () => {
   });
 };
 
+// ==========================================================================
+// INTEGRACIÓ
+// ==========================================================================
+const initIntegrationAnimation = () => {
+  const section = document.querySelector("[data-integration]");
+  if (!section) return;
+
+  const subtitle = section.querySelector("[data-integration-subtitle]");
+  const descriptions = section.querySelectorAll("[data-integration-description]");
+  const image = section.querySelector("[data-integration-image]");
+  const card = section.querySelector("[data-integration-card]");
+  if (!subtitle || !descriptions.length || !image || !card) return;
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.fonts.ready.then(() => {
+    const chars = [...descriptions].flatMap((description) => splitIntoChars(description));
+
+    const timeline = gsap.timeline({
+      scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
+    });
+
+    timeline
+      .from(subtitle, { x: 60, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" })
+      .from(chars, charsDepthReveal, "-=0.4")
+      .fromTo(
+        image,
+        { clipPath: "inset(0% 100% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power2.inOut", clearProps: "clipPath" },
+        "-=1.6"
+      )
+      .from(card, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.4");
+
+    ScrollTrigger.refresh();
+  });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
   initSolutionsAnimation();
   initPlatformAnimation();
+  initIntegrationAnimation();
 }
