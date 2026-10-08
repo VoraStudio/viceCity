@@ -3,23 +3,15 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 // ==========================================================================
 // COMUNES
 // ==========================================================================
-const charsDepthReveal = {
-  x: 100,
-  z: -20,
-  rotateX: -20,
+const linesFadeUp = {
+  y: 30,
   opacity: 0,
-  duration: 0.6,
-  ease: "power4.out",
-  transformOrigin: "50% 0% -50px",
-  stagger: { amount: 0.9 },
+  duration: 0.8,
+  ease: "power3.out",
+  stagger: 0.15,
 };
 
-const splitIntoChars = (element) => {
-  gsap.set(element, { perspective: 1000 });
-  const split = SplitText.create(element, { type: "words,chars" });
-  gsap.set([split.words, split.chars], { display: "inline-block" });
-  return split.chars;
-};
+const splitIntoLines = (element) => SplitText.create(element, { type: "lines" }).lines;
 
 // ==========================================================================
 // HEADER
@@ -53,7 +45,7 @@ const initHeroAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    const chars = splitIntoChars(subtitle);
+    const lines = splitIntoLines(subtitle);
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -66,7 +58,7 @@ const initHeroAnimation = () => {
     });
 
     timeline
-      .from(chars, charsDepthReveal, 0.6)
+      .from(lines, linesFadeUp, 0.6)
       .from(ctas, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", stagger: 0.15, clearProps: "transform,opacity" }, "-=0.9")
       .from(visual, { opacity: 0, duration: 5, ease: "power2.out", clearProps: "opacity" }, "-=1.9");
 
@@ -96,30 +88,38 @@ const initSolutionsAnimation = () => {
   const section = document.querySelector("#solucions");
   const cards = document.querySelectorAll("[data-solutions-card]");
   const strip = document.querySelector("[data-trust-strip]");
-  if (!section || !cards.length || !strip) return;
+  const description = document.querySelector("[data-solutions-description]");
+  if (!section || !cards.length || !strip || !description) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top 70%",
-      endTrigger: "#administracions",
-      end: "bottom top",
-      toggleActions: "play reset play reset",
-    },
+  document.fonts.ready.then(() => {
+    const lines = splitIntoLines(description);
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 70%",
+        endTrigger: "#administracions",
+        end: "bottom top",
+        toggleActions: "play reset play reset",
+      },
+    });
+
+    timeline
+      .from(cards, {
+        x: (index) => (index % 2 === 0 ? -80 : 80),
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        clearProps: "transform,opacity",
+      })
+      .from(strip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.9")
+      .from(lines, linesFadeUp, 0.4);
+
+    ScrollTrigger.refresh();
   });
-
-  timeline
-    .from(cards, {
-      x: (index) => (index % 2 === 0 ? -80 : 80),
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      stagger: 0.2,
-      clearProps: "transform,opacity",
-    })
-    .from(strip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.9");
 };
 
 // ==========================================================================
@@ -136,7 +136,7 @@ const initPlatformAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    const chars = splitIntoChars(description);
+    const lines = splitIntoLines(description);
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -148,7 +148,7 @@ const initPlatformAnimation = () => {
       },
     });
 
-    timeline.from(chars, charsDepthReveal).from(
+    timeline.from(lines, linesFadeUp).from(
       cards,
       {
         x: (index) => (index % 2 === 0 ? -80 : 80),
@@ -180,7 +180,7 @@ const initIntegrationAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    const chars = [...descriptions].flatMap((description) => splitIntoChars(description));
+    const lines = [...descriptions].flatMap((description) => splitIntoLines(description));
 
     const timeline = gsap.timeline({
       scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
@@ -188,7 +188,7 @@ const initIntegrationAnimation = () => {
 
     timeline
       .from(subtitle, { x: 60, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" })
-      .from(chars, charsDepthReveal, "-=0.8")
+      .from(lines, linesFadeUp, "-=0.8")
       .fromTo(
         image,
         { clipPath: "inset(0% 100% 0% 0%)" },
@@ -217,7 +217,7 @@ const initAiAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    const chars = splitIntoChars(description);
+    const lines = splitIntoLines(description);
 
     const timeline = gsap.timeline({
       scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
@@ -226,7 +226,7 @@ const initAiAnimation = () => {
     timeline
       .from(subtitle, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" })
       .from(items, { x: -60, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.2, clearProps: "transform,opacity" }, "-=0.4")
-      .from(chars, { ...charsDepthReveal, duration: 0.4, stagger: { amount: 0.5 } }, "-=0.8")
+      .from(lines, { ...linesFadeUp, duration: 0.5, stagger: 0.1 }, "-=0.8")
       .fromTo(
         image,
         { clipPath: "inset(0% 0% 0% 100%)" },
@@ -254,7 +254,7 @@ const initAzureAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    const chars = splitIntoChars(description);
+    const lines = splitIntoLines(description);
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -267,7 +267,7 @@ const initAzureAnimation = () => {
     });
 
     timeline
-      .from(chars, charsDepthReveal)
+      .from(lines, linesFadeUp)
       .from(items, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.2, clearProps: "transform,opacity" }, "-=0.4")
       .from(
         cards,
@@ -297,17 +297,25 @@ const initContactAnimation = () => {
 
   const info = section.querySelector("[data-contact-info]");
   const form = section.querySelector("[data-contact-form]");
-  if (!info || !form) return;
+  const description = section.querySelector("[data-contact-description]");
+  if (!info || !form || !description) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  const timeline = gsap.timeline({
-    scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
+  document.fonts.ready.then(() => {
+    const lines = splitIntoLines(description);
+
+    const timeline = gsap.timeline({
+      scrollTrigger: { trigger: section, start: "top 70%", end: "bottom top", toggleActions: "play reset play reset" },
+    });
+
+    timeline
+      .from(info, { x: -80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" })
+      .from(form, { x: 80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" }, "<")
+      .from(lines, linesFadeUp, 0.3);
+
+    ScrollTrigger.refresh();
   });
-
-  timeline
-    .from(info, { x: -80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" })
-    .from(form, { x: 80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" }, "<");
 };
 
 // ==========================================================================
