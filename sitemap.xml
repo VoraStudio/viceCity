@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://EXAMPLE-DOMAIN.tld/</loc>
+    <loc>https://www.vicity.cat/</loc>
   </url>
   <url>
-    <loc>https://EXAMPLE-DOMAIN.tld/avis-legal.html</loc>
+    <loc>https://www.vicity.cat/avis-legal.html</loc>
   </url>
   <url>
-    <loc>https://EXAMPLE-DOMAIN.tld/privacitat.html</loc>
+    <loc>https://www.vicity.cat/privacitat.html</loc>
   </url>
   <url>
-    <loc>https://EXAMPLE-DOMAIN.tld/cookies.html</loc>
+    <loc>https://www.vicity.cat/cookies.html</loc>
   </url>
 </urlset>
