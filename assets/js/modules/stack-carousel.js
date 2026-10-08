@@ -3,10 +3,16 @@ const section = document.querySelector("[data-stack-carousel]");
 const stage = section.querySelector("[data-stack-stage]");
 const cards = gsap.utils.toArray("[data-stack-list] > li", section);
 
-// Separació vertical entre targetes: més petita a mòbil
+// Separació vertical entre targetes: més petita a mòbil i a tauleta
 let separacion = 116;
 gsap.matchMedia().add("(max-width: 47.999rem)", () => {
   separacion = 70;
+  return () => {
+    separacion = 116;
+  };
+});
+gsap.matchMedia().add("(min-width: 48rem) and (max-width: 63.999rem)", () => {
+  separacion = 64;
   return () => {
     separacion = 116;
   };
