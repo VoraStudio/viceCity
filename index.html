@@ -100,6 +100,37 @@
 
       @custom-variant js (&:where(.js *));
 
+      @utility animated-border {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          padding: 2px;
+          border-radius: inherit;
+          background: conic-gradient(
+            from var(--border-angle),
+            var(--color-purple-700),
+            var(--color-lav-300),
+            var(--color-purple-500),
+            var(--color-lav-100),
+            var(--color-purple-700)
+          );
+          mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          mask-composite: exclude;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+
+        &:hover::before {
+          opacity: 1;
+        }
+      }
+
       site-header,
       site-footer {
         display: block;
@@ -216,7 +247,7 @@
       <!-- ===================  SECCIÓ 1 · Gestiona avui  =================== -->
       <section id="solucions" class="overflow-x-clip py-12 md:py-16 lg:pt-20 lg:pb-10" aria-labelledby="solucions-titol">
         <div class="mx-auto grid w-full max-w-7xl gap-6 px-4 md:px-8 lg:grid-cols-5 lg:px-10">
-          <div data-solutions-card class="flex flex-col justify-between gap-12 rounded-3xl border border-lav-300 bg-lav-100/40 p-6 md:p-10 lg:col-span-2">
+          <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col justify-between gap-12 rounded-3xl border border-lav-300 bg-lav-100/40 p-6 md:p-10 lg:col-span-2">
             <div>
               <h2 data-title-reveal id="solucions-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
                 Gestiona avui. Prepara't per demà.
@@ -229,7 +260,7 @@
           </div>
 
           <div class="flex flex-col gap-6 lg:col-span-3">
-            <div data-solutions-card class="flex flex-col items-start gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8">
+            <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col items-start gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8">
               <p class="inline-flex h-11 items-center rounded-full bg-purple-700 px-4 font-head text-sm font-bold text-white">
                 La transformació digital ja no és una opció
               </p>
@@ -239,7 +270,7 @@
               </p>
             </div>
             <div class="grid gap-6 md:grid-cols-2">
-              <div data-solutions-card class="flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
+              <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -260,7 +291,7 @@
                   Vicity és una plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur.
                 </p>
               </div>
-              <div data-solutions-card class="flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
+              <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

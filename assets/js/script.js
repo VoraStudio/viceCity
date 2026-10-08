@@ -139,6 +139,19 @@ const initSolutionsAnimation = () => {
   });
 };
 
+const initSolutionsCardsBorder = () => {
+  const cards = document.querySelectorAll("[data-solutions-card]");
+  if (!cards.length) return;
+  if (!window.matchMedia("(hover: hover)").matches) return;
+
+  cards.forEach((card) => {
+    const spin = gsap.to(card, { "--border-angle": "360deg", duration: 8, ease: "none", repeat: -1, paused: true });
+
+    card.addEventListener("pointerenter", () => spin.play());
+    card.addEventListener("pointerleave", () => spin.pause());
+  });
+};
+
 // ==========================================================================
 // PLATAFORMA
 // ==========================================================================
@@ -376,6 +389,7 @@ if (!prefersReducedMotion) {
   initHeroBorderAnimation();
   initHeroVideo();
   initSolutionsAnimation();
+  initSolutionsCardsBorder();
   initPlatformAnimation();
   initIntegrationAnimation();
   initAiAnimation();
