@@ -69,7 +69,41 @@ const initHeroAnimation = () => {
   });
 };
 
+// ==========================================================================
+// SOLUCIONS
+// ==========================================================================
+const initSolutionsAnimation = () => {
+  const section = document.querySelector("#solucions");
+  const cards = document.querySelectorAll("[data-solutions-card]");
+  const strip = document.querySelector("[data-trust-strip]");
+  if (!section || !cards.length || !strip) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: "top 70%",
+      endTrigger: "#administracions",
+      end: "bottom top",
+      toggleActions: "play reset play reset",
+    },
+  });
+
+  timeline
+    .from(cards, {
+      x: (index) => (index % 2 === 0 ? -80 : 80),
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.2,
+      clearProps: "transform,opacity",
+    })
+    .from(strip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.9");
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
+  initSolutionsAnimation();
 }
