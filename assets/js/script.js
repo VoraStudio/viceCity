@@ -13,6 +13,8 @@ const linesFadeUp = {
 
 const splitIntoLines = (element) => SplitText.create(element, { type: "lines" }).lines;
 
+const reveal = (...targets) => gsap.set(targets, { visibility: "visible" });
+
 // ==========================================================================
 // HEADER
 // ==========================================================================
@@ -31,6 +33,8 @@ const initHeaderAnimation = () => {
   timeline
     .from(nav, { y: -40, opacity: 0, duration: 0.8, ease: "power3.out" })
     .from(items, { y: -12, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.08 }, "-=0.6");
+
+  reveal(nav);
 };
 
 // ==========================================================================
@@ -62,6 +66,7 @@ const initHeroAnimation = () => {
       .from(ctas, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", stagger: 0.15, clearProps: "transform,opacity" }, "-=0.9")
       .from(visual, { opacity: 0, duration: 5, ease: "power2.out", clearProps: "opacity" }, "-=1.9");
 
+    reveal(subtitle, ctas, visual);
     ScrollTrigger.refresh();
   });
 };
@@ -135,6 +140,7 @@ const initSolutionsAnimation = () => {
       .from(strip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.9")
       .from(lines, linesFadeUp, 0.4);
 
+    reveal(cards, strip, description);
     ScrollTrigger.refresh();
   });
 };
@@ -182,6 +188,7 @@ const initPlatformAnimation = () => {
       .from(lines, linesFadeUp)
       .from(stack, { opacity: 0, duration: 1.4, ease: "power1.inOut", clearProps: "opacity" }, "-=0.4");
 
+    reveal(description, stack);
     ScrollTrigger.refresh();
   });
 };
@@ -219,6 +226,7 @@ const initIntegrationAnimation = () => {
       )
       .from(card, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.4");
 
+    reveal(subtitle, descriptions, image, card);
     ScrollTrigger.refresh();
   });
 };
@@ -256,6 +264,7 @@ const initAiAnimation = () => {
         "-=1.6"
       );
 
+    reveal(subtitle, items, description, image);
     ScrollTrigger.refresh();
   });
 };
@@ -306,6 +315,7 @@ const initAzureAnimation = () => {
       )
       .from(blogStrip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "opacity" }, "-=0.4");
 
+    reveal(description, items, cards, blogStrip);
     ScrollTrigger.refresh();
   });
 };
@@ -336,6 +346,7 @@ const initContactAnimation = () => {
       .from(form, { x: 80, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform,opacity" }, "<")
       .from(lines, linesFadeUp, 0.3);
 
+    reveal(info, form, description);
     ScrollTrigger.refresh();
   });
 };
@@ -373,6 +384,8 @@ const initFooterAnimation = () => {
       clearProps: "transform,opacity",
     })
     .from(logo, { yPercent: 100,  duration: 3.5, ease: "power3.out", clearProps: "transform,opacity" }, "-=1.6");
+
+  reveal(items, logo);
 };
 
 if (!prefersReducedMotion) {

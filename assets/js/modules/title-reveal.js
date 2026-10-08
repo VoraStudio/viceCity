@@ -41,6 +41,7 @@ const initTitleReveal = () => {
       });
     });
 
+    gsap.set(titles, { visibility: "visible" });
     ScrollTrigger.refresh();
   });
 };

@@ -1,0 +1,41 @@
+/* Si el JS falla o es descuida un element, el failsafe el torna visible als 3 s. */
+@media (prefers-reduced-motion: no-preference) {
+  .js :is(
+      #inici nav,
+      [data-title-reveal],
+      [data-hero-subtitle],
+      [data-hero-ctas] > a,
+      [data-hero-visual],
+      [data-solutions-card],
+      [data-trust-strip],
+      [data-solutions-description],
+      [data-platform-description],
+      [data-stack-list],
+      [data-integration-subtitle],
+      [data-integration-description],
+      [data-integration-image],
+      [data-integration-card],
+      [data-ia-subtitle],
+      [data-ia-item],
+      [data-ia-description],
+      [data-ia-image],
+      [data-azure-description],
+      [data-azure-item],
+      [data-resources-card],
+      [data-blog-strip],
+      [data-contact-info],
+      [data-contact-form],
+      [data-contact-description],
+      [data-footer-item],
+      [data-footer-logo]
+    ) {
+    visibility: hidden;
+    animation: reveal-failsafe 0s 3s forwards;
+  }
+}
+
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
+  }
+}
