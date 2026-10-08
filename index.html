@@ -147,6 +147,8 @@
         --color-ink: #0d252f;
         --color-paper: #f7f8f6;
         --color-gray: #b4b4b4;
+        --color-error: #b3261e;
+        --color-success: #1e7e34;
         /* Gris de les caixes de placeholder (imatges no disponibles) */
         --color-placeholder: #d9d9d9;
 
@@ -1047,8 +1049,9 @@
                 type="text"
                 autocomplete="name"
                 required
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-nom"
               />
+              <p id="err-nom" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
             </div>
             <div class="flex flex-col gap-1.5">
               <label for="f-organitzacio" class="font-body text-sm font-bold">Organització <span aria-hidden="true">*</span></label>
@@ -1058,8 +1061,9 @@
                 type="text"
                 autocomplete="organization"
                 required
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-organitzacio"
               />
+              <p id="err-organitzacio" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
             </div>
             <div class="flex flex-col gap-1.5">
               <label for="f-carrec" class="font-body text-sm font-bold">Càrrec</label>
@@ -1068,7 +1072,7 @@
                 name="carrec"
                 type="text"
                 autocomplete="organization-title"
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
               />
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1079,8 +1083,9 @@
                 type="email"
                 autocomplete="email"
                 required
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-email"
               />
+              <p id="err-email" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Introdueix un correu electrònic vàlid.</p>
             </div>
             <div class="flex flex-col gap-1.5">
               <label for="f-telefon" class="font-body text-sm font-bold">Telèfon</label>
@@ -1089,7 +1094,7 @@
                 name="telefon"
                 type="tel"
                 autocomplete="tel"
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
               />
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1098,13 +1103,14 @@
                 id="f-motiu"
                 name="motiu"
                 required
-                class="h-9 w-full rounded-sm border border-gray bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-motiu"
               >
                 <option value="" selected disabled>Selecciona una opció</option>
                 <option value="demo">Sol·licitud de demostració</option>
                 <option value="especialista">Parlar amb un especialista</option>
                 <option value="altres">Altres consultes</option>
               </select>
+              <p id="err-motiu" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
             </div>
             <div class="flex flex-col gap-1.5 md:col-span-2">
               <label for="f-missatge" class="font-body text-sm font-bold">Missatge</label>
@@ -1113,19 +1119,19 @@
                 name="missatge"
                 rows="4"
                 maxlength="1000"
-                class="min-h-32 w-full rounded-sm border border-gray bg-white px-3 py-2 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="min-h-32 w-full rounded-sm border border-ink/50 bg-white px-3 py-2 font-body text-base text-ink transition-colors hover:border-purple-700 disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
               ></textarea>
             </div>
-            <div class="flex items-start gap-3 md:col-span-2">
+            <div class="flex flex-wrap items-start gap-3 md:col-span-2">
               <input
                 id="f-privacitat"
                 name="privacitat"
                 type="checkbox"
                 value="si"
                 required
-                class="mt-0.5 size-5 shrink-0 rounded-sm border border-gray accent-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                class="peer mt-0.5 size-5 shrink-0 rounded-sm border border-ink/50 accent-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 user-invalid:outline-2 user-invalid:outline-error user-valid:outline-2 user-valid:outline-success" aria-describedby="err-privacitat"
               />
-              <label for="f-privacitat" class="text-base text-ink/80">
+              <label for="f-privacitat" class="min-w-0 flex-1 text-base text-ink/80">
                 He llegit i accepto la
                 <a
                   href="privacitat.html"
@@ -1133,6 +1139,7 @@
                   >política de privacitat</a
                 >. <span aria-hidden="true">*</span>
               </label>
+              <p id="err-privacitat" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex w-full"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
             </div>
             <p class="text-sm text-ink/80 md:col-span-2">
               Els camps marcats amb * són obligatoris. En enviar el formulari, s'obrirà el teu programa de correu amb el missatge preparat.
