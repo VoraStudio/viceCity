@@ -3,6 +3,7 @@
 **Stack**: arquitectura
 **Estat**: acceptat; publicació pendent
 **Data**: 2026-10-05
+**Substituïda per**: arquitectura/005 (la carpeta docs/ deixa de versionar-se i de ser pública)
 
 ## Context
 

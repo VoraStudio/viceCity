@@ -10,3 +10,7 @@ desktop.ini
 .vscode/
 .idea/
 *.log
+
+# Material de client i disseny: no es publica
+docs/
+.atl/
