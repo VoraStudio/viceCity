@@ -1,6 +1,27 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ==========================================================================
+// COMUNES
+// ==========================================================================
+const charsDepthReveal = {
+  x: 100,
+  z: -20,
+  rotateX: -20,
+  opacity: 0,
+  duration: 0.6,
+  ease: "power4.out",
+  transformOrigin: "50% 0% -50px",
+  stagger: { amount: 0.9 },
+};
+
+const splitIntoChars = (element) => {
+  gsap.set(element, { perspective: 1000 });
+  const split = SplitText.create(element, { type: "words,chars" });
+  gsap.set([split.words, split.chars], { display: "inline-block" });
+  return split.chars;
+};
+
+// ==========================================================================
 // HEADER
 // ==========================================================================
 const initHeaderAnimation = () => {
@@ -32,10 +53,7 @@ const initHeroAnimation = () => {
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.fonts.ready.then(() => {
-    gsap.set(subtitle, { perspective: 1000 });
-
-    const split = SplitText.create(subtitle, { type: "words,chars" });
-    gsap.set([split.words, split.chars], { display: "inline-block" });
+    const chars = splitIntoChars(subtitle);
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -48,20 +66,7 @@ const initHeroAnimation = () => {
     });
 
     timeline
-      .from(
-        split.chars,
-        {
-          x: 100,
-          z: -20,
-          rotateX: -20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power4.out",
-          transformOrigin: "50% 0% -50px",
-          stagger: { amount: 0.9},
-        },
-        0.6
-      )
+      .from(chars, charsDepthReveal, 0.6)
       .from(ctas, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", stagger: 0.15, clearProps: "transform,opacity" }, "-=0.9")
       .from(visual, { opacity: 0, duration: 5, ease: "power2.out", clearProps: "opacity" }, "-=1.9");
 
@@ -102,8 +107,51 @@ const initSolutionsAnimation = () => {
     .from(strip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "transform,opacity" }, "-=0.9");
 };
 
+// ==========================================================================
+// PLATAFORMA
+// ==========================================================================
+const initPlatformAnimation = () => {
+  const section = document.querySelector("[data-stack-carousel]");
+  if (!section) return;
+
+  const description = section.querySelector("[data-platform-description]");
+  const cards = gsap.utils.toArray("[data-stack-list] > li", section);
+  if (!description || !cards.length) return;
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.fonts.ready.then(() => {
+    const chars = splitIntoChars(description);
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: description,
+        start: "top 85%",
+        endTrigger: section,
+        end: "bottom top",
+        toggleActions: "play reset play reset",
+      },
+    });
+
+    timeline.from(chars, charsDepthReveal).from(
+      cards,
+      {
+        x: (index) => (index % 2 === 0 ? -80 : 80),
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+      },
+      "-=0.4"
+    );
+
+    ScrollTrigger.refresh();
+  });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
   initSolutionsAnimation();
+  initPlatformAnimation();
 }
