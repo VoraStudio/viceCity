@@ -160,8 +160,8 @@ const initPlatformAnimation = () => {
   if (!section) return;
 
   const description = section.querySelector("[data-platform-description]");
-  const cards = gsap.utils.toArray("[data-stack-list] > li", section);
-  if (!description || !cards.length) return;
+  const stack = section.querySelector("[data-stack-list]");
+  if (!description || !stack) return;
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -178,17 +178,9 @@ const initPlatformAnimation = () => {
       },
     });
 
-    timeline.from(lines, linesFadeUp).from(
-      cards,
-      {
-        x: (index) => (index % 2 === 0 ? -80 : 80),
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.2,
-      },
-      "-=0.4"
-    );
+    timeline
+      .from(lines, linesFadeUp)
+      .from(stack, { opacity: 0, duration: 1.4, ease: "power1.inOut", clearProps: "opacity" }, "-=0.4");
 
     ScrollTrigger.refresh();
   });
