@@ -191,138 +191,24 @@
               </a>
             </div>
           </div>
-
-          <!-- Visual del producte: maqueta en HTML (substituir per captura real quan estigui llesta) -->
           <div
             data-hero-visual
             class="mt-12 rounded-3xl [--border-angle:0deg] bg-[conic-gradient(from_var(--border-angle),var(--color-purple-700),var(--color-lav-300),var(--color-purple-500),var(--color-lav-100),var(--color-purple-700))] p-3 shadow-2xl shadow-purple-700/20 md:mt-20 md:p-4 lg:mt-32"
-            role="img"
-            aria-label="Interfície de la plataforma Vicity amb tauler de dades, gràfic d'evolució de la recaptació i assistent d'intel·ligència artificial"
           >
-            <div class="grid overflow-hidden rounded-2xl bg-paper lg:grid-cols-12">
-              <div class="hidden flex-col gap-2 bg-ink p-6 lg:col-span-2 lg:flex">
-                <img
-                  src="assets/img/logo/imagotip/svg/sense-area-seguretat/2-imagotip-fons-blau-nit.svg"
-                  alt=""
-                  width="129"
-                  height="40"
-                  class="mb-8 h-8 w-auto self-start"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span class="rounded-lg bg-purple-700 px-4 py-2 text-sm font-semibold text-white">Tauler</span>
-                <span class="px-4 py-2 text-sm font-semibold text-lav-100">Gestió tributària</span>
-                <span class="px-4 py-2 text-sm font-semibold text-lav-100">Recaptació</span>
-                <span class="px-4 py-2 text-sm font-semibold text-lav-100">Control i seguiment</span>
-                <span class="px-4 py-2 text-sm font-semibold text-lav-100">Informes</span>
-              </div>
-
-              <div class="flex flex-col gap-4 p-4 md:p-6 lg:col-span-7">
-                <div class="flex items-center gap-3 rounded-xl border border-lav-100 bg-white px-4 py-3 text-sm text-ink/70">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="size-5 shrink-0"
-                    aria-hidden="true"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                  </svg>
-                  Cerca un contribuent, un expedient o un rebut…
-                </div>
-
-                <div class="grid gap-3 md:grid-cols-3">
-                  <div class="flex flex-col gap-3 rounded-2xl bg-purple-700 p-4 text-white">
-                    <span class="font-head text-sm font-bold">Gestió tributària</span>
-                    <div class="flex items-end justify-between">
-                      <span class="font-head text-2xl font-bold">14.2M €</span>
-                      <span class="flex items-end gap-0.5" aria-hidden="true"
-                        ><i class="block h-1 w-1 rounded-full bg-lav-100"></i><i class="block h-2 w-1 rounded-full bg-lav-100"></i
-                        ><i class="block h-3 w-1 rounded-full bg-lav-100"></i><i class="block h-4 w-1 rounded-full bg-lav-100"></i
-                        ><i class="block h-6 w-1 rounded-full bg-lav-100"></i
-                      ></span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-3 rounded-2xl border border-lav-100 bg-white p-4">
-                    <span class="font-head text-sm font-bold">Recaptació</span>
-                    <div class="flex items-end justify-between">
-                      <span class="font-head text-2xl font-bold text-purple-700">94.2%</span>
-                      <span class="flex items-end gap-0.5" aria-hidden="true"
-                        ><i class="block h-2 w-1 rounded-full bg-lav-300"></i><i class="block h-3 w-1 rounded-full bg-lav-300"></i
-                        ><i class="block h-4 w-1 rounded-full bg-lav-300"></i><i class="block h-5 w-1 rounded-full bg-lav-300"></i
-                        ><i class="block h-6 w-1 rounded-full bg-lav-300"></i
-                      ></span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-3 rounded-2xl border border-lav-100 bg-white p-4">
-                    <span class="font-head text-sm font-bold">Control i seguiment</span>
-                    <div class="flex items-end justify-between">
-                      <span class="font-head text-2xl font-bold text-purple-700">2.4k exp.</span>
-                      <span class="flex items-end gap-0.5" aria-hidden="true"
-                        ><i class="block h-1 w-1 rounded-full bg-lav-300"></i><i class="block h-2 w-1 rounded-full bg-lav-300"></i
-                        ><i class="block h-4 w-1 rounded-full bg-lav-300"></i><i class="block h-5 w-1 rounded-full bg-lav-300"></i
-                        ><i class="block h-6 w-1 rounded-full bg-lav-300"></i
-                      ></span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="flex flex-col rounded-2xl border border-lav-100 bg-white p-4 md:p-5">
-                  <span class="font-head text-sm font-bold">Evolució de la recaptació</span>
-                  <div class="mt-6 flex h-48 items-end gap-2 md:h-64 md:gap-4 lg:h-72" aria-hidden="true">
-                    <i class="block h-16 flex-1 rounded-t-sm bg-purple-500 md:h-20"></i>
-                    <i class="block h-20 flex-1 rounded-t-sm bg-purple-500 md:h-28"></i>
-                    <i class="block h-28 flex-1 rounded-t-sm bg-purple-500 md:h-36"></i>
-                    <i class="block h-24 flex-1 rounded-t-sm bg-purple-500 md:h-32"></i>
-                    <i class="block h-32 flex-1 rounded-t-sm bg-purple-500 md:h-44"></i>
-                    <i class="block h-36 flex-1 rounded-t-sm bg-purple-500 md:h-52"></i>
-                    <i class="block h-40 flex-1 rounded-t-sm bg-purple-500 md:h-60"></i>
-                    <i class="block h-36 flex-1 rounded-t-sm bg-purple-500 md:h-56"></i>
-                    <i class="block h-44 flex-1 rounded-t-sm bg-purple-500 md:h-64"></i>
-                  </div>
-                  <div class="mt-2 flex gap-2 text-center text-label text-ink/70 md:gap-4" aria-hidden="true">
-                    <span class="flex-1">Gen</span><span class="flex-1">Feb</span><span class="flex-1">Mar</span><span class="flex-1">Abr</span
-                    ><span class="flex-1">Mai</span><span class="flex-1">Jun</span><span class="flex-1">Jul</span><span class="flex-1">Ago</span
-                    ><span class="flex-1">Set</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="hidden flex-col gap-3 border-l border-lav-100 bg-white p-5 lg:col-span-3 lg:flex">
-                <div class="flex items-center gap-2 font-head text-sm font-bold">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="size-5 text-purple-700"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
-                    <path d="M19 16v4M17 18h4" />
-                  </svg>
-                  Assistent Vicity
-                </div>
-                <p class="max-w-11/12 self-end rounded-2xl bg-lav-100 px-3 py-2 text-sm">Genera l'informe de recaptació del darrer trimestre.</p>
-                <p class="max-w-11/12 self-start rounded-2xl bg-ink px-3 py-2 text-sm text-white">
-                  Informe preparat. He inclòs l'evolució per impost i els rebuts pendents.
-                </p>
-                <p class="max-w-11/12 self-end rounded-2xl bg-lav-100 px-3 py-2 text-sm">Quins expedients necessiten seguiment?</p>
-                <p class="max-w-11/12 self-start rounded-2xl bg-ink px-3 py-2 text-sm text-white">Te'ls mostro agrupats per tipus de tribut.</p>
-              </div>
-            </div>
+            <video
+              data-hero-video
+              class="block aspect-video w-full rounded-2xl bg-paper object-cover"
+              width="1280"
+              height="720"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="assets/video/vicity-demo-poster.webp"
+              aria-label="Demostració de la plataforma Vicity: tauler de dades, recaptació i seguiment de tràmits"
+            >
+              <source src="assets/video/vicity-demo.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>

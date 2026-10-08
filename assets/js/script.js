@@ -81,6 +81,23 @@ const initHeroBorderAnimation = () => {
   });
 };
 
+const initHeroVideo = () => {
+  const video = document.querySelector("[data-hero-video]");
+  if (!video) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    trigger: video,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => video.play(),
+    onEnterBack: () => video.play(),
+    onLeave: () => video.pause(),
+    onLeaveBack: () => video.pause(),
+  });
+};
+
 // ==========================================================================
 // SOLUCIONS
 // ==========================================================================
@@ -357,6 +374,7 @@ if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
   initHeroBorderAnimation();
+  initHeroVideo();
   initSolutionsAnimation();
   initPlatformAnimation();
   initIntegrationAnimation();
