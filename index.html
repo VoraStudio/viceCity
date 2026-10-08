@@ -905,20 +905,20 @@
       </section>
 
       <!-- ===================  SECCIÓ 5 · Microsoft Azure  =================== -->
-      <section id="azure" class="py-16 md:py-24" aria-labelledby="azure-titol">
+      <section id="azure" data-azure class="overflow-x-clip py-16 md:py-24" aria-labelledby="azure-titol">
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
           <div class="mx-auto max-w-3xl text-center">
             <h2 data-title-reveal id="azure-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
               Construït sobre la confiança de Microsoft Azure
             </h2>
-            <p class="mt-4 text-base text-ink/80 md:text-lg">
+            <p data-azure-description class="mt-4 text-base text-ink/80 md:text-lg">
               La innovació només és útil quan es construeix sobre uns fonaments sòlids. Vicity utilitza una arquitectura cloud basada en Microsoft
               Azure per oferir una plataforma preparada per créixer, adaptar-se i evolucionar de forma contínua.
             </p>
           </div>
 
           <ul class="mt-10 grid border-b border-lav-100 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
-            <li class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -939,7 +939,7 @@
               <h3 class="font-head text-xl font-bold">Escalabilitat</h3>
               <p class="text-base text-ink/80">Creix al ritme de les necessitats de cada organització.</p>
             </li>
-            <li class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -958,7 +958,7 @@
               <h3 class="font-head text-xl font-bold">Disponibilitat</h3>
               <p class="text-base text-ink/80">Accés als serveis quan els necessites.</p>
             </li>
-            <li class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -980,7 +980,7 @@
               <h3 class="font-head text-xl font-bold">Seguretat</h3>
               <p class="text-base text-ink/80">Protecció de la informació amb tecnologia empresarial.</p>
             </li>
-            <li class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -1008,7 +1008,7 @@
       <!-- ===================  SECCIONS 6 · 7 · 8  =================== -->
       <section id="recursos" class="flex flex-col gap-12 pb-16 md:pb-24" aria-label="Dades, administracions públiques i demostració">
         <div class="group/list mx-auto flex w-full max-w-7xl flex-col items-stretch gap-6 px-4 md:px-8 lg:flex-row lg:px-10">
-          <article
+          <article data-resources-card
             class="overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-6 lg:flex-col lg:hover:flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8 min-w-0 lg:hover:flex-6 transition-[flex] duration-1000 lg:group-has-[article:not(:first-child):hover]/list:flex-1 lg:group-has-[article:not(:first-child):focus-within]/list:flex-1 lg:group-has-[article:not(:first-child):hover]/list:flex-row lg:group-has-[article:not(:first-child):focus-within]/list:flex-row"
           >
             <h2
@@ -1055,7 +1055,7 @@
             </div>
           </article>
 
-          <article
+          <article data-resources-card
             class="overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-lav-100/40 p-6 md:p-8 min-w-0 lg:flex-1 lg:hover:flex-6 transition-[flex] duration-1000"
           >
             <h2
@@ -1101,7 +1101,7 @@
             </div>
           </article>
 
-          <article
+          <article data-resources-card
             class="overflow-hidden lg:h-[32rem] flex-col group flex lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-purple-700 p-6 text-white md:p-8 min-w-0 lg:flex-1 lg:hover:flex-8 transition-[flex] duration-1000"
           >
             <h2
@@ -1162,7 +1162,7 @@
         </div>
 
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <div class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+          <div data-blog-strip class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
             <h2 data-title-reveal id="blog-titol" class="flex items-center gap-3 font-head text-3xl leading-tight font-bold">
               Descobreix el nostre blog
               <svg

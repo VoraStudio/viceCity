@@ -223,6 +223,56 @@ const initAiAnimation = () => {
   });
 };
 
+// ==========================================================================
+// AZURE
+// ==========================================================================
+const initAzureAnimation = () => {
+  const section = document.querySelector("[data-azure]");
+  if (!section) return;
+
+  const description = section.querySelector("[data-azure-description]");
+  const items = section.querySelectorAll("[data-azure-item]");
+  const cards = document.querySelectorAll("[data-resources-card]");
+  const blogStrip = document.querySelector("[data-blog-strip]");
+  if (!description || !items.length || !cards.length || !blogStrip) return;
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.fonts.ready.then(() => {
+    const chars = splitIntoChars(description);
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 70%",
+        endTrigger: "#recursos",
+        end: "bottom top",
+        toggleActions: "play reset play reset",
+      },
+    });
+
+    timeline
+      .from(chars, charsDepthReveal)
+      .from(items, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.2, clearProps: "transform,opacity" }, "-=0.4")
+      .from(
+        cards,
+        {
+          x: (index) => (index === 0 ? -60 : 0),
+          y: (index) => (index === 0 ? 0 : 40),
+          opacity: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.3,
+          clearProps: "transform,opacity",
+        },
+        "-=0.4"
+      )
+      .from(blogStrip, { y: 40, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "opacity" }, "-=0.4");
+
+    ScrollTrigger.refresh();
+  });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
@@ -230,4 +280,5 @@ if (!prefersReducedMotion) {
   initPlatformAnimation();
   initIntegrationAnimation();
   initAiAnimation();
+  initAzureAnimation();
 }
