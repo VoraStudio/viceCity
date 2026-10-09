@@ -88,43 +88,45 @@ const initHeroBorderAnimation = () => {
   });
 };
 
-const initHeroVideo = () => {
-  const video = document.querySelector("[data-hero-video]");
-  const toggle = document.querySelector("[data-hero-video-toggle]");
-  if (!video || !toggle) return;
+const initVideoPlayers = () => {
+  document.querySelectorAll("[data-video-player]").forEach((player) => {
+    const video = player.querySelector("[data-video]");
+    const toggle = player.querySelector("[data-video-toggle]");
+    if (!video || !toggle) return;
 
-  let pausedByUser = prefersReducedMotion;
+    let pausedByUser = prefersReducedMotion;
 
-  const syncToggle = () => toggle.setAttribute("aria-pressed", String(video.paused));
-  const play = () => video.play().catch(syncToggle);
-  const playUnlessPausedByUser = () => {
-    if (!pausedByUser) play();
-  };
+    const syncToggle = () => toggle.setAttribute("aria-pressed", String(video.paused));
+    const play = () => video.play().catch(syncToggle);
+    const playUnlessPausedByUser = () => {
+      if (!pausedByUser) play();
+    };
 
-  video.addEventListener("play", syncToggle);
-  video.addEventListener("pause", syncToggle);
-  toggle.addEventListener("click", () => {
-    pausedByUser = !video.paused;
-    if (pausedByUser) {
-      video.pause();
-      return;
-    }
-    play();
-  });
-  syncToggle();
+    video.addEventListener("play", syncToggle);
+    video.addEventListener("pause", syncToggle);
+    toggle.addEventListener("click", () => {
+      pausedByUser = !video.paused;
+      if (pausedByUser) {
+        video.pause();
+        return;
+      }
+      play();
+    });
+    syncToggle();
 
-  if (prefersReducedMotion) return;
+    if (prefersReducedMotion) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-  ScrollTrigger.create({
-    trigger: video,
-    start: "top bottom",
-    end: "bottom top",
-    onEnter: playUnlessPausedByUser,
-    onEnterBack: playUnlessPausedByUser,
-    onLeave: () => video.pause(),
-    onLeaveBack: () => video.pause(),
+    ScrollTrigger.create({
+      trigger: video,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: playUnlessPausedByUser,
+      onEnterBack: playUnlessPausedByUser,
+      onLeave: () => video.pause(),
+      onLeaveBack: () => video.pause(),
+    });
   });
 };
 
@@ -694,7 +696,7 @@ if (!prefersReducedMotion) {
   initFooterAnimation();
 }
 
-initHeroVideo();
+initVideoPlayers();
 initCursor();
 initToasts();
 initLikeButtons();

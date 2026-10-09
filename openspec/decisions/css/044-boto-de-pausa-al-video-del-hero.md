@@ -21,3 +21,5 @@ El vídeo de la demo (decisió 034) es repeteix durant més de 5 s sense cap con
 - Substitueix la nota «falta un botó de pausa» de la decisió 034.
 - Segueix sense haver-hi una descripció textual equivalent del vídeo (WCAG 1.2.1); només porta `aria-label`.
 - No provat en un navegador, només comprovat el codi.
+
+**Nota (2026-10-09):** `initHeroVideo` s'ha generalitzat en `initVideoPlayers` (decisió 051), que gestiona tots els reproductors `[data-video-player]`; el comportament descrit aquí no ha canviat.

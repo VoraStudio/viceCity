@@ -21,3 +21,5 @@ Sota el hero hi havia una maqueta de la plataforma feta en HTML (amb un comentar
 - Amb `prefers-reduced-motion` el vídeo no arrenca i queda el pòster fix; sense JS passa el mateix.
 - **Botó de pausa afegit a la decisió 044** (WCAG 2.2.2): un vídeo que es repeteix més de 5 s n'ha de tenir.
 - No provat en un navegador, només comprovat el codi.
+
+**Nota (2026-10-09):** `initHeroVideo` s'ha generalitzat en `initVideoPlayers` (decisió 051), que gestiona tots els reproductors `[data-video-player]`; el comportament descrit aquí no ha canviat.
