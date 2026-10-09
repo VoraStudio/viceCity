@@ -47,6 +47,17 @@ El POST clàssic es manté perquè el formulari ha de funcionar sense JS. Això 
 | Validació del servidor minsa | Descartat: es manté `validateContact` estricta i l'anti-injecció de capçaleres |
 | Rutes `/php/...` absolutes | Descartat: rutes relatives |
 
+## Trampa de temps
+
+El token CSRF guarda el moment en què s'emet (`contact_token_issued_at`, a `getContactToken()` i `rotateContactToken()`). Si un enviament pel camí JSON arriba abans de `CONTACT_MIN_FILL_SECONDS` (3 s), `contacto.php` respon 429 amb `Retry-After: 3` i el missatge «Espera un moment i torna a enviar el formulari.».
+
+- **Ordre**: va després del token, del límit de 10 s i del honeypot (un bot que omple el honeypot continua rebent èxit silenciós) i abans de reCAPTCHA, de la validació i de l'enviament del correu.
+- **Sense efectes secundaris**: no marca l'enviament ni gira el token, així que l'usuari pot reintentar passats els 3 s sense recarregar. `token.php` no reinicia la marca si el token ja existeix.
+- **Sessions antigues**: una sessió sense marca, o amb un valor corrupte, no es bloqueja.
+- **Què cobreix**: els bots que omplen i envien el formulari a l'instant.
+- **Què no cobreix**: un bot que esperi 3 s o que canviï de sessió, i el POST clàssic sense JS, perquè no porta token.
+- **Risc de fals positiu**: l'autocompletat del navegador seguit d'un clic ràpid pot superar-lo per poc; el missatge convida a reintentar i el reintent funciona sense recarregar.
+
 ## reCAPTCHA v3: implementat, a falta de claus reals
 
 **Avui NO hi ha cap captcha efectiu.** No hi ha claus: la de lloc és `PENDENT_CLAU_DE_SITE` i la secreta no existeix. Mentre siguin un valor de reompliment, reCAPTCHA queda **desactivat de manera segura**: `token.php` retorna `recaptcha: null`, el navegador no carrega cap script de Google, el servidor no exigeix cap token i el formulari queda protegit només per **CSRF + límit de freqüència + honeypot + `isSameOrigin()`**.
@@ -70,6 +81,7 @@ Quan hi hagi claus reals s'activa sol:
 - Sense JS el formulari funciona, però no es pot enviar si reCAPTCHA s'activa.
 - La sessió per al límit exigeix cookies: un client sense cookies se salta el límit, però no el CSRF del camí JSON.
 - Un atacant pot esgotar el límit d'una sessió pròpia, però no el d'altres usuaris, perquè és per sessió i no global.
+- La trampa de temps atura els bots que envien a l'instant, però no substitueix un captcha ni un límit per IP.
 - `mail()` no s'ha tocat: continua pendent SPF/DKIM (decisió 007).
 - La nota obsoleta de la 007 sobre `mailto:` i la resposta sense redirecció queda actualitzada.
 
@@ -82,5 +94,6 @@ Quan hi hagi claus reals s'activa sol:
 - `contacto.php`: JSON sense token 403, token invàlid 403, origen creuat 403, token i dades vàlids 200 amb un correu rebut, segon enviament immediat 429, dades invàlides 422 amb `errors` per camp, `\r\nBcc:` rebutjat al nom i al correu, honeypot 200 sense correu, GET 405, POST clàssic amb pàgina HTML i 429 també en HTML. El correu rebut porta assumpte codificat, `Reply-To` correcte i cap `Bcc`.
 - reCAPTCHA activat amb el stub: sense token, puntuació baixa, acció o `hostname` incorrectes i `success` fals donen 403; Google caigut dóna 503; correcte dóna 200. Tornant a les claus de reompliment queda desactivat.
 - Navegador: el formulari s'envia sense cap navegació de pàgina (`window` es manté), els camps buits mostren els `err-*` natius i el focus va a «Nom i cognoms», un nom només d'espais dóna l'error del servidor al camp amb `aria-invalid` i el focus, l'èxit mostra el missatge a la regió `status`, el 429 i la manca de xarxa mostren l'error i el botó es reactiva.
+- Trampa de temps (còpia amb `php -S` i receptor SMTP fals): enviament immediat amb token i dades vàlids dóna 429 amb `Retry-After: 3` i cap correu; passats 4 s amb el mateix token dóna 200 i un correu; dues crides a `token.php` no reinicien la marca; honeypot ple continua donant 200 sense correu; dades invàlides passats 3 s donen 422 i immediates 429; el camí sense JS no es veu afectat; una sessió sense marca o amb valor corrupte no es bloqueja. Chrome real: l'enviament immediat mostra el toast d'error, el botó es reactiva i els camps es conserven; el reenviament passats 3 s mostra el toast d'èxit i un correu.
 
 **No provat**: reCAPTCHA amb Google de veritat, l'enviament real de correu, `Secure` sota HTTPS, el comportament en mòbil i amb lector de pantalla, i Apache amb el `.htaccess`.

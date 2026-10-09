@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/blog.php';
 
 const CONTACT_MIN_INTERVAL = 10;
+const CONTACT_MIN_FILL_SECONDS = 3;
 
 function startContactSession(): void
 {
@@ -28,6 +29,7 @@ function getContactToken(): string
 {
     if (!isset($_SESSION['contact_csrf']) || !is_string($_SESSION['contact_csrf'])) {
         $_SESSION['contact_csrf'] = bin2hex(random_bytes(32));
+        $_SESSION['contact_token_issued_at'] = microtime(true);
     }
 
     return $_SESSION['contact_csrf'];
@@ -36,6 +38,7 @@ function getContactToken(): string
 function rotateContactToken(): string
 {
     $_SESSION['contact_csrf'] = bin2hex(random_bytes(32));
+    $_SESSION['contact_token_issued_at'] = microtime(true);
 
     return $_SESSION['contact_csrf'];
 }
@@ -45,6 +48,13 @@ function isValidContactToken(mixed $token): bool
     $expected = $_SESSION['contact_csrf'] ?? null;
 
     return is_string($expected) && is_string($token) && $token !== '' && hash_equals($expected, $token);
+}
+
+function isContactSubmittedTooFast(): bool
+{
+    $issuedAt = $_SESSION['contact_token_issued_at'] ?? null;
+
+    return (is_float($issuedAt) || is_int($issuedAt)) && microtime(true) - $issuedAt < CONTACT_MIN_FILL_SECONDS;
 }
 
 function isContactRateLimited(): bool

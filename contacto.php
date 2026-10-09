@@ -38,6 +38,12 @@ function processContact(bool $json): array
         return ['code' => 200, 'state' => 'success', 'message' => CONTACT_SUCCESS_MESSAGE];
     }
 
+    if ($json && isContactSubmittedTooFast()) {
+        header('Retry-After: ' . CONTACT_MIN_FILL_SECONDS);
+
+        return ['code' => 429, 'state' => 'rate', 'message' => 'Espera un moment i torna a enviar el formulari.'];
+    }
+
     if (recaptchaEnabled()) {
         $verdict = verifyRecaptcha(normalizeInput($_POST['recaptcha_response'] ?? ''));
 

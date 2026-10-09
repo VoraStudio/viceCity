@@ -108,7 +108,7 @@ Criteri: es considera llesta quan no quedi cap punt `BLOQUEJANT` marcat.
   On: `includes/recaptcha.php:17-22` i `includes/recaptcha-config.php:10-11`. Si falta `secrets.local.php` o les claus són de relleno, `recaptchaEnabled()` és fals i `contacto.php` se salta la verificació sense avisar: el formulari queda només amb honeypot, CSRF i límit de freqüència.
   Com: afegir un mode `prod` (per exemple una variable d'entorn) que exigeixi les claus i, si no hi són, respongui amb error en lloc de desactivar el captcha.
 - [ ] **Límit de freqüència del formulari per IP o amb captcha actiu** · `RECOMANAT` (`BLOQUEJANT` si es publica sense captcha) · Vora Studio
-  On: `includes/contact-security.php:50-55`. El límit de 10 s es guarda a la sessió: un bot que no envia la cookie `vc_contact` obté una sessió nova a cada petició i pot enviar correu en massa a `info@vicity.cat`.
+  On: `includes/contact-security.php:50-55`. El límit de 10 s es guarda a la sessió: un bot que no envia la cookie `vc_contact` obté una sessió nova a cada petició i pot enviar correu en massa a `info@vicity.cat`. Hi ha una trampa de temps de 3 s (decisió 010) que atura els bots que envien a l'instant, però no un bot que esperi o que canviï de sessió.
   Com: activar reCAPTCHA o afegir un límit per IP (fitxer o base de dades).
 - [ ] **Nom de domini fix a la verificació de reCAPTCHA** · `OPCIONAL` · Vora Studio
   On: `includes/recaptcha-config.php:14` (`hostname` fixat a `www.vicity.cat`). Amb aquest valor el captcha no funcionarà en un entorn de proves o de preproducció.
