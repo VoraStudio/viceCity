@@ -72,7 +72,7 @@ Criteri: es considera llesta quan no quedi cap punt `BLOQUEJANT` marcat.
   On: els tres vídeos de `index.html` només tenen `aria-label` (decisions 044 i 051); falta una transcripció o descripció completa (WCAG 1.2.1).
   Com: afegir un text equivalent o una transcripció accessible.
 - [ ] **Confirmar les versions finals dels vídeos** · `OPCIONAL` · Client
-  On: `assets/video/vicity-demo.mp4`, `vicity-animacio.mp4`, `vicity-conversa.mp4`.
+  On: `assets/video/vicity-hero.mp4`, `vicity-animacio.mp4`, `vicity-conversa.mp4`.
   Com: el client confirma que són definitius; si no, es substitueixen mantenint el nom i es regenera el pòster.
 - [ ] **Icones del lloc** · `OPCIONAL` · Vora Studio
   On: només hi ha una icona SVG (`includes/head.php:21`).
