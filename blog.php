@@ -33,9 +33,9 @@ $page = [
 require __DIR__ . '/includes/head.php';
 ?>
 
-    <main id="contingut">
+    <main id="contingut" class="bg-linear-to-b from-paper to-lav-100/40">
       <!-- ===================  CAPÇALERA DEL BLOG  =================== -->
-      <section class="relative overflow-hidden bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-16 md:pb-12 lg:pt-20" aria-labelledby="blog-titol">
+      <section class="relative overflow-x-clip bg-linear-to-b from-lav-100/60 to-transparent pt-12 pb-10 md:pt-16 md:pb-12 lg:pt-20" aria-labelledby="blog-titol">
         <div aria-hidden="true" class="absolute -top-16 -right-24 size-96 rounded-full bg-lav-300/20 blur-3xl"></div>
         <div aria-hidden="true" class="absolute top-64 -left-32 size-96 rounded-full bg-lav-100/60 blur-3xl"></div>
 
