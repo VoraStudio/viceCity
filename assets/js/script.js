@@ -491,6 +491,38 @@ const initCursor = () => {
   document.documentElement.addEventListener("mouseleave", () => setVisible(false));
 };
 
+const initLikeButtons = () => {
+  const form = document.querySelector("[data-like-form]");
+  if (!form) return;
+
+  const button = form.querySelector("[data-like-button]");
+  const count = document.querySelector("[data-like-count]");
+  if (!button || !count) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (button.disabled) return;
+    button.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+        credentials: "same-origin",
+      });
+      if (!response.ok) throw new Error(response.statusText);
+
+      const result = await response.json();
+      button.setAttribute("aria-pressed", String(result.liked));
+      count.textContent = result.label;
+      button.disabled = false;
+    } catch {
+      form.submit();
+    }
+  });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
@@ -508,3 +540,4 @@ if (!prefersReducedMotion) {
 
 initHeroVideo();
 initCursor();
+initLikeButtons();

@@ -115,6 +115,8 @@ require __DIR__ . '/includes/head.php';
                 <?= e($featuredPost['excerpt']) ?>
 
               </p>
+              <?= renderPostStats($featuredPost) ?>
+
               <a
                 href="<?= e(getArticleUrl($featuredPost['slug'])) ?>"
                 data-ripple
@@ -151,6 +153,8 @@ require __DIR__ . '/includes/head.php';
                   </p>
                   <h3 class="font-head text-lg leading-snug font-bold text-balance lg:text-xl"><?= e($post['title']) ?></h3>
                   <p class="text-sm leading-relaxed text-ink/70"><?= e($post['excerpt']) ?></p>
+                  <?= renderPostStats($post) ?>
+
                   <a
                     href="<?= e(getArticleUrl($post['slug'])) ?>"
                     class="mt-auto inline-flex items-center gap-2 self-start rounded-full pt-2 font-head text-sm font-semibold text-purple-700 hover:underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"

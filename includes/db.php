@@ -47,10 +47,24 @@ function createSchema(PDO $pdo): void
             cover TEXT NOT NULL,
             read_minutes INTEGER NOT NULL,
             published_at TEXT NOT NULL,
-            is_featured INTEGER NOT NULL DEFAULT 0
+            is_featured INTEGER NOT NULL DEFAULT 0,
+            likes INTEGER NOT NULL DEFAULT 0,
+            views INTEGER NOT NULL DEFAULT 0
         )'
     );
     $pdo->exec('CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)');
+    addMissingPostColumns($pdo);
+}
+
+function addMissingPostColumns(PDO $pdo): void
+{
+    $existing = array_column($pdo->query('PRAGMA table_info(posts)')->fetchAll(), 'name');
+
+    foreach (['likes', 'views'] as $column) {
+        if (!in_array($column, $existing, true)) {
+            $pdo->exec("ALTER TABLE posts ADD COLUMN $column INTEGER NOT NULL DEFAULT 0");
+        }
+    }
 }
 
 function syncPosts(PDO $pdo): void

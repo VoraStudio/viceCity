@@ -5,7 +5,8 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/blog.php';
 
 $slug = $_GET['slug'] ?? null;
-$post = is_string($slug) ? getPostBySlug(getDatabase(), $slug) : null;
+$pdo = getDatabase();
+$post = is_string($slug) ? getPostBySlug($pdo, $slug) : null;
 
 if ($post === null) {
     http_response_code(404);
@@ -15,6 +16,9 @@ if ($post === null) {
         'path' => 'blog.php',
     ];
 } else {
+    recordView($pdo, $post['slug']);
+    $post = getPostBySlug($pdo, $post['slug']);
+    $liked = hasLiked($post['slug']);
     $page = [
         'title' => $post['title'] . ' · Vicity',
         'description' => $post['excerpt'],
@@ -57,6 +61,32 @@ require __DIR__ . '/includes/head.php';
               <p><?= e($paragraph) ?></p>
 <?php endforeach; ?>
             </div>
+
+            <footer class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-lav-100 pt-6">
+              <form method="post" action="like.php" data-like-form>
+                <input type="hidden" name="slug" value="<?= e($post['slug']) ?>" />
+                <button
+                  type="submit"
+                  data-like-button
+                  aria-pressed="<?= $liked ? 'true' : 'false' ?>"
+                  class="group inline-flex h-10 items-center gap-2 rounded-full border-1 border-lav-300 bg-white px-4 font-head text-sm font-semibold text-purple-700 transition-colors hover:bg-lav-100/60 aria-pressed:border-purple-700 aria-pressed:bg-purple-700 aria-pressed:text-white aria-pressed:hover:bg-purple-800 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                >
+                  <?= iconHeart('size-5 shrink-0 group-aria-pressed:fill-current') ?>
+                  M'agrada
+                </button>
+              </form>
+              <p class="flex items-center gap-4 text-label font-medium text-ink/70">
+                <span class="inline-flex items-center gap-1.5">
+                  <?= iconHeart() ?>
+                  <span data-like-count aria-live="polite"><?= e(formatCount((int) $post['likes']) . " m'agrada") ?></span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <?= iconEye() ?>
+                  <span aria-hidden="true"><?= e(formatCount((int) $post['views'])) ?></span>
+                  <span class="sr-only"><?= e(viewsLabel((int) $post['views'])) ?></span>
+                </span>
+              </p>
+            </footer>
           </article>
         </div>
       </section>

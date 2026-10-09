@@ -58,6 +58,7 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 .
 ├── index.html, avis-legal.html, privacitat.html, cookies.html
 ├── blog.php, articulo.php      Llistat (amb filtre ?categoria=) i detall del blog
+├── like.php                   Endpoint del botó «M'agrada» (POST)
 ├── includes/                  PHP del blog: BD, categories, helpers i capçalera/peu comuns
 ├── data/                      posts.php (les entrades) i blog.sqlite (generada, no es versiona)
 ├── robots.txt, sitemap.xml
