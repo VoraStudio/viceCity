@@ -1,3 +1,5 @@
+import { initToasts, showToast } from "./modules/toast.js";
+
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ==========================================================================
@@ -541,3 +543,4 @@ if (!prefersReducedMotion) {
 initHeroVideo();
 initCursor();
 initLikeButtons();
+initToasts();
