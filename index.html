@@ -10,25 +10,44 @@
     />
     <link rel="canonical" href="https://www.vicity.cat/" />
     <meta name="theme-color" content="#5e35b1" />
-    <link rel="icon" type="image/svg+xml" href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vicity" />
     <meta property="og:locale" content="ca_ES" />
-    <meta property="og:title" content="Vicity · La gestió tributària preparada per al que vindrà" />
+    <meta
+      property="og:title"
+      content="Vicity · La gestió tributària preparada per al que vindrà"
+    />
     <meta
       property="og:description"
       content="Vicity és una plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur, pensada per a les administracions públiques."
     />
     <meta property="og:url" content="https://www.vicity.cat/" />
-    <meta property="og:image" content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png" />
+    <meta
+      property="og:image"
+      content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png"
+    />
     <meta property="og:image:width" content="2156" />
     <meta property="og:image:height" content="671" />
     <meta property="og:image:alt" content="Logotip de Vicity" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Vicity · La gestió tributària preparada per al que vindrà" />
-    <meta name="twitter:description" content="Plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur." />
-    <meta name="twitter:image" content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png" />
+    <meta
+      name="twitter:title"
+      content="Vicity · La gestió tributària preparada per al que vindrà"
+    />
+    <meta
+      name="twitter:description"
+      content="Plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png"
+    />
 
     <script type="application/ld+json">
       {
@@ -41,8 +60,20 @@
       }
     </script>
 
-    <link rel="preload" href="assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <script src="assets/js/js-flag.js"></script>
     <link rel="stylesheet" href="assets/css/reveal.css" />
@@ -85,7 +116,8 @@
       /* Fonts locals variables (WOFF2) */
       @font-face {
         font-family: "Red Hat Display";
-        src: url("assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2") format("woff2");
+        src: url("assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2")
+          format("woff2");
         font-weight: 300 900;
         font-style: normal;
         font-display: swap;
@@ -93,7 +125,8 @@
 
       @font-face {
         font-family: "Quicksand";
-        src: url("assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2") format("woff2");
+        src: url("assets/fonts/Quicksand/Quicksand-VariableFont_wght.woff2")
+          format("woff2");
         font-weight: 300 700;
         font-style: normal;
         font-display: swap;
@@ -102,13 +135,12 @@
       @custom-variant js (&:where(.js *));
 
       @utility animated-border {
-        position: relative;
-
         &::before {
           content: "";
           position: absolute;
-          inset: -1px;
-          padding: 2px;
+          inset: var(--border-inset, -3px);
+          z-index: 1;
+          padding: 4px;
           border-radius: inherit;
           background: conic-gradient(
             from var(--border-angle),
@@ -177,13 +209,16 @@
     <a
       href="#contingut"
       class="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-purple-700 focus-visible:px-4 focus-visible:py-2 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
-      >Vés al contingut</a
     >
+      Vés al contingut
+    </a>
 
     <noscript>
       <link rel="stylesheet" href="assets/css/noscript.css" />
       <div class="noscript">
-        <p class="noscript__title">Aquesta web necessita JavaScript per mostrar-se correctament.</p>
+        <p class="noscript__title">
+          Aquesta web necessita JavaScript per mostrar-se correctament.
+        </p>
         <p>Activa JavaScript al navegador o fes servir aquests enllaços:</p>
         <ul class="noscript__links">
           <li><a href="index.html">Inici</a></li>
@@ -192,7 +227,12 @@
           <li><a href="privacitat.html">Privacitat</a></li>
           <li><a href="cookies.html">Cookies</a></li>
         </ul>
-        <p>Contacte: <a href="mailto:info@vicity.cat">info@vicity.cat</a> · <a href="tel:+34931234567">+34&nbsp;93&nbsp;123&nbsp;45&nbsp;67</a></p>
+        <p>
+          Contacte:
+          <a href="mailto:info@vicity.cat">info@vicity.cat</a>
+          ·
+          <a href="tel:+34931234567">+34&nbsp;93&nbsp;123&nbsp;45&nbsp;67</a>
+        </p>
       </div>
     </noscript>
 
@@ -201,20 +241,40 @@
 
     <main id="contingut">
       <!-- ===================  HERO + PRODUCTE  =================== -->
-      <section class="relative overflow-hidden bg-linear-to-b from-lav-100/60 to-paper pb-16 md:pb-24" aria-labelledby="hero-titol">
-        <div aria-hidden="true" class="absolute -top-16 -right-24 size-96 rounded-full bg-lav-300/20 blur-3xl"></div>
-        <div aria-hidden="true" class="absolute top-64 -left-32 size-96 rounded-full bg-lav-100/60 blur-3xl"></div>
+      <section
+        class="relative overflow-hidden bg-linear-to-b from-lav-100/60 to-paper pb-16 md:pb-24"
+        aria-labelledby="hero-titol"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute -top-16 -right-24 size-96 rounded-full bg-lav-300/20 blur-3xl"
+        ></div>
+        <div
+          aria-hidden="true"
+          class="absolute top-64 -left-32 size-96 rounded-full bg-lav-100/60 blur-3xl"
+        ></div>
 
         <div class="relative mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
           <div class="mx-auto max-w-5xl pt-12 text-center md:pt-20 lg:pt-32">
-            <h1 id="hero-titol" data-title-reveal class="font-head text-4xl leading-tight font-bold text-balance md:text-5xl lg:text-title-1">
+            <h1
+              id="hero-titol"
+              data-title-reveal
+              class="font-head text-4xl leading-tight font-bold text-balance md:text-5xl lg:text-title-1"
+            >
               La gestió tributària preparada per al que vindrà
             </h1>
-            <p data-hero-subtitle class="mx-auto mt-5 max-w-4xl text-base leading-relaxed text-ink/80 md:mt-6 md:text-lg lg:text-body">
-              Les administracions públiques necessiten eines capaces d'evolucionar al mateix ritme que els nous reptes tecnològics i les expectatives
-              de la ciutadania.
+            <p
+              data-hero-subtitle
+              class="mx-auto mt-5 max-w-4xl text-base leading-relaxed text-ink/80 md:mt-6 md:text-lg lg:text-body"
+            >
+              Les administracions públiques necessiten eines capaces
+              d'evolucionar al mateix ritme que els nous reptes tecnològics i
+              les expectatives de la ciutadania.
             </p>
-            <div data-hero-ctas class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center md:mt-10">
+            <div
+              data-hero-ctas
+              class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center md:mt-10"
+            >
               <a
                 href="#demo"
                 data-ripple
@@ -226,7 +286,9 @@
                   aria-hidden="true"
                   class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"
                 ></span>
-                <span data-ripple-text class="relative z-10">Sol·licita una demostració</span>
+                <span data-ripple-text class="relative z-10">
+                  Sol·licita una demostració
+                </span>
               </a>
               <a
                 href="#contacte"
@@ -239,7 +301,9 @@
                   aria-hidden="true"
                   class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"
                 ></span>
-                <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+                <span data-ripple-text class="relative z-10">
+                  Parla amb un especialista
+                </span>
               </a>
             </div>
           </div>
@@ -268,11 +332,25 @@
               aria-label="Pausa el vídeo"
               class="group absolute right-6 bottom-6 inline-flex size-11 cursor-pointer items-center justify-center rounded-full bg-white/90 text-purple-700 shadow-lg shadow-purple-700/20 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 md:right-8 md:bottom-8"
             >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="size-5 group-aria-pressed:hidden" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="size-5 group-aria-pressed:hidden"
+                aria-hidden="true"
+              >
                 <rect x="6" y="5" width="4" height="14" rx="1" />
                 <rect x="14" y="5" width="4" height="14" rx="1" />
               </svg>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="hidden size-5 group-aria-pressed:block" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="hidden size-5 group-aria-pressed:block"
+                aria-hidden="true"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             </button>
@@ -281,32 +359,67 @@
       </section>
 
       <!-- ===================  SECCIÓ 1 · Gestiona avui  =================== -->
-      <section id="solucions" class="overflow-x-clip py-12 md:py-16 lg:pt-20 lg:pb-10" aria-labelledby="solucions-titol">
-        <div class="mx-auto grid w-full max-w-7xl gap-6 px-4 md:px-8 lg:grid-cols-5 lg:px-10">
-          <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col justify-between gap-12 rounded-3xl border border-lav-300 bg-lav-100/40 p-6 md:p-10 lg:col-span-2">
+      <section
+        id="solucions"
+        class="overflow-x-clip py-12 md:py-16 lg:pt-20 lg:pb-10"
+        aria-labelledby="solucions-titol"
+      >
+        <div
+          class="mx-auto grid w-full max-w-7xl gap-6 px-4 md:px-8 lg:grid-cols-5 lg:px-10"
+        >
+          <div
+            data-solutions-card
+            data-hover-border
+            class="animated-border relative [--border-angle:0deg] flex flex-col justify-between gap-12 rounded-3xl border border-lav-300 bg-lav-100/40 p-6 md:p-10 lg:col-span-2"
+          >
             <div>
-              <h2 data-title-reveal id="solucions-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
+              <h2
+                data-title-reveal
+                id="solucions-titol"
+                class="font-head text-3xl leading-tight font-bold md:text-title-2"
+              >
                 Gestiona avui. Prepara't per demà.
               </h2>
-              <p data-solutions-description class="mt-6 text-base text-ink/80 md:text-lg">Vicity neix amb una missió clara:</p>
+              <p
+                data-solutions-description
+                class="mt-6 text-base text-ink/80 md:text-lg"
+              >
+                Vicity neix amb una missió clara:
+              </p>
             </div>
-            <p class="rounded-2xl bg-ink p-6 font-head text-lg leading-snug font-bold text-white">
-              Ajudar les administracions públiques a evolucionar la seva gestió tributària sense renunciar al que ja funciona.
+            <p
+              class="rounded-2xl bg-ink p-6 font-head text-lg leading-snug font-bold text-white"
+            >
+              Ajudar les administracions públiques a evolucionar la seva gestió
+              tributària sense renunciar al que ja funciona.
             </p>
           </div>
 
           <div class="flex flex-col gap-6 lg:col-span-3">
-            <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col items-start gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8">
-              <p class="inline-flex h-11 items-center rounded-full bg-purple-700 px-4 font-head text-sm font-bold text-white">
+            <div
+              data-solutions-card
+              data-hover-border
+              class="animated-border relative [--border-angle:0deg] flex flex-col items-start gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8"
+            >
+              <p
+                class="inline-flex h-11 items-center rounded-full bg-purple-700 px-4 font-head text-sm font-bold text-white"
+              >
                 La transformació digital ja no és una opció
               </p>
               <p class="text-base text-ink/80 md:text-lg">
-                La intel·ligència artificial, les dades i els nous canals digitals estan transformant la manera com les administracions treballen i es
-                relacionen amb la ciutadania.
+                La
+                <span class="font-bold">intel·ligència artificial</span>
+                , les dades i els nous canals digitals estan transformant la
+                manera com les administracions treballen i es relacionen amb la
+                ciutadania.
               </p>
             </div>
             <div class="grid gap-6 md:grid-cols-2">
-              <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
+              <div
+                data-solutions-card
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -324,10 +437,16 @@
                   <path d="M16 7h6v6" />
                 </svg>
                 <p class="text-base text-ink/80">
-                  Vicity és una plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur.
+                  Vicity és una
+                  <span class="font-bold">plataforma de gestió tributària</span>
+                  i recaptació oberta, intel·ligent i preparada per al futur.
                 </p>
               </div>
-              <div data-solutions-card class="animated-border [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6">
+              <div
+                data-solutions-card
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-4 rounded-3xl border-1 border-purple-800/20 bg-white p-6"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -341,9 +460,15 @@
                   class="size-6 text-purple-700"
                   aria-hidden="true"
                 >
-                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+                  <path
+                    d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
+                  />
                 </svg>
-                <p class="text-base text-ink/80">Construïda sobre Microsoft Azure i integrada amb l'ecosistema tecnològic de cada administració.</p>
+                <p class="text-base text-ink/80">
+                  Construïda sobre
+                  <span class="font-bold">Microsoft Azure</span>
+                  i integrada amb l'ecosistema tecnològic de cada administració.
+                </p>
               </div>
             </div>
           </div>
@@ -351,15 +476,31 @@
       </section>
 
       <!-- ===================  Franja de confiança  =================== -->
-      <section id="administracions" class="pb-12 md:pb-16 lg:pb-20" aria-labelledby="confianca-titol">
+      <section
+        id="administracions"
+        class="pb-12 md:pb-16 lg:pb-20"
+        aria-labelledby="confianca-titol"
+      >
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <div data-trust-strip class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            <h2 id="confianca-titol" class="lg:max-w-xs font-head text-base leading-snug font-bold">
-              Administracions que ja confien en la transformació digital municipal
+          <div
+            data-trust-strip
+            class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+          >
+            <h2
+              id="confianca-titol"
+              class="lg:max-w-xs font-head text-base leading-snug font-bold"
+            >
+              Administracions que ja confien en la transformació digital
+              municipal
             </h2>
             <div class="min-w-0 overflow-hidden">
-              <div class="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
-                <ul aria-labelledby="confianca-titol" class="flex shrink-0 items-center gap-12 pr-12">
+              <div
+                class="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none"
+              >
+                <ul
+                  aria-labelledby="confianca-titol"
+                  class="flex shrink-0 items-center gap-12 pr-12"
+                >
                   <li class="flex items-center">
                     <img
                       src="assets/img/clients/vora.png"
@@ -405,7 +546,10 @@
                     />
                   </li>
                 </ul>
-                <ul aria-hidden="true" class="flex shrink-0 items-center gap-12 pr-12 motion-reduce:hidden">
+                <ul
+                  aria-hidden="true"
+                  class="flex shrink-0 items-center gap-12 pr-12 motion-reduce:hidden"
+                >
                   <li class="flex items-center">
                     <img
                       src="assets/img/clients/vora.png"
@@ -466,12 +610,21 @@
       >
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
           <div class="mx-auto max-w-3xl text-center">
-            <h2 data-title-reveal id="plataforma-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2 text-purple-700">
+            <h2
+              data-title-reveal
+              id="plataforma-titol"
+              class="font-head text-3xl leading-tight font-bold md:text-title-2 text-purple-700"
+            >
               Especialització que genera confiança
             </h2>
-            <p data-platform-description class="mt-4 text-base text-ink/80 md:text-lg">
-              La gestió tributària és una de les funcions més importants de qualsevol administració. Per això Vicity està dissenyat específicament per
-              donar resposta als processos que impacten directament en els ingressos públics.
+            <p
+              data-platform-description
+              class="mt-4 text-base text-ink/80 md:text-lg"
+            >
+              La gestió tributària és una de les funcions més importants de
+              qualsevol administració. Per això Vicity està dissenyat
+              específicament per donar resposta als processos que impacten
+              directament en els ingressos públics.
             </p>
           </div>
 
@@ -484,92 +637,183 @@
               data-stack-list
             >
               <li
-                class="flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-50 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-100 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
               >
                 <div class="flex items-start justify-between gap-3">
-                  <span aria-hidden="true" class="font-head text-title-2 leading-none font-bold text-lav-300">01</span>
-                  <span class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">Mòdul</span>
-                </div>
-                <div class="flex flex-col gap-2 rounded-2xl bg-paper p-4 text-sm" aria-hidden="true">
-                  <span class="flex items-center gap-2 font-semibold text-purple-700"
-                    ><i class="block size-4 rounded-sm bg-purple-700"></i>Impostos</span
+                  <span
+                    aria-hidden="true"
+                    class="font-head text-title-2 leading-none font-bold text-lav-300"
                   >
-                  <span class="flex items-center gap-2"><i class="block size-4 rounded-sm border border-gray"></i>Taxes</span>
-                  <span class="flex items-center gap-2"><i class="block size-4 rounded-sm border border-gray"></i>Preus públics</span>
+                    01
+                  </span>
+                  <span
+                    class="inline-flex h-11 items-center rounded-full bg-lav-50 px-4 font-body text-label font-bold text-purple-700"
+                  >
+                    Mòdul
+                  </span>
+                </div>
+                <div
+                  class="flex flex-col gap-2 rounded-2xl bg-paper p-4 text-sm"
+                  aria-hidden="true"
+                >
+                  <span
+                    class="flex items-center gap-2 font-semibold text-purple-700"
+                  >
+                    <i class="block size-4 rounded-sm bg-purple-700"></i>
+                    Impostos
+                  </span>
+                  <span class="flex items-center gap-2">
+                    <i class="block size-4 rounded-sm border border-gray"></i>
+                    Taxes
+                  </span>
+                  <span class="flex items-center gap-2">
+                    <i class="block size-4 rounded-sm border border-gray"></i>
+                    Preus públics
+                  </span>
                 </div>
                 <div>
                   <h3 class="font-head text-xl font-bold">Gestió tributària</h3>
-                  <p class="mt-2 text-base text-ink/80">Administra impostos, taxes i preus públics amb una visió completa i integrada.</p>
+                  <p class="mt-2 text-base text-ink/80">
+                    Administra impostos, taxes i preus públics amb una visió
+                    completa i integrada.
+                  </p>
                 </div>
               </li>
 
               <li
-                class="flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-50 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-100 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
               >
                 <div class="flex items-start justify-between gap-3">
-                  <span aria-hidden="true" class="font-head text-title-2 leading-none font-bold text-lav-300">02</span>
-                  <span class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
-                    >Tracker</span
+                  <span
+                    aria-hidden="true"
+                    class="font-head text-title-2 leading-none font-bold text-lav-300"
                   >
+                    02
+                  </span>
+                  <span
+                    class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
+                  >
+                    Tracker
+                  </span>
                 </div>
-                <div class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm" aria-hidden="true">
+                <div
+                  class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm"
+                  aria-hidden="true"
+                >
                   <span class="font-head font-bold">Cicle recaptatori</span>
-                  <span class="block h-2 w-full overflow-hidden rounded-full bg-lav-100"
-                    ><i class="block h-2 w-3/5 rounded-full bg-purple-700"></i
-                  ></span>
+                  <span
+                    class="block h-2 w-full overflow-hidden rounded-full bg-lav-100"
+                  >
+                    <i class="block h-2 w-3/5 rounded-full bg-purple-700"></i>
+                  </span>
                 </div>
                 <div>
                   <h3 class="font-head text-xl font-bold">Recaptació</h3>
-                  <p class="mt-2 text-base text-ink/80">Gestiona tot el cicle recaptatori amb agilitat i control.</p>
+                  <p class="mt-2 text-base text-ink/80">
+                    Gestiona tot el cicle recaptatori amb agilitat i control.
+                  </p>
                 </div>
               </li>
 
               <li
-                class="flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-50 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-100 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
               >
                 <div class="flex items-start justify-between gap-3">
-                  <span aria-hidden="true" class="font-head text-title-2 leading-none font-bold text-lav-300">03</span>
-                  <span class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">Dades</span>
+                  <span
+                    aria-hidden="true"
+                    class="font-head text-title-2 leading-none font-bold text-lav-300"
+                  >
+                    03
+                  </span>
+                  <span
+                    class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
+                  >
+                    Dades
+                  </span>
                 </div>
-                <div class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm" aria-hidden="true">
-                  <span class="font-head font-bold">Informació actualitzada</span>
-                  <span class="flex items-end gap-1"
-                    ><i class="block h-3 w-3 rounded-sm bg-lav-300"></i><i class="block h-5 w-3 rounded-sm bg-lav-300"></i
-                    ><i class="block h-6 w-3 rounded-sm bg-purple-700"></i><i class="block h-4 w-3 rounded-sm bg-lav-300"></i
-                  ></span>
+                <div
+                  class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm"
+                  aria-hidden="true"
+                >
+                  <span class="font-head font-bold">
+                    Informació actualitzada
+                  </span>
+                  <span class="flex items-end gap-1">
+                    <i class="block h-3 w-3 rounded-sm bg-lav-300"></i>
+                    <i class="block h-5 w-3 rounded-sm bg-lav-300"></i>
+                    <i class="block h-6 w-3 rounded-sm bg-purple-700"></i>
+                    <i class="block h-4 w-3 rounded-sm bg-lav-300"></i>
+                  </span>
                 </div>
                 <div>
-                  <h3 class="font-head text-xl font-bold">Control i seguiment</h3>
-                  <p class="mt-2 text-base text-ink/80">Disposa d'informació actualitzada per prendre decisions amb confiança.</p>
+                  <h3 class="font-head text-xl font-bold">
+                    Control i seguiment
+                  </h3>
+                  <p class="mt-2 text-base text-ink/80">
+                    Disposa d'informació actualitzada per prendre decisions amb
+                    confiança.
+                  </p>
                 </div>
               </li>
 
               <li
-                class="flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-50 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
+                data-hover-border
+                class="animated-border relative [--border-angle:0deg] flex flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-linear-to-br from-white to-lav-100 p-6 in-data-[stack=on]:absolute in-data-[stack=on]:inset-x-0 in-data-[stack=on]:top-1/2 in-data-[stack=on]:will-change-transform in-data-[stack=on]:min-h-88"
               >
-                <span aria-hidden="true" class="font-head text-title-2 leading-none font-bold text-lav-300">04</span>
-                <div class="flex flex-col gap-2 rounded-2xl bg-paper p-4 text-sm" aria-hidden="true">
+                <span
+                  aria-hidden="true"
+                  class="font-head text-title-2 leading-none font-bold text-lav-300"
+                >
+                  04
+                </span>
+                <div
+                  class="flex flex-col gap-2 rounded-2xl bg-paper p-4 text-sm"
+                  aria-hidden="true"
+                >
                   <span class="font-head font-bold">Noves capacitats</span>
                   <span>Assistent d'IA</span>
                   <span>Nous canals digitals</span>
                 </div>
                 <div>
                   <h3 class="font-head text-xl font-bold">Evolució contínua</h3>
-                  <p class="mt-2 text-base text-ink/80">Una plataforma preparada per incorporar les oportunitats de demà.</p>
+                  <p class="mt-2 text-base text-ink/80">
+                    Una plataforma preparada per incorporar les oportunitats de
+                    demà.
+                  </p>
                 </div>
               </li>
             </ol>
           </div>
 
           <!-- Fletxes: visibles amb el carrusel actiu -->
-          <div class="mt-2 flex justify-center gap-3 lg:sr-only lg:focus-within:not-sr-only" data-stack-controls hidden>
+          <div
+            class="mt-2 flex justify-center gap-3 lg:sr-only lg:focus-within:not-sr-only"
+            data-stack-controls
+            hidden
+          >
             <button
               type="button"
               data-stack-prev
               aria-label="Targeta anterior"
               class="inline-flex size-11 cursor-pointer items-center justify-center rounded-full bg-purple-100 text-purple-700 outline-1 -outline-offset-1 outline-purple-700 transition-transform active:scale-95 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 motion-reduce:transition-none"
             >
-              <svg viewBox="0 0 24 24" width="24" height="24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6" /></svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="size-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 15l6-6 6 6" />
+              </svg>
             </button>
             <button
               type="button"
@@ -577,7 +821,20 @@
               aria-label="Targeta següent"
               class="inline-flex size-11 cursor-pointer items-center justify-center rounded-full bg-purple-100 text-purple-700 outline-1 -outline-offset-1 outline-purple-700 transition-transform active:scale-95 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 motion-reduce:transition-none"
             >
-              <svg viewBox="0 0 24 24" width="24" height="24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="size-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
             </button>
           </div>
 
@@ -586,9 +843,18 @@
       </section>
 
       <!-- ===================  SECCIÓ 3 · Integració  =================== -->
-      <section data-integration class="overflow-x-clip bg-white py-16 md:py-24" aria-labelledby="integracio-titol">
-        <div class="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10">
-          <div data-integration-image class="rounded-3xl bg-lav-100/40 p-6 md:p-10">
+      <section
+        data-integration
+        class="overflow-x-clip bg-white py-16 md:py-24"
+        aria-labelledby="integracio-titol"
+      >
+        <div
+          class="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10"
+        >
+          <div
+            data-integration-image
+            class="rounded-3xl bg-lav-100/40 p-6 md:p-10"
+          >
             <svg
               viewBox="0 0 560 380"
               width="560"
@@ -597,21 +863,36 @@
               role="img"
               aria-label="Vicity connectat amb gestors d'expedients, registres electrònics, plataformes corporatives i serveis d'interoperabilitat"
             >
-              <g class="stroke-lav-300" stroke-width="2.5" stroke-dasharray="6 6" fill="none">
+              <g
+                class="stroke-lav-300"
+                stroke-width="2.5"
+                stroke-dasharray="6 6"
+                fill="none"
+              >
                 <path d="M280 190 L130 80" />
                 <path d="M280 190 L430 80" />
                 <path d="M280 190 L130 300" />
                 <path d="M280 190 L430 300" />
               </g>
               <circle cx="280" cy="190" r="56" class="fill-purple-700" />
-              <text x="280" y="198" text-anchor="middle" class="fill-white font-head text-2xl font-bold">vicity</text>
+              <text
+                x="280"
+                y="198"
+                text-anchor="middle"
+                class="fill-white font-head text-2xl font-bold"
+              >
+                vicity
+              </text>
               <g class="fill-white stroke-lav-100" stroke-width="2">
                 <rect x="20" y="52" width="220" height="56" rx="28" />
                 <rect x="320" y="52" width="220" height="56" rx="28" />
                 <rect x="20" y="272" width="220" height="56" rx="28" />
                 <rect x="320" y="272" width="220" height="56" rx="28" />
               </g>
-              <g text-anchor="middle" class="fill-ink font-head text-base font-bold">
+              <g
+                text-anchor="middle"
+                class="fill-ink font-head text-base font-bold"
+              >
                 <text x="130" y="86">Gestors d'expedients</text>
                 <text x="430" y="86">Registres electrònics</text>
                 <text x="130" y="306">Plataformes corporatives</text>
@@ -620,86 +901,184 @@
             </svg>
           </div>
           <div>
-            <h2 data-title-reveal id="integracio-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
+            <h2
+              data-title-reveal
+              id="integracio-titol"
+              class="font-head text-3xl leading-tight font-bold md:text-title-2"
+            >
               Integració sense barreres
             </h2>
-            <p data-integration-subtitle class="mt-4 font-head text-xl font-bold text-purple-700 md:text-2xl">La tecnologia ha de sumar. No substituir.</p>
-            <p data-integration-description class="mt-5 text-base text-ink/80 md:text-lg">
-              Vicity s'integra amb els sistemes que ja formen part del dia a dia de la teva organització.
+            <p
+              data-integration-subtitle
+              class="mt-4 font-head text-xl font-bold text-purple-700 md:text-2xl"
+            >
+              La tecnologia ha de sumar. No substituir.
             </p>
-            <p data-integration-description class="mt-4 text-base text-ink/80 md:text-lg">
-              Gestors d'expedients, registres electrònics, plataformes corporatives i serveis d'interoperabilitat poden continuar treballant
-              conjuntament dins d'un ecosistema connectat.
+            <p
+              data-integration-description
+              class="mt-5 text-base text-ink/80 md:text-lg"
+            >
+              Vicity s'integra amb els sistemes que ja formen part del dia a dia
+              de la teva organització.
             </p>
-            <p data-integration-card class="mt-6 rounded-2xl bg-purple-700 px-6 py-4 font-head text-base font-bold text-white md:text-lg">
-              Perquè la innovació és més efectiva quan es construeix sobre una base sòlida.
+            <p
+              data-integration-description
+              class="mt-4 text-base text-ink/80 md:text-lg"
+            >
+              Gestors d'expedients, registres electrònics, plataformes
+              corporatives i serveis d'interoperabilitat poden continuar
+              treballant conjuntament dins d'un ecosistema connectat.
+            </p>
+            <p
+              data-integration-card
+              class="mt-6 rounded-2xl bg-purple-700 px-6 py-4 font-head text-base font-bold text-white md:text-lg"
+            >
+              Perquè la innovació és més efectiva quan es construeix sobre una
+              base sòlida.
             </p>
           </div>
         </div>
       </section>
 
       <!-- ===================  SECCIÓ 4 · Intel·ligència Artificial  =================== -->
-      <section id="ia" data-ia class="overflow-x-clip bg-ink bg-linear-to-r from-purple-700/60 to-ink py-16 text-white md:py-24" aria-labelledby="ia-titol">
-        <div class="mx-auto grid w-full max-w-7xl items-start gap-10 px-4 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10">
+      <section
+        id="ia"
+        data-ia
+        class="overflow-x-clip bg-ink bg-linear-to-r from-purple-700/60 to-ink py-16 text-white md:py-24"
+        aria-labelledby="ia-titol"
+      >
+        <div
+          class="mx-auto grid w-full max-w-7xl items-start gap-10 px-4 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10"
+        >
           <div>
-            <h2 data-title-reveal id="ia-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
+            <h2
+              data-title-reveal
+              id="ia-titol"
+              class="font-head text-3xl leading-tight font-bold md:text-title-2"
+            >
               La Intel·ligència Artificial arriba a la gestió tributària
             </h2>
-            <p data-ia-subtitle class="mt-5 font-head text-xl font-bold text-lav-300 md:text-2xl">Imagineu poder trobar informació en segons.</p>
+            <p
+              data-ia-subtitle
+              class="mt-5 font-head text-xl font-bold text-lav-300 md:text-2xl"
+            >
+              Imagineu poder trobar informació en segons.
+            </p>
             <ul class="mt-6 flex flex-col gap-4 text-base md:text-lg">
               <li data-ia-item class="flex items-start gap-3">
-                <i aria-hidden="true" class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"></i>Generar informes automàticament.
+                <i
+                  aria-hidden="true"
+                  class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"
+                ></i>
+                Generar informes automàticament.
               </li>
               <li data-ia-item class="flex items-start gap-3">
-                <i aria-hidden="true" class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"></i>Analitzar grans volums de dades amb llenguatge
-                natural.
+                <i
+                  aria-hidden="true"
+                  class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"
+                ></i>
+                Analitzar grans volums de dades amb llenguatge natural.
               </li>
               <li data-ia-item class="flex items-start gap-3">
-                <i aria-hidden="true" class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"></i>O disposar d'un assistent capaç d'ajudar els
-                equips en les seves tasques quotidianes.
+                <i
+                  aria-hidden="true"
+                  class="mt-2 block size-3 shrink-0 rounded-full bg-lav-300"
+                ></i>
+                O disposar d'un assistent capaç d'ajudar els equips en les seves
+                tasques quotidianes.
               </li>
             </ul>
-            <p data-ia-description class="mt-8 text-base text-lav-100 md:text-lg">
-              Amb Vicity, la Intel·ligència Artificial deixa de ser una promesa de futur per convertir-se en una eina real al servei de les
+            <p
+              data-ia-description
+              class="mt-8 text-base text-lav-100 md:text-lg"
+            >
+              Amb Vicity, la Intel·ligència Artificial deixa de ser una promesa
+              de futur per convertir-se en una eina real al servei de les
               administracions públiques.
             </p>
           </div>
 
-          <div data-ia-image class="flex flex-col gap-5 rounded-3xl bg-white p-6 text-ink md:p-8">
-            <h3 class="font-head text-2xl font-bold">Una nova experiència de treball.</h3>
+          <div
+            data-ia-image
+            class="flex flex-col gap-5 rounded-3xl bg-white p-6 text-ink md:p-8"
+          >
+            <h3 class="font-head text-2xl font-bold">
+              Una nova experiència de treball.
+            </h3>
             <ul class="flex flex-wrap gap-2">
-              <li class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">Més natural.</li>
-              <li class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">Més eficient.</li>
-              <li class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700">
+              <li
+                class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
+              >
+                Més natural.
+              </li>
+              <li
+                class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
+              >
+                Més eficient.
+              </li>
+              <li
+                class="inline-flex h-11 items-center rounded-full bg-lav-100 px-4 font-body text-label font-bold text-purple-700"
+              >
                 Més intel·ligent.
               </li>
             </ul>
-            <div class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm md:text-base" aria-hidden="true">
-              <p class="max-w-11/12 self-end rounded-2xl bg-lav-100 px-4 py-3">Quins expedients porten més de 90 dies sense moviment?</p>
-              <p class="max-w-11/12 self-start rounded-2xl bg-ink px-4 py-3 text-white">
-                Els he trobat i els he agrupat per tipus de tribut. Vols que en generi l'informe?
+            <div
+              class="flex flex-col gap-3 rounded-2xl bg-paper p-4 text-sm md:text-base"
+              aria-hidden="true"
+            >
+              <p class="max-w-11/12 self-end rounded-2xl bg-lav-100 px-4 py-3">
+                Quins expedients porten més de 90 dies sense moviment?
               </p>
-              <p class="mt-2 rounded-xl border border-gray bg-white px-4 py-3 text-ink/70">Escriu la teva pregunta…</p>
+              <p
+                class="max-w-11/12 self-start rounded-2xl bg-ink px-4 py-3 text-white"
+              >
+                Els he trobat i els he agrupat per tipus de tribut. Vols que en
+                generi l'informe?
+              </p>
+              <p
+                class="mt-2 rounded-xl border border-gray bg-white px-4 py-3 text-ink/70"
+              >
+                Escriu la teva pregunta…
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ===================  SECCIÓ 5 · Microsoft Azure  =================== -->
-      <section id="azure" data-azure class="overflow-x-clip py-16 md:py-24" aria-labelledby="azure-titol">
+      <section
+        id="azure"
+        data-azure
+        class="overflow-x-clip py-16 md:py-24"
+        aria-labelledby="azure-titol"
+      >
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
           <div class="mx-auto max-w-3xl text-center">
-            <h2 data-title-reveal id="azure-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">
+            <h2
+              data-title-reveal
+              id="azure-titol"
+              class="font-head text-3xl leading-tight font-bold md:text-title-2"
+            >
               Construït sobre la confiança de Microsoft Azure
             </h2>
-            <p data-azure-description class="mt-4 text-base text-ink/80 md:text-lg">
-              La innovació només és útil quan es construeix sobre uns fonaments sòlids. Vicity utilitza una arquitectura cloud basada en Microsoft
-              Azure per oferir una plataforma preparada per créixer, adaptar-se i evolucionar de forma contínua.
+            <p
+              data-azure-description
+              class="mt-4 text-base text-ink/80 md:text-lg"
+            >
+              La innovació només és útil quan es construeix sobre uns fonaments
+              sòlids. Vicity utilitza una arquitectura cloud basada en Microsoft
+              Azure per oferir una plataforma preparada per créixer, adaptar-se
+              i evolucionar de forma contínua.
             </p>
           </div>
 
-          <ul class="mt-10 grid border-b border-lav-100 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
-            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+          <ul
+            class="mt-10 grid border-b border-lav-100 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5"
+          >
+            <li
+              data-azure-item
+              class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -718,9 +1097,14 @@
                 <path d="M6 7h.01M6 17h.01" />
               </svg>
               <h3 class="font-head text-xl font-bold">Escalabilitat</h3>
-              <p class="text-base text-ink/80">Creix al ritme de les necessitats de cada organització.</p>
+              <p class="text-base text-ink/80">
+                Creix al ritme de les necessitats de cada organització.
+              </p>
             </li>
-            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li
+              data-azure-item
+              class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -737,9 +1121,14 @@
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
               </svg>
               <h3 class="font-head text-xl font-bold">Disponibilitat</h3>
-              <p class="text-base text-ink/80">Accés als serveis quan els necessites.</p>
+              <p class="text-base text-ink/80">
+                Accés als serveis quan els necessites.
+              </p>
             </li>
-            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li
+              data-azure-item
+              class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -759,9 +1148,14 @@
                 <path d="m9 12 2 2 4-4" />
               </svg>
               <h3 class="font-head text-xl font-bold">Seguretat</h3>
-              <p class="text-base text-ink/80">Protecció de la informació amb tecnologia empresarial.</p>
+              <p class="text-base text-ink/80">
+                Protecció de la informació amb tecnologia empresarial.
+              </p>
             </li>
-            <li data-azure-item class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4">
+            <li
+              data-azure-item
+              class="flex flex-col gap-3 border-t border-lav-100 py-6 pr-4"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -777,20 +1171,33 @@
               >
                 <rect x="4" y="4" width="16" height="16" rx="2" />
                 <rect x="9" y="9" width="6" height="6" />
-                <path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" />
+                <path
+                  d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"
+                />
               </svg>
               <h3 class="font-head text-xl font-bold">Innovació</h3>
-              <p class="text-base text-ink/80">Preparat per incorporar les últimes capacitats d'intel·ligència artificial.</p>
+              <p class="text-base text-ink/80">
+                Preparat per incorporar les últimes capacitats d'intel·ligència
+                artificial.
+              </p>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- ===================  SECCIONS 6 · 7 · 8  =================== -->
-      <section id="recursos" class="flex flex-col gap-12 pb-16 md:pb-24" aria-label="Dades, administracions públiques i demostració">
-        <div class="group/list mx-auto flex w-full max-w-7xl flex-col items-stretch gap-6 px-4 md:px-8 lg:flex-row lg:px-10">
-          <article data-resources-card
-            class="overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-6 lg:flex-col lg:hover:flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8 min-w-0 lg:hover:flex-6 transition-[flex] duration-1000 lg:group-has-[article:not(:first-child):hover]/list:flex-1 lg:group-has-[article:not(:first-child):focus-within]/list:flex-1 lg:group-has-[article:not(:first-child):hover]/list:flex-row lg:group-has-[article:not(:first-child):focus-within]/list:flex-row"
+      <section
+        id="recursos"
+        class="flex flex-col gap-12 pb-16 md:pb-24"
+        aria-label="Dades, administracions públiques i demostració"
+      >
+        <div
+          class="group/list mx-auto flex w-full max-w-7xl flex-col items-stretch gap-6 px-4 md:px-8 lg:flex-row lg:px-10"
+        >
+          <article
+            data-resources-card
+            data-hover-border
+            class="animated-border relative [--border-angle:0deg] [--border-inset:0px] overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-6 lg:flex-col lg:hover:flex-col gap-5 rounded-3xl border-1 border-purple-800/20 bg-white p-6 md:p-8 min-w-0 lg:hover:flex-6 transition-[flex] duration-1000 lg:group-has-[article:not(:first-child):hover]/list:flex-1 lg:group-has-[article:not(:first-child):focus-within]/list:flex-1 lg:group-has-[article:not(:first-child):hover]/list:flex-row lg:group-has-[article:not(:first-child):focus-within]/list:flex-row"
           >
             <h2
               class="font-head text-xl leading-tight font-bold md:text-3xl lg:h-auto lg:[writing-mode:horizontal-tb] lg:rotate-0 lg:group-has-[article:not(:first-child):hover]/list:h-full lg:group-has-[article:not(:first-child):hover]/list:[writing-mode:vertical-rl] lg:group-has-[article:not(:first-child):hover]/list:rotate-180 lg:group-has-[article:not(:first-child):focus-within]/list:h-full lg:group-has-[article:not(:first-child):focus-within]/list:[writing-mode:vertical-rl] lg:group-has-[article:not(:first-child):focus-within]/list:rotate-180"
@@ -803,8 +1210,11 @@
                 aria-expanded="true"
               >
                 Dades que impulsen decisions
-                <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
-                  ><svg
+                <span
+                  aria-hidden="true"
+                  class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
+                >
+                  <svg
                     class="size-5 transition-transform duration-300 motion-reduce:transition-none group-has-aria-expanded:rotate-180"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -813,31 +1223,47 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="m6 9 6 6 6-6"/></svg
-                ></span>
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
               </button>
             </h2>
-            <div class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]">
+            <div
+              class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]"
+            >
               <div
                 id="recursos-panel-1"
                 class="min-h-0 overflow-hidden lg:overflow-visible flex flex-1 flex-col gap-5 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 lg:transition-opacity lg:duration-500 lg:group-has-[article:not(:first-child):hover]/list:opacity-0 lg:group-has-[article:not(:first-child):focus-within]/list:opacity-0"
               >
-                <p class="font-head text-lg font-bold text-purple-700">Cada operació tributària genera informació valuosa.</p>
-                <p class="text-lg text-ink/80">
-                  Vicity transforma aquestes dades en coneixement útil perquè responsables polítics, tècnics i directius disposin de la informació
-                  necessària per actuar amb més agilitat i confiança.
+                <p class="font-head text-lg font-bold text-purple-700">
+                  Cada operació tributària genera informació valuosa.
                 </p>
-                <ul class="mt-auto flex flex-col gap-3 pt-6 font-head text-lg font-bold">
-                  <li class="border-l-4 border-purple-700 pl-3">Veure més esinllà de les dades.</li>
-                  <li class="border-l-4 border-purple-700 pl-3">Entendre què està passant.</li>
-                  <li class="border-l-4 border-purple-700 pl-3">Decidir amb criteri.</li>
+                <p class="text-lg text-ink/80">
+                  Vicity transforma aquestes dades en coneixement útil perquè
+                  responsables polítics, tècnics i directius disposin de la
+                  informació necessària per actuar amb més agilitat i confiança.
+                </p>
+                <ul
+                  class="mt-auto flex flex-col gap-3 pt-6 font-head text-lg font-bold"
+                >
+                  <li class="border-l-4 border-purple-700 pl-3">
+                    Veure més esinllà de les dades.
+                  </li>
+                  <li class="border-l-4 border-purple-700 pl-3">
+                    Entendre què està passant.
+                  </li>
+                  <li class="border-l-4 border-purple-700 pl-3">
+                    Decidir amb criteri.
+                  </li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <article data-resources-card
-            class="overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-lav-100/40 p-6 md:p-8 min-w-0 lg:flex-1 lg:hover:flex-6 transition-[flex] duration-1000"
+          <article
+            data-resources-card
+            data-hover-border
+            class="animated-border relative [--border-angle:0deg] [--border-inset:0px] overflow-hidden lg:h-[32rem] group flex flex-col lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-lav-100/40 p-6 md:p-8 min-w-0 lg:flex-1 lg:hover:flex-6 transition-[flex] duration-1000"
           >
             <h2
               class="lg:h-full lg:group-hover:h-auto font-head text-xl leading-tight font-bold md:text-3xl lg:[writing-mode:vertical-rl] lg:rotate-180 lg:group-hover:[writing-mode:horizontal-tb] lg:group-hover:rotate-0"
@@ -849,8 +1275,11 @@
                 class="flex w-full cursor-pointer items-center justify-between gap-4 text-left lg:block lg:w-auto focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
               >
                 Pensat per a les administracions públiques
-                <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
-                  ><svg
+                <span
+                  aria-hidden="true"
+                  class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
+                >
+                  <svg
                     class="size-5 transition-transform duration-300 motion-reduce:transition-none group-has-aria-expanded:rotate-180"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -859,11 +1288,14 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="m6 9 6 6 6-6" /></svg
-                ></span>
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
               </button>
             </h2>
-            <div class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]">
+            <div
+              class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]"
+            >
               <div
                 id="recursos-panel-2"
                 class="min-h-0 overflow-hidden lg:overflow-visible flex flex-1 flex-col gap-8 lg:gap-5 js:lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 lg:transition-opacity lg:duration-500"
@@ -873,17 +1305,21 @@
                   <p class="text-purple-700">No és una eina genèrica.</p>
                 </div>
                 <p class="text-lg text-ink/80">
-                  Vicity ha estat concebut des del primer dia per respondre a les necessitats específiques de les administracions públiques.
+                  Vicity ha estat concebut des del primer dia per respondre a
+                  les necessitats específiques de les administracions públiques.
                 </p>
                 <p class="mt-auto rounded-2xl bg-white p-4 text-lg text-ink/80">
-                  Amb una arquitectura oberta, capacitat d'integració i una visió enfocada a llarg termini.
+                  Amb una arquitectura oberta, capacitat d'integració i una
+                  visió enfocada a llarg termini.
                 </p>
               </div>
             </div>
           </article>
 
-          <article data-resources-card
-            class="overflow-hidden lg:h-[32rem] flex-col group flex lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-purple-700 p-6 text-white md:p-8 min-w-0 lg:flex-1 lg:hover:flex-8 transition-[flex] duration-1000"
+          <article
+            data-resources-card
+            data-hover-border
+            class="animated-border relative [--border-angle:0deg] [--border-inset:0px] overflow-hidden lg:h-[32rem] flex-col group flex lg:flex-row lg:hover:flex-col gap-5 rounded-3xl bg-purple-700 p-6 text-white md:p-8 min-w-0 lg:flex-1 lg:hover:flex-8 transition-[flex] duration-1000"
           >
             <h2
               class="lg:h-full lg:group-hover:h-auto font-head text-xl leading-tight font-bold md:text-3xl lg:[writing-mode:vertical-rl] lg:rotate-180 lg:group-hover:[writing-mode:horizontal-tb] lg:group-hover:rotate-0"
@@ -895,8 +1331,11 @@
                 class="flex w-full cursor-pointer items-center justify-between gap-4 text-left lg:block lg:w-auto focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
               >
                 El futur de la gestió tributària comença avui
-                <span aria-hidden="true" class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
-                  ><svg
+                <span
+                  aria-hidden="true"
+                  class="flex size-10 shrink-0 items-center justify-center rounded-full border border-current lg:hidden"
+                >
+                  <svg
                     class="size-5 transition-transform duration-300 motion-reduce:transition-none group-has-aria-expanded:rotate-180"
                     viewBox="0 0 24 24"
                     fill="none"
@@ -905,25 +1344,35 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="m6 9 6 6 6-6" /></svg
-                ></span>
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
               </button>
             </h2>
-            <div class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]">
+            <div
+              class="grid js:grid-rows-[0fr] transition-[grid-template-rows] duration-700 lg:contents group-has-aria-expanded:grid-rows-[1fr]"
+            >
               <div
                 id="recursos-panel-3"
                 class="min-h-0 overflow-hidden lg:overflow-visible flex flex-1 flex-col gap-8 lg:gap-5 js:lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 lg:transition-opacity lg:duration-500"
               >
                 <p class="text-lg text-lav-100">
-                  Les administracions necessiten eines que no només resolguin les necessitats actuals, sinó que també estiguin preparades per als
-                  reptes dels pròxims anys.
+                  Les administracions necessiten eines que no només resolguin
+                  les necessitats actuals, sinó que també estiguin preparades
+                  per als reptes dels pròxims anys.
                 </p>
                 <p class="text-lg text-lav-100">
-                  Vicity combina especialització, integració i intel·ligència artificial per ajudar les organitzacions públiques a avançar amb
-                  confiança cap a aquesta nova etapa.
+                  Vicity combina especialització, integració i intel·ligència
+                  artificial per ajudar les organitzacions públiques a avançar
+                  amb confiança cap a aquesta nova etapa.
                 </p>
-                <h3 class="font-head text-lg leading-snug font-bold">Descobreix què pot aportar Vicity a la teva organització</h3>
-                <p class="text-lg text-lav-100">Demana una demostració personalitzada i explora una nova manera d'entendre la gestió tributària.</p>
+                <h3 class="font-head text-lg leading-snug font-bold">
+                  Descobreix què pot aportar Vicity a la teva organització
+                </h3>
+                <p class="text-lg text-lav-100">
+                  Demana una demostració personalitzada i explora una nova
+                  manera d'entendre la gestió tributària.
+                </p>
                 <a
                   href="#demo"
                   data-ripple
@@ -935,7 +1384,9 @@
                     aria-hidden="true"
                     class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"
                   ></span>
-                  <span data-ripple-text class="relative z-10">Sol·licitar demostració</span>
+                  <span data-ripple-text class="relative z-10">
+                    Sol·licitar demostració
+                  </span>
                 </a>
               </div>
             </div>
@@ -943,8 +1394,15 @@
         </div>
 
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <div data-blog-strip class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            <h2 data-title-reveal id="blog-titol" class="flex items-center gap-3 font-head text-3xl leading-tight font-bold">
+          <div
+            data-blog-strip
+            class="flex flex-col gap-6 rounded-3xl bg-lav-100/40 px-6 py-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+          >
+            <h2
+              data-title-reveal
+              id="blog-titol"
+              class="flex items-center gap-3 font-head text-3xl leading-tight font-bold"
+            >
               Descobreix el nostre blog
               <svg
                 class="size-6 shrink-0 rotate-90 text-purple-700 lg:rotate-0"
@@ -965,25 +1423,51 @@
               data-ripple-text-color="var(--color-purple-700)"
               class="relative inline-flex h-11 items-center justify-center overflow-hidden rounded-full px-6 font-body focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-700 text-white outline-2 -outline-offset-1 outline-purple-700 font-bold"
             >
-              <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"></span>
-              <span data-ripple-text class="relative z-10">Visitar el blog</span>
+              <span
+                data-ripple-fill
+                aria-hidden="true"
+                class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"
+              ></span>
+              <span data-ripple-text class="relative z-10">
+                Visitar el blog
+              </span>
             </a>
           </div>
         </div>
       </section>
 
       <!-- ===================  CONTACTE / DEMO  =================== -->
-      <section id="contacte" data-contact class="scroll-mt-20 lg:scroll-mt-[16vh] overflow-x-clip bg-linear-to-b from-paper to-lav-100/40 pb-16 md:pb-24" aria-labelledby="contacte-titol">
-        <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-5 lg:gap-16 lg:px-10">
+      <section
+        id="contacte"
+        data-contact
+        class="scroll-mt-20 lg:scroll-mt-[16vh] overflow-x-clip bg-linear-to-b from-paper to-lav-100/40 pb-16 md:pb-24"
+        aria-labelledby="contacte-titol"
+      >
+        <div
+          class="mx-auto grid w-full max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-5 lg:gap-16 lg:px-10"
+        >
           <div data-contact-info class="lg:col-span-2">
-            <h2 id="contacte-titol" class="font-head text-3xl leading-tight font-bold md:text-title-2">Parlem de la teva organització</h2>
-            <p data-contact-description class="mt-4 text-base text-ink/80 md:text-lg">
-              Explica'ns el teu cas i un especialista de Vicity es posarà en contacte amb tu per concertar una demostració o resoldre els teus dubtes.
+            <h2
+              id="contacte-titol"
+              class="font-head text-3xl leading-tight font-bold md:text-title-2"
+            >
+              Parlem de la teva organització
+            </h2>
+            <p
+              data-contact-description
+              class="mt-4 text-base text-ink/80 md:text-lg"
+            >
+              Explica'ns el teu cas i un especialista de Vicity es posarà en
+              contacte amb tu per concertar una demostració o resoldre els teus
+              dubtes.
             </p>
 
             <ul class="mt-8 flex flex-col gap-5">
               <li class="flex items-center gap-4">
-                <span aria-hidden="true" class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700">
+                <span
+                  aria-hidden="true"
+                  class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -1002,16 +1486,22 @@
                   </svg>
                 </span>
                 <div>
-                  <span class="block text-label font-bold text-ink/70">Telèfon</span>
+                  <span class="block text-label font-bold text-ink/70">
+                    Telèfon
+                  </span>
                   <a
                     href="tel:+34931234567"
-                    class="rounded-sm text-base font-bold focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 md:text-lg"
-                    >+34&nbsp;93&nbsp;123&nbsp;45&nbsp;67</a
+                    class="rounded-sm text-base font-semibold focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 md:text-lg"
                   >
+                    +34&nbsp;93&nbsp;123&nbsp;45&nbsp;67
+                  </a>
                 </div>
               </li>
               <li class="flex items-center gap-4">
-                <span aria-hidden="true" class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700">
+                <span
+                  aria-hidden="true"
+                  class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -1029,16 +1519,22 @@
                   </svg>
                 </span>
                 <div>
-                  <span class="block text-label font-bold text-ink/70">Correu electrònic</span>
+                  <span class="block text-label font-bold text-ink/70">
+                    Correu electrònic
+                  </span>
                   <a
                     href="mailto:info@vicity.cat"
-                    class="rounded-sm text-base font-bold focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 md:text-lg"
-                    >info@vicity.cat</a
+                    class="rounded-sm text-base font-semibold focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 md:text-lg"
                   >
+                    info@vicity.cat
+                  </a>
                 </div>
               </li>
               <li class="flex items-center gap-4">
-                <span aria-hidden="true" class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700">
+                <span
+                  aria-hidden="true"
+                  class="flex size-11 shrink-0 items-center justify-center rounded-full bg-lav-100 text-purple-700"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -1058,14 +1554,21 @@
                   </svg>
                 </span>
                 <div>
-                  <span class="block text-label font-bold text-ink/70">Adreça</span>
-                  <address class="text-base font-bold not-italic md:text-lg">Avinguda Diagonal, 456, Barcelona</address>
+                  <span class="block text-label font-bold text-ink/70">
+                    Adreça
+                  </span>
+                  <address
+                    class="text-base font-semibold not-italic md:text-lg"
+                  >
+                    Avinguda Diagonal, 456, Barcelona
+                  </address>
                 </div>
               </li>
             </ul>
           </div>
 
-          <form data-contact-form
+          <form
+            data-contact-form
             id="demo"
             action="contacto.php"
             method="post"
@@ -1073,31 +1576,81 @@
             class="scroll-mt-20 lg:scroll-mt-[16vh] grid gap-4 rounded-xl border border-lav-100 bg-white/40 p-6 md:grid-cols-2 md:p-8 lg:col-span-3"
           >
             <div class="flex flex-col gap-1.5">
-              <label for="f-nom" class="font-body text-sm font-bold">Nom i cognoms <span aria-hidden="true">*</span></label>
+              <label for="f-nom" class="font-body text-sm font-bold">
+                Nom i cognoms
+                <span aria-hidden="true">*</span>
+              </label>
               <input
                 id="f-nom"
                 name="nom"
                 type="text"
                 autocomplete="name"
                 required
-                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-nom"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                aria-describedby="err-nom"
               />
-              <p id="err-nom" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
+              <p
+                id="err-nom"
+                class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  class="mt-0.5 size-4 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 8v5M12 16.5v.01" />
+                </svg>
+                Aquest camp és obligatori.
+              </p>
             </div>
             <div class="flex flex-col gap-1.5">
-              <label for="f-organitzacio" class="font-body text-sm font-bold">Organització <span aria-hidden="true">*</span></label>
+              <label for="f-organitzacio" class="font-body text-sm font-bold">
+                Organització
+                <span aria-hidden="true">*</span>
+              </label>
               <input
                 id="f-organitzacio"
                 name="organitzacio"
                 type="text"
                 autocomplete="organization"
                 required
-                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-organitzacio"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                aria-describedby="err-organitzacio"
               />
-              <p id="err-organitzacio" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
+              <p
+                id="err-organitzacio"
+                class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  class="mt-0.5 size-4 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 8v5M12 16.5v.01" />
+                </svg>
+                Aquest camp és obligatori.
+              </p>
             </div>
             <div class="flex flex-col gap-1.5">
-              <label for="f-carrec" class="font-body text-sm font-bold">Càrrec</label>
+              <label for="f-carrec" class="font-body text-sm font-bold">
+                Càrrec
+              </label>
               <input
                 id="f-carrec"
                 name="carrec"
@@ -1107,19 +1660,45 @@
               />
             </div>
             <div class="flex flex-col gap-1.5">
-              <label for="f-email" class="font-body text-sm font-bold">Correu electrònic <span aria-hidden="true">*</span></label>
+              <label for="f-email" class="font-body text-sm font-bold">
+                Correu electrònic
+                <span aria-hidden="true">*</span>
+              </label>
               <input
                 id="f-email"
                 name="email"
                 type="email"
                 autocomplete="email"
                 required
-                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-email"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                aria-describedby="err-email"
               />
-              <p id="err-email" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Introdueix un correu electrònic vàlid.</p>
+              <p
+                id="err-email"
+                class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  class="mt-0.5 size-4 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 8v5M12 16.5v.01" />
+                </svg>
+                Introdueix un correu electrònic vàlid.
+              </p>
             </div>
             <div class="flex flex-col gap-1.5">
-              <label for="f-telefon" class="font-body text-sm font-bold">Telèfon</label>
+              <label for="f-telefon" class="font-body text-sm font-bold">
+                Telèfon
+              </label>
               <input
                 id="f-telefon"
                 name="telefon"
@@ -1129,22 +1708,48 @@
               />
             </div>
             <div class="flex flex-col gap-1.5">
-              <label for="f-motiu" class="font-body text-sm font-bold">Què necessites? <span aria-hidden="true">*</span></label>
+              <label for="f-motiu" class="font-body text-sm font-bold">
+                Què necessites?
+                <span aria-hidden="true">*</span>
+              </label>
               <select
                 id="f-motiu"
                 name="motiu"
                 required
-                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30" aria-describedby="err-motiu"
+                class="peer h-9 w-full rounded-sm border border-ink/50 bg-white px-3 font-body text-base text-ink transition-colors hover:border-purple-700 user-invalid:border-error user-invalid:ring-2 user-invalid:ring-error/20 user-valid:border-success disabled:cursor-not-allowed disabled:bg-lav-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                aria-describedby="err-motiu"
               >
                 <option value="" selected disabled>Selecciona una opció</option>
                 <option value="demo">Sol·licitud de demostració</option>
                 <option value="especialista">Parlar amb un especialista</option>
                 <option value="altres">Altres consultes</option>
               </select>
-              <p id="err-motiu" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
+              <p
+                id="err-motiu"
+                class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  class="mt-0.5 size-4 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 8v5M12 16.5v.01" />
+                </svg>
+                Aquest camp és obligatori.
+              </p>
             </div>
             <div class="flex flex-col gap-1.5 md:col-span-2">
-              <label for="f-missatge" class="font-body text-sm font-bold">Missatge</label>
+              <label for="f-missatge" class="font-body text-sm font-bold">
+                Missatge
+              </label>
               <textarea
                 id="f-missatge"
                 name="missatge"
@@ -1160,23 +1765,56 @@
                 type="checkbox"
                 value="si"
                 required
-                class="peer mt-0.5 size-5 shrink-0 rounded-sm border border-ink/50 accent-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 user-invalid:outline-2 user-invalid:outline-error user-valid:outline-2 user-valid:outline-success" aria-describedby="err-privacitat"
+                class="peer mt-0.5 size-5 shrink-0 rounded-sm border border-ink/50 accent-purple-700 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 user-invalid:outline-2 user-invalid:outline-error user-valid:outline-2 user-valid:outline-success"
+                aria-describedby="err-privacitat"
               />
-              <label for="f-privacitat" class="min-w-0 flex-1 text-base text-ink/80">
+              <label
+                for="f-privacitat"
+                class="min-w-0 flex-1 text-base text-ink/80"
+              >
                 He llegit i accepto la
                 <a
                   href="privacitat.html"
                   class="rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
-                  >política de privacitat</a
-                >. <span aria-hidden="true">*</span>
+                >
+                  política de privacitat
+                </a>
+                .
+                <span aria-hidden="true">*</span>
               </label>
-              <p id="err-privacitat" class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex w-full"><svg viewBox="0 0 24 24" width="16" height="16" class="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.01" /></svg>Aquest camp és obligatori.</p>
+              <p
+                id="err-privacitat"
+                class="hidden items-start gap-1.5 text-sm text-error peer-user-invalid:flex w-full"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  class="mt-0.5 size-4 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 8v5M12 16.5v.01" />
+                </svg>
+                Aquest camp és obligatori.
+              </p>
             </div>
             <div class="hidden" aria-hidden="true">
-              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              <input
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
             </div>
             <p class="text-sm text-ink/80 md:col-span-2">
-              Els camps marcats amb * són obligatoris. Respondrem el més aviat possible.
+              Els camps marcats amb * són obligatoris. Respondrem el més aviat
+              possible.
             </p>
             <div class="md:col-span-2">
               <button
@@ -1190,7 +1828,9 @@
                   aria-hidden="true"
                   class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"
                 ></span>
-                <span data-ripple-text class="relative z-10">Envia la sol·licitud</span>
+                <span data-ripple-text class="relative z-10">
+                  Envia la sol·licitud
+                </span>
               </button>
             </div>
           </form>
@@ -1200,7 +1840,10 @@
 
     <!-- ===================  PEU  =================== -->
     <site-footer></site-footer>
-    <script type="module" src="assets/js/components/site-components.js"></script>
+    <script
+      type="module"
+      src="assets/js/components/site-components.js"
+    ></script>
     <script type="module" src="assets/js/modules/nav.js"></script>
     <script type="module" src="assets/js/modules/acordeon.js"></script>
     <script type="module" src="assets/js/modules/stack-carousel.js"></script>

@@ -96,7 +96,7 @@ require __DIR__ . '/includes/head.php';
       <!-- ===================  ARTICLE DESTACAT  =================== -->
       <section class="pb-12 md:pb-14 lg:pb-16" aria-labelledby="destacat-titol">
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <article data-blog-featured class="grid overflow-hidden rounded-3xl border-1 border-lav-100 bg-white lg:grid-cols-2">
+          <article data-blog-featured data-hover-border class="animated-border relative [--border-angle:0deg] [--border-inset:0px] grid overflow-hidden rounded-3xl border-1 border-lav-100 bg-white lg:grid-cols-2">
             <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-white lg:aspect-auto lg:min-h-96">
               <span class="absolute top-8 left-10 hidden font-body text-label font-bold tracking-wide text-purple-700 uppercase lg:block">Destacat</span>
               <span class="absolute -right-16 -bottom-16 hidden size-96 rounded-full bg-lav-100/60 blur-3xl lg:block"></span>
@@ -140,7 +140,7 @@ require __DIR__ . '/includes/head.php';
 <?php foreach ($cardPosts as $post) : ?>
 <?php $cover = COVER_STYLES[$post['cover']]; ?>
             <li class="flex">
-              <article data-blog-card class="flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+              <article data-blog-card data-hover-border class="animated-border relative [--border-angle:0deg] [--border-inset:0px] flex w-full flex-col overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
                 <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden <?= e($cover['background']) ?>">
                   <span class="absolute top-4 left-4 inline-flex h-6 items-center rounded-md px-2.5 font-body text-label font-semibold <?= e($cover['badge']) ?>"><?= e(BLOG_CATEGORIES[$post['category']]) ?></span>
                   <span class="absolute -right-8 -bottom-8 size-24 rounded-full <?= e($cover['circle']) ?>"></span>

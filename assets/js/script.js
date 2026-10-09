@@ -168,8 +168,8 @@ const initSolutionsAnimation = () => {
   });
 };
 
-const initSolutionsCardsBorder = () => {
-  const cards = document.querySelectorAll("[data-solutions-card]");
+const initCardsBorder = () => {
+  const cards = document.querySelectorAll("[data-hover-border]");
   if (!cards.length) return;
   if (!window.matchMedia("(hover: hover)").matches) return;
 
@@ -433,12 +433,70 @@ const initFooterAnimation = () => {
   reveal(items, logo);
 };
 
+// ==========================================================================
+// CURSOR
+// ==========================================================================
+const cursorInteractive = "a[href], button, summary, label, input, select, textarea, [role='button'], [data-hover-border]";
+
+const initCursor = () => {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const dot = document.createElement("div");
+  const ring = document.createElement("div");
+  dot.className = "pointer-events-none fixed top-0 left-0 z-[100] size-2 rounded-full bg-ink opacity-0";
+  ring.className =
+    "pointer-events-none fixed top-0 left-0 z-[100] size-10 rounded-full border-2 border-purple-700 opacity-0 transition-colors duration-300 data-[hover=true]:border-purple-500 motion-reduce:transition-none";
+  dot.setAttribute("aria-hidden", "true");
+  ring.setAttribute("aria-hidden", "true");
+  document.body.append(ring, dot);
+
+  gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+
+  const ringTrail = prefersReducedMotion ? 0 : 0.15;
+  const ringX = gsap.quickTo(ring, "x", { duration: ringTrail, ease: "power3", overwrite: "auto" });
+  const ringY = gsap.quickTo(ring, "y", { duration: ringTrail, ease: "power3", overwrite: "auto" });
+  const toggleDuration = prefersReducedMotion ? 0 : 0.3;
+  let visible = false;
+
+  const setVisible = (value) => {
+    visible = value;
+    gsap.to([dot, ring], { opacity: value ? 1 : 0, duration: toggleDuration, overwrite: "auto" });
+  };
+
+  const setHover = (value) => {
+    ring.dataset.hover = value;
+    gsap.to(ring, { scale: value ? 1.5 : 1, duration: toggleDuration });
+    gsap.to(dot, { scale: value ? 0 : 1, duration: toggleDuration });
+  };
+
+  window.addEventListener("mousemove", (event) => {
+    if (!visible) {
+      gsap.set(ring, { x: event.clientX, y: event.clientY });
+      setVisible(true);
+    }
+    gsap.set(dot, { x: event.clientX, y: event.clientY });
+    ringX(event.clientX);
+    ringY(event.clientY);
+  });
+
+  document.addEventListener("pointerover", (event) => {
+    if (event.target.closest(cursorInteractive)) setHover(true);
+  });
+
+  document.addEventListener("pointerout", (event) => {
+    const leaving = event.target.closest(cursorInteractive);
+    if (leaving && !leaving.contains(event.relatedTarget)) setHover(false);
+  });
+
+  document.documentElement.addEventListener("mouseleave", () => setVisible(false));
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
   initHeroBorderAnimation();
   initSolutionsAnimation();
-  initSolutionsCardsBorder();
+  initCardsBorder();
   initPlatformAnimation();
   initIntegrationAnimation();
   initAiAnimation();
@@ -449,3 +507,4 @@ if (!prefersReducedMotion) {
 }
 
 initHeroVideo();
+initCursor();

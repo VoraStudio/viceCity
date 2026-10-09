@@ -80,6 +80,36 @@ $canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
 
       @custom-variant js (&:where(.js *));
 
+      @utility animated-border {
+        &::before {
+          content: "";
+          position: absolute;
+          inset: var(--border-inset, -3px);
+          z-index: 1;
+          padding: 4px;
+          border-radius: inherit;
+          background: conic-gradient(
+            from var(--border-angle),
+            var(--color-purple-700),
+            var(--color-lav-300),
+            var(--color-purple-500),
+            var(--color-lav-100),
+            var(--color-purple-700)
+          );
+          mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          mask-composite: exclude;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+
+        &:hover::before {
+          opacity: 1;
+        }
+      }
+
       site-header,
       site-footer {
         display: block;
