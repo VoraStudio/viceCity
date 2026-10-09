@@ -136,14 +136,15 @@
 
       [data-contact-form] [aria-invalid="true"] {
         border-color: var(--color-error);
-        box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-error) 20%, transparent);
+        box-shadow: 0 0 0 2px
+          color-mix(in oklab, var(--color-error) 20%, transparent);
       }
 
       @utility animated-border {
         &::before {
           content: "";
           position: absolute;
-          inset: var(--border-inset, -3px);
+          inset: var(--border-inset, -4px);
           z-index: 1;
           padding: 4px;
           border-radius: inherit;
@@ -1710,7 +1711,9 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                <span data-error-text>Introdueix un correu electrònic vàlid.</span>
+                <span data-error-text>
+                  Introdueix un correu electrònic vàlid.
+                </span>
               </p>
             </div>
             <div class="flex flex-col gap-1.5">

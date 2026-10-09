@@ -128,20 +128,4 @@ return [
         'images' => [],
         'links' => [],
     ],
-        [
-        'slug' => 'entrada-de-prova-al-blog',
-        'title' => 'Entrada de prova al blog',
-        'category' => 'ia',
-        'excerpt' => 'Per què cada cop més tècnics prefereixen preguntar abans que filtrar taules.',
-        'body' => implode("\n\n", [
-            "Tradicionalment, obtenir una dada d'un informe volia dir saber on era, aplicar els filtres adequats i exportar la taula. Si la pregunta canviava una mica, calia tornar a començar.",
-            "Amb el llenguatge natural, el tècnic formula la pregunta tal com la pensa, per exemple quins rebuts continuen pendents en un barri o en un exercici, i obté la resposta sobre les dades reals de l'ajuntament.",
-            "Perquè sigui fiable, la resposta ha d'indicar sempre d'on surt la dada i permetre'n la comprovació. La confiança en l'eina depèn d'aquesta traçabilitat.",
-        ]),
-        'cover' => 'ink',
-        'read_minutes' => 6,
-        'published_at' => '2026-07-20',
-        'images' => [],
-        'links' => [],
-    ],
 ];
