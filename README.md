@@ -42,7 +42,7 @@ Cal servir la carpeta per HTTP, perquè els mòduls ES i els Web Components no f
 php -S localhost:8080
 ```
 
-Després s'obre <http://localhost:8080/>. La primera visita a `blog.php` crea `data/blog.sqlite` (carpeta `data/` escrivible). Per afegir o editar articles, es modifica `data/posts.php` i es refresca la pàgina.
+Després s'obre <http://localhost:8080/>. La primera visita a `blog.php` crea `data/blog.sqlite` (carpeta `data/` escrivible). Per afegir o editar articles, es modifica `data/posts.php` i es refresca la pàgina. Cada entrada pot portar `images` i `links` (vegeu la capçalera de `data/posts.php`); les imatges es copien a `assets/img/blog/`.
 
 **Només les pàgines estàtiques** (sense blog): també serveix un servidor estàtic, i `blog.php` no funcionarà.
 
@@ -65,7 +65,7 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 ├── tokens.md                  Tokens de disseny (colors, fonts, escala tipogràfica)
 ├── assets/
 │   ├── fonts/                 Tipografies en local
-│   ├── img/                   Logotips i imatges
+│   ├── img/                   Logotips i imatges (blog/: imatges dels articles)
 │   ├── video/                 Vídeo de la demo i pòster
 │   └── js/
 │       ├── script.js          Animacions d'entrada, una funció per secció

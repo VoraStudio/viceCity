@@ -8,6 +8,12 @@ declare(strict_types=1);
 // Camps: slug (únic, minúscules i guions), title, category (slug de includes/categories.php),
 // excerpt, body (text pla; paràgrafs separats per una línia en blanc), cover (lav | purple | ink),
 // read_minutes, published_at (YYYY-MM-DD) i is_featured (només cal a la destacada).
+//
+// Camps opcionals, tots dos llistes (poden anar buides):
+//   images: cada ítem és ['src' => 'assets/img/blog/<slug>/foto.webp', 'alt' => 'Descripció', 'caption' => 'Peu de foto (opcional)'].
+//           src ha de ser sota assets/img/blog/ (webp, jpg, jpeg, png o avif); alt és obligatori; màxim 12 imatges.
+//   links:  cada ítem és ['label' => 'Text de l’enllaç', 'url' => 'https://exemple.cat/pagina'].
+//           url ha de ser http o https; màxim 10 enllaços.
 return [
     [
         'slug' => 'grans-proveidors-generalistes-ajuntament-petit',
@@ -23,6 +29,8 @@ return [
         'read_minutes' => 7,
         'published_at' => '2026-09-18',
         'is_featured' => 1,
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'ia-detectar-expedients-estancats',
@@ -37,6 +45,8 @@ return [
         'cover' => 'lav',
         'read_minutes' => 5,
         'published_at' => '2026-09-12',
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'indicadors-interventor-recaptacio',
@@ -51,6 +61,8 @@ return [
         'cover' => 'purple',
         'read_minutes' => 4,
         'published_at' => '2026-09-03',
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'interoperabilitat-sense-reescriure-res',
@@ -65,6 +77,8 @@ return [
         'cover' => 'ink',
         'read_minutes' => 6,
         'published_at' => '2026-08-28',
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'del-paper-al-tauler-digitalitzacio-ajuntament',
@@ -79,6 +93,8 @@ return [
         'cover' => 'lav',
         'read_minutes' => 5,
         'published_at' => '2026-08-14',
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'calendari-fiscal-2026-2027',
@@ -93,6 +109,8 @@ return [
         'cover' => 'purple',
         'read_minutes' => 4,
         'published_at' => '2026-08-02',
+        'images' => [],
+        'links' => [],
     ],
     [
         'slug' => 'preguntar-en-llenguatge-natural-informes',
@@ -107,6 +125,8 @@ return [
         'cover' => 'ink',
         'read_minutes' => 6,
         'published_at' => '2026-07-20',
+        'images' => [],
+        'links' => [],
     ],
         [
         'slug' => 'entrada-de-prova-al-blog',
@@ -121,5 +141,7 @@ return [
         'cover' => 'ink',
         'read_minutes' => 6,
         'published_at' => '2026-07-20',
+        'images' => [],
+        'links' => [],
     ],
 ];

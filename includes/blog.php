@@ -68,8 +68,14 @@ function getPostBySlug(PDO $pdo, string $slug): ?array
     $statement = $pdo->prepare('SELECT * FROM posts WHERE slug = :slug');
     $statement->execute(['slug' => $slug]);
     $post = $statement->fetch();
+    if ($post === false) {
+        return null;
+    }
 
-    return $post === false ? null : $post;
+    $post['images'] = array_values(array_filter(decodeJsonList($post['images'] ?? null), 'isValidPostImage'));
+    $post['links'] = array_values(array_filter(decodeJsonList($post['links'] ?? null), 'isValidPostLink'));
+
+    return $post;
 }
 
 /** Categoria demanada per la URL, només si existeix; qualsevol altra cosa vol dir «totes». */

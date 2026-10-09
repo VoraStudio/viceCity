@@ -61,6 +61,30 @@ require __DIR__ . '/includes/head.php';
               <p><?= e($paragraph) ?></p>
 <?php endforeach; ?>
             </div>
+<?php if ($post['images'] !== []) : ?>
+            <div class="mt-10 grid gap-6<?= count($post['images']) > 1 ? ' md:grid-cols-2' : '' ?>">
+<?php foreach ($post['images'] as $image) : ?>
+              <figure class="overflow-hidden rounded-2xl border-1 border-lav-100 bg-white">
+                <img src="<?= e($image['src']) ?>" alt="<?= e($image['alt']) ?>" loading="lazy" decoding="async" class="block h-auto w-full" />
+<?php if (!empty($image['caption'])) : ?>
+                <figcaption class="px-4 py-3 text-label font-medium text-ink/70"><?= e($image['caption']) ?></figcaption>
+<?php endif; ?>
+              </figure>
+<?php endforeach; ?>
+            </div>
+<?php endif; ?>
+<?php if ($post['links'] !== []) : ?>
+            <section class="mt-10" aria-labelledby="enllacos-titol">
+              <h2 id="enllacos-titol" class="font-head text-xl leading-tight font-bold md:text-2xl">Per saber-ne més</h2>
+              <ul class="mt-4 flex flex-col gap-2">
+<?php foreach ($post['links'] as $link) : ?>
+                <li>
+                  <a href="<?= e($link['url']) ?>" rel="noopener noreferrer" class="<?= e($backLinkClass) ?>"><?= e($link['label']) ?></a>
+                </li>
+<?php endforeach; ?>
+              </ul>
+            </section>
+<?php endif; ?>
 
             <footer class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-lav-100 pt-6">
               <form method="post" action="like.php" data-like-form>
