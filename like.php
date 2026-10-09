@@ -3,11 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/blog.php';
-
-function wantsJson(): bool
-{
-    return str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
-}
+require_once __DIR__ . '/includes/http.php';
 
 function respond(int $status, array $payload, string $redirectTo): never
 {

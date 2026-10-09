@@ -3,33 +3,91 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/blog.php';
+require_once __DIR__ . '/includes/http.php';
 require_once __DIR__ . '/includes/contact.php';
+require_once __DIR__ . '/includes/contact-security.php';
+require_once __DIR__ . '/includes/recaptcha.php';
 
-$errors = [];
+const CONTACT_SUCCESS_MESSAGE = "Hem rebut la teva sol·licitud. L'equip de Vicity et respondrà tan aviat com sigui possible.";
 
-// Només POST: index.html és estàtic i el formulari és l'únic client d'aquest endpoint.
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    http_response_code(405);
-    header('Allow: POST');
-    $status = 'method';
-} else {
-    $result = validateContact($_POST);
-    $errors = $result['errors'];
+function processContact(bool $json): array
+{
+    if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+        header('Allow: POST');
+
+        return ['code' => 405, 'state' => 'method', 'message' => 'Aquest punt només accepta el formulari de contacte.'];
+    }
+
+    if (!isSameOrigin()) {
+        return ['code' => 403, 'state' => 'forbidden', 'message' => "No s'ha pogut verificar l'origen de la sol·licitud."];
+    }
+
+    startContactSession();
+
+    if ($json && !isValidContactToken($_POST['csrf_token'] ?? null)) {
+        return ['code' => 403, 'state' => 'forbidden', 'message' => 'La sessió ha caducat. Torna-ho a provar.'];
+    }
+
+    if (isContactRateLimited()) {
+        header('Retry-After: ' . CONTACT_MIN_INTERVAL);
+
+        return ['code' => 429, 'state' => 'rate', 'message' => 'Has enviat un missatge fa molt poc. Espera uns segons i torna-ho a provar.'];
+    }
 
     if (normalizeInput($_POST['website'] ?? '') !== '') {
-        // Honeypot: un bot ha omplert el camp ocult. Es respon com a èxit i no s'envia res.
-        $status = 'success';
-    } elseif ($errors !== []) {
-        http_response_code(422);
-        $status = 'invalid';
-    } elseif (sendContactMail(require __DIR__ . '/includes/mail-config.php', $result['data'])) {
-        $status = 'success';
-    } else {
-        http_response_code(500);
-        $status = 'error';
+        return ['code' => 200, 'state' => 'success', 'message' => CONTACT_SUCCESS_MESSAGE];
     }
+
+    if (recaptchaEnabled()) {
+        $verdict = verifyRecaptcha(normalizeInput($_POST['recaptcha_response'] ?? ''));
+
+        if ($verdict === 'unreachable') {
+            return ['code' => 503, 'state' => 'unavailable', 'message' => "No hem pogut completar la verificació de seguretat. Torna-ho a provar d'aquí a una estona."];
+        }
+
+        if ($verdict !== 'ok') {
+            return ['code' => 403, 'state' => 'forbidden', 'message' => 'No hem pogut verificar que no ets un robot. Torna-ho a provar.'];
+        }
+    }
+
+    $result = validateContact($_POST);
+    if ($result['errors'] !== []) {
+        return [
+            'code' => 422,
+            'state' => 'invalid',
+            'message' => 'Revisa els camps marcats i torna-ho a provar.',
+            'errors' => $result['errors'],
+            'fieldErrors' => $result['fieldErrors'],
+        ];
+    }
+
+    if (!sendContactMail(require __DIR__ . '/includes/mail-config.php', $result['data'])) {
+        return ['code' => 500, 'state' => 'error', 'message' => "No hem pogut enviar la teva sol·licitud. Torna-ho a provar d'aquí a una estona."];
+    }
+
+    markContactSubmitted();
+
+    return ['code' => 200, 'state' => 'success', 'message' => CONTACT_SUCCESS_MESSAGE];
 }
 
+$json = wantsJson();
+$outcome = processContact($json);
+$status = $outcome['state'];
+$errors = $outcome['errors'] ?? [];
+
+if ($json) {
+    $payload = ['ok' => $outcome['code'] < 400, 'message' => $outcome['message']];
+    if ($status === 'invalid') {
+        $payload['errors'] = $outcome['fieldErrors'];
+        $payload['list'] = $errors;
+    }
+    if ($status === 'success') {
+        $payload['token'] = rotateContactToken();
+    }
+    respondJson($outcome['code'], $payload);
+}
+
+http_response_code($outcome['code']);
 header('Cache-Control: no-store');
 
 $page = [
@@ -65,6 +123,16 @@ require __DIR__ . '/includes/head.php';
               <li><?= e($error) ?></li>
 <?php endforeach; ?>
             </ul>
+          </div>
+<?php elseif ($status === 'rate') : ?>
+          <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
+            <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">Massa enviaments seguits</h1>
+            <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg"><?= e($outcome['message']) ?></p>
+          </div>
+<?php elseif ($status === 'forbidden' || $status === 'unavailable') : ?>
+          <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
+            <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">No s'ha pogut verificar la sol·licitud</h1>
+            <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg"><?= e($outcome['message']) ?></p>
           </div>
 <?php elseif ($status === 'error') : ?>
           <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">

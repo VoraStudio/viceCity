@@ -134,6 +134,11 @@
 
       @custom-variant js (&:where(.js *));
 
+      [data-contact-form] [aria-invalid="true"] {
+        border-color: var(--color-error);
+        box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-error) 20%, transparent);
+      }
+
       @utility animated-border {
         &::before {
           content: "";
@@ -1569,6 +1574,7 @@
 
           <form
             data-contact-form
+            data-token-url="token.php"
             id="demo"
             action="contacto.php"
             method="post"
@@ -1608,7 +1614,7 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                Aquest camp és obligatori.
+                <span data-error-text>Aquest camp és obligatori.</span>
               </p>
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1644,7 +1650,7 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                Aquest camp és obligatori.
+                <span data-error-text>Aquest camp és obligatori.</span>
               </p>
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1692,7 +1698,7 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                Introdueix un correu electrònic vàlid.
+                <span data-error-text>Introdueix un correu electrònic vàlid.</span>
               </p>
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1743,7 +1749,7 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                Aquest camp és obligatori.
+                <span data-error-text>Aquest camp és obligatori.</span>
               </p>
             </div>
             <div class="flex flex-col gap-1.5 md:col-span-2">
@@ -1801,9 +1807,10 @@
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 8v5M12 16.5v.01" />
                 </svg>
-                Aquest camp és obligatori.
+                <span data-error-text>Aquest camp és obligatori.</span>
               </p>
             </div>
+            <input type="hidden" name="csrf_token" value="" />
             <div class="hidden" aria-hidden="true">
               <input
                 type="text"

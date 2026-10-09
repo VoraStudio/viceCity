@@ -59,7 +59,8 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 ├── index.html, avis-legal.html, privacitat.html, cookies.html
 ├── blog.php, articulo.php      Llistat (amb filtre ?categoria=) i detall del blog
 ├── like.php                   Endpoint del botó «M'agrada» (POST)
-├── includes/                  PHP del blog: BD, categories, helpers i capçalera/peu comuns
+├── contacto.php, token.php    Formulari de contacte: enviament (JSON o HTML) i token CSRF
+├── includes/                  PHP: blog (BD, categories, helpers), contacte (validació, CSRF, reCAPTCHA) i capçalera/peu comuns
 ├── data/                      posts.php (les entrades) i blog.sqlite (generada, no es versiona)
 ├── robots.txt, sitemap.xml
 ├── tokens.md                  Tokens de disseny (colors, fonts, escala tipogràfica)
@@ -74,6 +75,15 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 │       └── modules/           Menú, acordió, carrusel, ripple i títols
 └── openspec/                  Decisions del projecte (sempre en català)
 ```
+
+## Activar reCAPTCHA al formulari de contacte
+
+Està implementat però **desactivat** fins que hi hagi claus reals (vegeu la decisió 010). Per activar-lo:
+
+1. Crear les claus reCAPTCHA v3 per a `www.vicity.cat`.
+2. A `includes/recaptcha-config.php`, posar la clau de lloc a `site_key` en lloc de `PENDENT_CLAU_DE_SITE`.
+3. Copiar `includes/secrets.example.php` a `includes/secrets.local.php` (ignorat per git) i posar-hi la clau secreta. No es puja mai al repositori.
+4. Comprovar que PHP té cURL amb `curl.cainfo` configurat.
 
 ## Convencions
 

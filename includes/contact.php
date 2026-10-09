@@ -43,12 +43,17 @@ function hasLineBreaks(string $value): bool
  * Valida les dades del formulari.
  *
  * @param array<string, mixed> $input Normalment $_POST.
- * @return array{data: array<string, string>, errors: list<string>}
+ * @return array{data: array<string, string>, errors: list<string>, fieldErrors: array<string, string>}
  */
 function validateContact(array $input): array
 {
     $data = [];
     $errors = [];
+    $fieldErrors = [];
+    $fail = static function (string $field, string $message) use (&$errors, &$fieldErrors): void {
+        $errors[] = $message;
+        $fieldErrors[$field] ??= $message;
+    };
 
     foreach (CONTACT_SINGLE_LINE_LIMITS as $field => $limit) {
         $value = normalizeInput($input[$field] ?? '');
@@ -56,43 +61,43 @@ function validateContact(array $input): array
         $label = CONTACT_FIELD_LABELS[$field];
 
         if (hasLineBreaks($value)) {
-            $errors[] = "El camp «{$label}» conté caràcters no permesos.";
+            $fail($field, "El camp «{$label}» conté caràcters no permesos.");
         } elseif (mb_strlen($value) > $limit) {
-            $errors[] = "El camp «{$label}» no pot superar els {$limit} caràcters.";
+            $fail($field, "El camp «{$label}» no pot superar els {$limit} caràcters.");
         }
     }
 
     foreach (['nom', 'organitzacio', 'email'] as $requiredField) {
         if ($data[$requiredField] === '') {
-            $errors[] = 'El camp «' . CONTACT_FIELD_LABELS[$requiredField] . '» és obligatori.';
+            $fail($requiredField, 'El camp «' . CONTACT_FIELD_LABELS[$requiredField] . '» és obligatori.');
         }
     }
 
     $email = $data['email'];
     if ($email !== '' && !hasLineBreaks($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        $errors[] = 'Introdueix un correu electrònic vàlid.';
+        $fail('email', 'Introdueix un correu electrònic vàlid.');
     }
 
     if ($data['telefon'] !== '' && preg_match('/^\+?[0-9 ().-]{6,30}$/', $data['telefon']) !== 1) {
-        $errors[] = 'Introdueix un telèfon vàlid.';
+        $fail('telefon', 'Introdueix un telèfon vàlid.');
     }
 
     $data['motiu'] = normalizeInput($input['motiu'] ?? '');
     if (!array_key_exists($data['motiu'], CONTACT_REASONS)) {
-        $errors[] = 'Selecciona una opció a «Què necessites?».';
+        $fail('motiu', 'Selecciona una opció a «Què necessites?».');
     }
 
     // El missatge és l'únic camp multilínia i només va al cos del correu, mai a les capçaleres.
     $data['missatge'] = normalizeInput($input['missatge'] ?? '');
     if (mb_strlen($data['missatge']) > CONTACT_MESSAGE_LIMIT) {
-        $errors[] = 'El missatge no pot superar els ' . CONTACT_MESSAGE_LIMIT . ' caràcters.';
+        $fail('missatge', 'El missatge no pot superar els ' . CONTACT_MESSAGE_LIMIT . ' caràcters.');
     }
 
     if (normalizeInput($input['privacitat'] ?? '') !== 'si') {
-        $errors[] = 'Cal acceptar la política de privacitat.';
+        $fail('privacitat', 'Cal acceptar la política de privacitat.');
     }
 
-    return ['data' => $data, 'errors' => $errors];
+    return ['data' => $data, 'errors' => $errors, 'fieldErrors' => $fieldErrors];
 }
 
 /**

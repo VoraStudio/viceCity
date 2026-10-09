@@ -11,10 +11,13 @@ desktop.ini
 .idea/
 *.log
 
-# Material de client i disseny: no es publica
+# Material confidencial
 docs/
 .atl/
 
 # BD SQLite del blog: es genera sola a partir de data/posts.php, no es versiona
 data/*.sqlite
 data/*.sqlite-*
+
+# Claus secretes locals (reCAPTCHA): no es versionen
+includes/secrets.local.php

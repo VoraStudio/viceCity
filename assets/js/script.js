@@ -525,6 +525,160 @@ const initLikeButtons = () => {
   });
 };
 
+const contactFieldsMessage = "Revisa els camps marcats.";
+const contactConnectionError = "No hem pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.";
+
+const loadRecaptcha = (siteKey) =>
+  new Promise((resolve, reject) => {
+    if (window.grecaptcha?.execute) {
+      window.grecaptcha.ready(resolve);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`;
+    script.async = true;
+    script.onload = () => window.grecaptcha.ready(resolve);
+    script.onerror = reject;
+    document.head.append(script);
+  });
+
+const initContactForm = () => {
+  const form = document.querySelector("[data-contact-form][data-token-url]");
+  if (!form) return;
+
+  const button = form.querySelector("button[type='submit']");
+  const label = button?.querySelector("[data-ripple-text]");
+  const tokenInput = form.querySelector("input[name='csrf_token']");
+  if (!button || !label || !tokenInput) return;
+
+  const idleLabel = label.textContent.trim();
+  let siteKey = null;
+  let tokenRequest = null;
+
+  form.querySelectorAll("[data-error-text]").forEach((text) => {
+    text.dataset.default = text.textContent;
+  });
+
+  const clearFieldError = (field) => {
+    field.removeAttribute("aria-invalid");
+
+    const message = form.querySelector(`#err-${field.name}`);
+    if (!message || !message.dataset.serverError) return;
+
+    delete message.dataset.serverError;
+    message.classList.add("hidden");
+    message.classList.remove("flex");
+    const text = message.querySelector("[data-error-text]");
+    text.textContent = text.dataset.default;
+  };
+
+  const clearFeedback = () => {
+    form.querySelectorAll("[aria-invalid]").forEach(clearFieldError);
+  };
+
+  const showError = (message) => showToast({ type: "error", message });
+
+  const showFieldErrors = (errors) => {
+    const unmapped = [];
+
+    Object.entries(errors).forEach(([name, message]) => {
+      const field = form.elements[name];
+      const target = form.querySelector(`#err-${name}`);
+      field?.setAttribute("aria-invalid", "true");
+
+      if (!target) {
+        unmapped.push(message);
+        return;
+      }
+
+      target.querySelector("[data-error-text]").textContent = message;
+      target.dataset.serverError = "true";
+      target.classList.remove("hidden");
+      target.classList.add("flex");
+    });
+
+    return unmapped;
+  };
+
+  const loadToken = () => {
+    tokenRequest ??= fetch(form.dataset.tokenUrl, { headers: { Accept: "application/json" }, credentials: "same-origin" })
+      .then((response) => {
+        if (!response.ok) throw new Error(response.statusText);
+        return response.json();
+      })
+      .then(async (data) => {
+        siteKey = data.recaptcha ?? null;
+        if (siteKey) await loadRecaptcha(siteKey);
+        tokenInput.value = data.token;
+      })
+      .finally(() => {
+        tokenRequest = null;
+      });
+
+    return tokenRequest;
+  };
+
+  const setBusy = (busy) => {
+    button.disabled = busy;
+    form.setAttribute("aria-busy", String(busy));
+    label.textContent = busy ? "Enviant…" : idleLabel;
+  };
+
+  const handleFailure = (status, result) => {
+    if (status === 403) tokenInput.value = "";
+
+    const unmapped = result?.errors ? showFieldErrors(result.errors) : [];
+    showError(result?.errors ? [contactFieldsMessage, ...unmapped].join(" ") : (result?.message ?? contactConnectionError));
+    form.querySelector("[aria-invalid='true']")?.focus();
+  };
+
+  form.addEventListener("input", (event) => event.target.matches("[aria-invalid]") && clearFieldError(event.target));
+  form.addEventListener("change", (event) => event.target.matches("[aria-invalid]") && clearFieldError(event.target));
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (button.disabled) return;
+    clearFeedback();
+    setBusy(true);
+
+    try {
+      if (!tokenInput.value) await loadToken();
+
+      const data = new FormData(form);
+      if (siteKey) data.set("recaptcha_response", await window.grecaptcha.execute(siteKey, { action: "contacte" }));
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+        credentials: "same-origin",
+      });
+      const result = await response.json().catch(() => null);
+
+      if (response.ok && result?.ok) {
+        form.reset();
+        tokenInput.value = result.token ?? "";
+        showToast({ type: "success", message: result.message });
+        return;
+      }
+
+      handleFailure(response.status, result);
+    } catch {
+      showError(contactConnectionError);
+    } finally {
+      setBusy(false);
+    }
+  });
+
+  button.disabled = true;
+  loadToken()
+    .catch(() => showError(contactConnectionError))
+    .finally(() => {
+      button.disabled = false;
+    });
+};
+
 if (!prefersReducedMotion) {
   initHeaderAnimation();
   initHeroAnimation();
@@ -542,5 +696,6 @@ if (!prefersReducedMotion) {
 
 initHeroVideo();
 initCursor();
-initLikeButtons();
 initToasts();
+initLikeButtons();
+initContactForm();
