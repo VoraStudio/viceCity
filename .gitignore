@@ -21,3 +21,6 @@ data/*.sqlite-*
 
 # Claus secretes locals (reCAPTCHA): no es versionen
 includes/secrets.local.php
+
+# Configuració local del lloc (domini i titular): no es versiona
+includes/site-config.local.php

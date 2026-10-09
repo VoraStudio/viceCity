@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/site.php';
+
 $secretsFile = __DIR__ . '/secrets.local.php';
 $secrets = is_file($secretsFile) ? require $secretsFile : [];
 
@@ -11,6 +13,6 @@ return [
     'secret_key' => is_string($secrets['recaptcha_secret'] ?? null) ? $secrets['recaptcha_secret'] : '',
     'min_score' => 0.5,
     'action' => 'contacte',
-    'hostname' => 'www.vicity.cat',
+    'hostname' => siteConfig()['recaptcha_hostname'],
     'verify_url' => 'https://www.google.com/recaptcha/api/siteverify',
 ];

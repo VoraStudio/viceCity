@@ -6,7 +6,17 @@ declare(strict_types=1);
  * Capçalera comuna de les pàgines del blog (fins a <site-header>).
  * Espera $page = ['title', 'description', 'path'] definit abans de fer l'include.
  */
-$canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
+require_once __DIR__ . '/site.php';
+
+$site = siteConfig();
+$siteDraft = !siteIsConfigured();
+$canonicalUrl = siteUrl($page['path']);
+$ogImageUrl = siteUrl('assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png');
+$robotsContent = $siteDraft ? 'noindex, nofollow' : ($site['blog_indexable'] ? 'index, follow' : 'noindex, follow');
+$contactEmail = $site['owner']['email_contacto'];
+$contactPhone = $site['owner']['telefono'];
+$hasContactEmail = !siteIsPlaceholder($contactEmail);
+$hasContactPhone = !siteIsPlaceholder($contactPhone);
 ?>
 <!doctype html>
 <html lang="ca" class="motion-safe:scroll-smooth">
@@ -15,18 +25,18 @@ $canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?= e($page['title']) ?></title>
     <meta name="description" content="<?= e($page['description']) ?>" />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="<?= e($robotsContent) ?>" />
     <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
     <meta name="theme-color" content="#5e35b1" />
     <link rel="icon" type="image/svg+xml" href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Vicity" />
+    <meta property="og:site_name" content="<?= e($site['site_name']) ?>" />
     <meta property="og:locale" content="ca_ES" />
     <meta property="og:title" content="<?= e($page['title']) ?>" />
     <meta property="og:description" content="<?= e($page['description']) ?>" />
     <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
-    <meta property="og:image" content="https://www.vicity.cat/assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png" />
+    <meta property="og:image" content="<?= e($ogImageUrl) ?>" />
     <meta property="og:image:width" content="2156" />
     <meta property="og:image:height" content="671" />
     <meta property="og:image:alt" content="Logotip de Vicity" />
@@ -155,6 +165,10 @@ $canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
       >Vés al contingut</a
     >
 
+<?php if ($siteDraft) : ?>
+    <p role="note" class="sticky top-0 z-[80] bg-purple-800 px-4 py-2 text-center font-body text-label font-bold text-white">Esborrany: hi ha dades pendents de configurar (includes/site-config.php)</p>
+<?php endif; ?>
+
     <noscript>
       <link rel="stylesheet" href="assets/css/noscript.css" />
       <div class="noscript">
@@ -167,7 +181,19 @@ $canonicalUrl = 'https://www.vicity.cat/' . $page['path'];
           <li><a href="privacitat.html">Privacitat</a></li>
           <li><a href="cookies.html">Cookies</a></li>
         </ul>
-        <p>Contacte: <a href="mailto:info@vicity.cat">info@vicity.cat</a> · <a href="tel:+34931234567">+34&nbsp;93&nbsp;123&nbsp;45&nbsp;67</a></p>
+<?php if ($hasContactEmail || $hasContactPhone) : ?>
+        <p>Contacte:
+<?php if ($hasContactEmail) : ?>
+          <a href="mailto:<?= e($contactEmail) ?>"><?= e($contactEmail) ?></a>
+<?php endif; ?>
+<?php if ($hasContactEmail && $hasContactPhone) : ?>
+          ·
+<?php endif; ?>
+<?php if ($hasContactPhone) : ?>
+          <a href="tel:<?= e(preg_replace('/[^+\d]/', '', $contactPhone)) ?>"><?= e($contactPhone) ?></a>
+<?php endif; ?>
+        </p>
+<?php endif; ?>
       </div>
     </noscript>
 

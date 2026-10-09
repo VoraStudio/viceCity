@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/blog.php';
+require_once __DIR__ . '/includes/site.php';
 require_once __DIR__ . '/includes/http.php';
 require_once __DIR__ . '/includes/contact.php';
 require_once __DIR__ . '/includes/contact-security.php';
@@ -16,6 +17,12 @@ function processContact(bool $json): array
         header('Allow: POST');
 
         return ['code' => 405, 'state' => 'method', 'message' => 'Aquest punt només accepta el formulari de contacte.'];
+    }
+
+    if (!siteMailConfigured()) {
+        error_log('Formulari de contacte: falten mail_recipient i mail_sender a includes/site-config.php');
+
+        return ['code' => 503, 'state' => 'unconfigured', 'message' => 'El formulari encara no està configurat.'];
     }
 
     if (!isSameOrigin()) {
@@ -135,6 +142,11 @@ require __DIR__ . '/includes/head.php';
             <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">Massa enviaments seguits</h1>
             <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg"><?= e($outcome['message']) ?></p>
           </div>
+<?php elseif ($status === 'unconfigured') : ?>
+          <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
+            <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">El formulari encara no està configurat</h1>
+            <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg"><?= e($outcome['message']) ?></p>
+          </div>
 <?php elseif ($status === 'forbidden' || $status === 'unavailable') : ?>
           <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
             <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">No s'ha pogut verificar la sol·licitud</h1>
@@ -144,8 +156,8 @@ require __DIR__ . '/includes/head.php';
           <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
             <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">Ha passat un error</h1>
             <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg">
-              No hem pogut enviar la teva sol·licitud. Torna-ho a provar d'aquí a una estona o escriu-nos a
-              <a href="mailto:info@vicity.cat" class="<?= e($linkClass) ?>">info@vicity.cat</a>.
+              No hem pogut enviar la teva sol·licitud. Torna-ho a provar d'aquí a una estona<?php if (!siteIsPlaceholder(siteConfig()['owner']['email_contacto'])) : ?> o escriu-nos a
+              <a href="mailto:<?= e(siteConfig()['owner']['email_contacto']) ?>" class="<?= e($linkClass) ?>"><?= e(siteConfig()['owner']['email_contacto']) ?></a><?php endif; ?>.
             </p>
           </div>
 <?php else : ?>
