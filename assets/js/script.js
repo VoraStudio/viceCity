@@ -391,9 +391,9 @@ const initBlogAnimation = () => {
   gsap.from(hero, fadeUp);
   // El destacat i les cards poden no existir (categoria filtrada sense entrades o sense destacat)
   if (featured) gsap.from(featured, { ...fadeUp, scrollTrigger: onScroll(featured) });
-  if (cards.length) gsap.from(cards, { ...fadeUp, stagger: 0.15, scrollTrigger: onScroll(cards[0].parentElement) });
+  if (cards.length) gsap.from(cards, { ...fadeUp, stagger: 0.15, scrollTrigger: onScroll(cards[0].closest("ul")) });
 
-  reveal(hero, featured ?? [], cards);
+  reveal(...[hero, featured, ...cards].filter(Boolean));
 };
 
 // ==========================================================================
