@@ -78,7 +78,7 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 
 ## Desplegament i pendents
 
-Els passos per publicar la web (cdmon), la configuració del lloc, reCAPTCHA i la llista del que ha de fer el client són a [`DEPLOY.md`](DEPLOY.md). Mentre quedi alguna variable de configuració buida o sense definir, el lloc es mostra com a esborrany (`noindex` i formulari desactivat).
+Els passos per publicar la web en qualsevol allotjament, la configuració del lloc, reCAPTCHA i la llista del que ha de fer el client són a [`DEPLOY.md`](DEPLOY.md). Mentre quedi alguna variable de configuració buida o sense definir, el lloc es mostra com a esborrany (`noindex` i formulari desactivat).
 
 ### Variables d'entorn
 
