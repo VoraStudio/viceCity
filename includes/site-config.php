@@ -2,27 +2,31 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/site.php';
+
+// Tota la configuració surt de l'entorn (o del .env de reserva). Cap valor és literal.
+// Valor absent o buit = pendent: el lloc es mostra com a esborrany fins que s'ompli.
+$siteEnv = static fn (string $name): string => siteEnvValue($name) ?? '';
+
 return [
-    // PENDENT: domini definitiu contractat pel client, amb https i sense barra final.
-    'base_url' => 'https://PENDENT-DOMINI.tld',
-    'site_name' => 'Vicity',
+    'base_url' => $siteEnv('VICITY_BASE_URL'),
+    'site_name' => $siteEnv('VICITY_SITE_NAME'),
 
-    // PENDENT: adreces del domini contractat; el remitent ha de tenir SPF i DKIM configurats.
-    'mail_recipient' => 'PENDENT: correu de destí del formulari',
-    'mail_sender' => 'PENDENT: correu remitent del formulari',
-    'mail_subject_prefix' => '[Vicity web]',
+    'mail_recipient' => $siteEnv('VICITY_MAIL_RECIPIENT'),
+    'mail_sender' => $siteEnv('VICITY_MAIL_SENDER'),
+    // Opcional: si falta, siteConfig() el deriva de site_name.
+    'mail_subject_prefix' => $siteEnv('VICITY_MAIL_SUBJECT_PREFIX'),
 
-    'blog_indexable' => false,
+    'blog_indexable' => siteParseBool($siteEnv('VICITY_BLOG_INDEXABLE')),
 
-    // PENDENT: dades del titular, a facilitar pel client.
     'owner' => [
-        'razon_social' => 'PENDENT: raó social',
-        'nif' => 'PENDENT: NIF/CIF',
-        'domicilio' => 'PENDENT: adreça completa',
-        'registro_mercantil' => 'PENDENT: registre mercantil, tom, foli i full',
-        'email_contacto' => 'PENDENT: correu de contacte',
-        'telefono' => 'PENDENT: telèfon',
-        'dpd_contacto' => 'PENDENT: contacte del DPD',
-        'autoridad_control' => 'PENDENT: autoritat de control (AEPD o Autoritat Catalana de Protecció de Dades)',
+        'razon_social' => $siteEnv('VICITY_OWNER_RAZON_SOCIAL'),
+        'nif' => $siteEnv('VICITY_OWNER_NIF'),
+        'domicilio' => $siteEnv('VICITY_OWNER_DOMICILIO'),
+        'registro_mercantil' => $siteEnv('VICITY_OWNER_REGISTRO_MERCANTIL'),
+        'email_contacto' => $siteEnv('VICITY_OWNER_EMAIL_CONTACTO'),
+        'telefono' => $siteEnv('VICITY_OWNER_TELEFONO'),
+        'dpd_contacto' => $siteEnv('VICITY_OWNER_DPD_CONTACTO'),
+        'autoridad_control' => $siteEnv('VICITY_OWNER_AUTORIDAD_CONTROL'),
     ],
 ];

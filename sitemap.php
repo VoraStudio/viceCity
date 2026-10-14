@@ -5,14 +5,19 @@ declare(strict_types=1);
 require_once __DIR__ . '/includes/blog.php';
 require_once __DIR__ . '/includes/site.php';
 
-$entries = [
-    ['loc' => siteUrl(), 'lastmod' => null],
-    ['loc' => siteUrl('avis-legal.html'), 'lastmod' => null],
-    ['loc' => siteUrl('privacitat.html'), 'lastmod' => null],
-    ['loc' => siteUrl('cookies.html'), 'lastmod' => null],
-];
+// Sense base_url no es generen <loc> absoluts: el sitemap queda buit en lloc de tenir URL trencades.
+$entries = [];
 
-if (siteConfig()['blog_indexable']) {
+if (siteHasBaseUrl()) {
+    $entries = [
+        ['loc' => siteUrl(), 'lastmod' => null],
+        ['loc' => siteUrl('avis-legal.html'), 'lastmod' => null],
+        ['loc' => siteUrl('privacitat.html'), 'lastmod' => null],
+        ['loc' => siteUrl('cookies.html'), 'lastmod' => null],
+    ];
+}
+
+if (siteHasBaseUrl() && siteConfig()['blog_indexable']) {
     $entries[] = ['loc' => siteUrl('blog.php'), 'lastmod' => null];
 
     foreach (getPosts(getDatabase(), null) as $post) {

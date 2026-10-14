@@ -8,4 +8,8 @@ header('Content-Type: text/plain; charset=utf-8');
 
 echo "User-agent: *\n";
 echo siteIsConfigured() ? "Allow: /\n" : "Disallow: /\n";
-echo "\nSitemap: " . siteUrl('sitemap.xml') . "\n";
+
+// Sense base_url no es pot indicar un sitemap absolut.
+if (siteHasBaseUrl()) {
+    echo "\nSitemap: " . siteUrl('sitemap.xml') . "\n";
+}

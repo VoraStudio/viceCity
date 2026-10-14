@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/site.php';
 
-$secretsFile = __DIR__ . '/secrets.local.php';
-$secrets = is_file($secretsFile) ? require $secretsFile : [];
-
 return [
-    // PENDENT: substituir per la clau de lloc de reCAPTCHA v3 quan es tingui.
-    'site_key' => 'PENDENT_CLAU_DE_SITE',
-    'secret_key' => is_string($secrets['recaptcha_secret'] ?? null) ? $secrets['recaptcha_secret'] : '',
+    // Claus de reCAPTCHA v3: només de l'entorn (o .env). Si falten, reCAPTCHA queda desactivat.
+    'site_key' => siteEnvValue('VICITY_RECAPTCHA_SITE_KEY') ?? '',
+    'secret_key' => siteEnvValue('VICITY_RECAPTCHA_SECRET') ?? '',
     'min_score' => 0.5,
     'action' => 'contacte',
     'hostname' => siteConfig()['recaptcha_hostname'],

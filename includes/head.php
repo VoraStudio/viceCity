@@ -10,8 +10,10 @@ require_once __DIR__ . '/site.php';
 
 $site = siteConfig();
 $siteDraft = !siteIsConfigured();
-$canonicalUrl = siteUrl($page['path']);
-$ogImageUrl = siteUrl('assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png');
+// Sense base_url no es generen URL absolutes (serien trencades): s'ometen canonical, og:url i og:image.
+$hasBaseUrl = siteHasBaseUrl();
+$canonicalUrl = $hasBaseUrl ? siteUrl($page['path']) : '';
+$ogImageUrl = $hasBaseUrl ? siteUrl('assets/img/logo/imagotip/png/sense-area-seguretat/1-imagotip-fons-blanc.png') : '';
 $robotsContent = $siteDraft ? 'noindex, nofollow' : ($site['blog_indexable'] ? 'index, follow' : 'noindex, follow');
 $contactEmail = $site['owner']['email_contacto'];
 $contactPhone = $site['owner']['telefono'];
@@ -26,7 +28,9 @@ $hasContactPhone = !siteIsPlaceholder($contactPhone);
     <title><?= e($page['title']) ?></title>
     <meta name="description" content="<?= e($page['description']) ?>" />
     <meta name="robots" content="<?= e($robotsContent) ?>" />
+<?php if ($hasBaseUrl) : ?>
     <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
+<?php endif; ?>
     <meta name="theme-color" content="#5e35b1" />
     <link rel="icon" type="image/svg+xml" href="assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
 
@@ -35,11 +39,13 @@ $hasContactPhone = !siteIsPlaceholder($contactPhone);
     <meta property="og:locale" content="ca_ES" />
     <meta property="og:title" content="<?= e($page['title']) ?>" />
     <meta property="og:description" content="<?= e($page['description']) ?>" />
+<?php if ($hasBaseUrl) : ?>
     <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
     <meta property="og:image" content="<?= e($ogImageUrl) ?>" />
+<?php endif; ?>
     <meta property="og:image:width" content="2156" />
     <meta property="og:image:height" content="671" />
-    <meta property="og:image:alt" content="Logotip de Vicity" />
+    <meta property="og:image:alt" content="<?= e(trim('Logotip ' . siteNameOf())) ?>" />
     <meta name="twitter:card" content="summary" />
 
     <link rel="preload" href="assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
@@ -166,7 +172,7 @@ $hasContactPhone = !siteIsPlaceholder($contactPhone);
     >
 
 <?php if ($siteDraft) : ?>
-    <p role="note" class="sticky top-0 z-[80] bg-purple-800 px-4 py-2 text-center font-body text-label font-bold text-white">Esborrany: hi ha dades pendents de configurar (includes/site-config.php)</p>
+    <p role="note" class="sticky top-0 z-[80] bg-purple-800 px-4 py-2 text-center font-body text-label font-bold text-white">Esborrany: hi ha dades pendents de configurar (.env o variables d'entorn)</p>
 <?php endif; ?>
 
     <noscript>

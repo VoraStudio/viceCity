@@ -9,16 +9,11 @@ function recaptchaConfig(): array
     return $config ??= require __DIR__ . '/recaptcha-config.php';
 }
 
-function isRecaptchaPlaceholder(string $value): bool
-{
-    return $value === '' || str_starts_with($value, 'PENDENT');
-}
-
 function recaptchaEnabled(): bool
 {
     $config = recaptchaConfig();
 
-    return !isRecaptchaPlaceholder((string) $config['site_key']) && !isRecaptchaPlaceholder((string) $config['secret_key']);
+    return (string) $config['site_key'] !== '' && (string) $config['secret_key'] !== '';
 }
 
 function recaptchaSiteKey(): ?string

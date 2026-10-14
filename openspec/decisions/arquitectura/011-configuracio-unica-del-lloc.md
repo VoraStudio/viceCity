@@ -3,6 +3,7 @@
 **Stack**: arquitectura (php)
 **Estat**: acceptat (fase 1; la fase 2 queda pendent)
 **Data**: 2026-10-09
+**Parcialment substituïda per**: 013 (la configuració surt només de l'entorn, amb `.env` de reserva; «pendent» vol dir buit i s'han retirat els literals `PENDENT` i `site-config.local.php`)
 
 ## Context
 
@@ -15,7 +16,7 @@ Vora Studio no tindrà accés a l'allotjament ni sap quin domini contractarà el
 - **Substitucions locals**: `includes/site-config.local.php`, ignorat per git, se suma als valors per defecte amb `array_replace_recursive`. `includes/site-config.local.example.php` és la plantilla versionada, amb valors de `example.org`.
 - **`hostname` de reCAPTCHA derivat** del host de `base_url`, de manera que no cal tocar `recaptcha-config.php` en canviar de domini.
 - **Consumidors**: `head.php` (canonical, `og:url`, `og:image` absolut, `og:site_name`, enllaços de contacte del bloc `noscript`), `mail-config.php`, `recaptcha-config.php` i `contacto.php` (enllaç de correu del missatge d'error, que només es mostra si hi ha un correu configurat).
-- **Esborrany visible**: mentre el lloc no estigui configurat, `head.php` mostra una franja fixa a dalt (`role="note"`, `sticky`, sense tapar el contingut: empeny el capçal) amb el text «Esborrany: hi ha dades pendents de configurar (includes/site-config.php)» i posa `noindex, nofollow`. Una vegada configurat desapareix la franja i el `meta robots` torna a la política de la decisió 006.
+- **Esborrany visible**: mentre el lloc no estigui configurat, `head.php` mostra una franja fixa a dalt (`role="note"`, `sticky`, sense tapar el contingut: empeny el capçal) amb el text «Esborrany: hi ha dades pendents de configurar (.env o variables d'entorn)» (text actualitzat per la 013) i posa `noindex, nofollow`. Una vegada configurat desapareix la franja i el `meta robots` torna a la política de la decisió 006.
 - **El blog no s'indexa per defecte**: `blog_indexable` és `false`. Amb el lloc configurat, el `meta robots` de les pàgines PHP és `noindex, follow`, igual que abans (decisió 006). Si el client el posa a `true`, el `meta robots` és `index, follow` i el sitemap inclou `blog.php` i totes les entrades amb `lastmod` igual a `published_at`.
 - **`robots.php` i `sitemap.php`** substitueixen `robots.txt` i `sitemap.xml`. El `.htaccess` de l'arrel els serveix a les mateixes URL amb `RewriteRule ^robots\.txt$ robots.php [L]` i `RewriteRule ^sitemap\.xml$ sitemap.php [L]`, dins de `mod_rewrite`. El `robots.txt` diu `Disallow: /` mentre el lloc no estigui configurat i `Allow: /` quan ho està. El sitemap es genera amb `XMLWriter`, de manera que sempre és XML vàlid.
 - **El formulari falla tancat**: si `mail_recipient` o `mail_sender` són `PENDENT`, `contacto.php` respon 503 amb «El formulari encara no està configurat.» abans de crear la sessió ni validar res, i no envia correu. El detall (`falten mail_recipient i mail_sender a includes/site-config.php`) va només a `error_log`, no a l'usuari. La resposta HTML de reserva té el seu propi bloc d'estat.
