@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/blog.php';
+require_once __DIR__ . '/includes/site.php';
 
 $slug = $_GET['slug'] ?? null;
 $pdo = getDatabase();
@@ -11,7 +12,7 @@ $post = is_string($slug) ? getPostBySlug($pdo, $slug) : null;
 if ($post === null) {
     http_response_code(404);
     $page = [
-        'title' => 'Article no trobat · Vicity',
+        'title' => sitePageTitle('Article no trobat'),
         'description' => "L'article que busques no existeix o s'ha retirat.",
         'path' => 'blog.php',
     ];
@@ -20,7 +21,7 @@ if ($post === null) {
     $post = getPostBySlug($pdo, $post['slug']);
     $liked = hasLiked($post['slug']);
     $page = [
-        'title' => $post['title'] . ' · Vicity',
+        'title' => sitePageTitle($post['title']),
         'description' => $post['excerpt'],
         'path' => getArticleUrl($post['slug']),
     ];

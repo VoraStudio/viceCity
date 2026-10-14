@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/blog.php';
+require_once __DIR__ . '/includes/site.php';
 
 // Categoria desconeguda a ?categoria=: es mostren totes les entrades (no es dona 404,
 // perquè un enllaç antic o mal escrit continuï portant a una pàgina útil).
@@ -25,8 +26,9 @@ $chipActiveClass = 'bg-purple-700 text-white';
 $chipInactiveClass = 'text-ink hover:text-purple-700';
 
 $page = [
-    'title' => 'Blog · Vicity',
-    'description' => 'El blog de Vicity: articles sobre gestió tributària i transformació digital de les administracions públiques.',
+    'title' => sitePageTitle('Blog'),
+    'description' => (siteName() === '' ? 'Articles' : 'El blog ' . siteNameOf() . ': articles')
+        . ' sobre gestió tributària i transformació digital de les administracions públiques.',
     'path' => 'blog.php',
 ];
 
@@ -100,7 +102,9 @@ require __DIR__ . '/includes/head.php';
             <div aria-hidden="true" class="relative aspect-2/1 overflow-hidden bg-white lg:aspect-auto lg:min-h-96">
               <span class="absolute top-8 left-10 hidden font-body text-label font-bold tracking-wide text-purple-700 uppercase lg:block">Destacat</span>
               <span class="absolute -right-16 -bottom-16 hidden size-96 rounded-full bg-lav-100/60 blur-3xl lg:block"></span>
-              <span class="absolute bottom-16 left-10 hidden font-head text-6xl font-bold text-lav-100 lg:block">vicity</span>
+<?php if (siteName() !== '') : ?>
+              <span class="absolute bottom-16 left-10 hidden font-head text-6xl font-bold text-lav-100 lg:block"><?= e(mb_strtolower(siteName())) ?></span>
+<?php endif; ?>
               <span class="absolute bottom-8 left-10 hidden font-body text-sm text-lav-300 lg:block">Innovació en fiscalitat local</span>
             </div>
             <div class="flex flex-col items-start gap-4 p-5 md:p-8 lg:justify-center lg:p-10">

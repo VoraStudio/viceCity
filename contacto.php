@@ -9,7 +9,16 @@ require_once __DIR__ . '/includes/contact.php';
 require_once __DIR__ . '/includes/contact-security.php';
 require_once __DIR__ . '/includes/recaptcha.php';
 
-const CONTACT_SUCCESS_MESSAGE = "Hem rebut la teva sol·licitud. L'equip de Vicity et respondrà tan aviat com sigui possible.";
+// Frase de resposta; sense nom de marca queda "L'equip et respondrà…".
+function contactTeamReply(): string
+{
+    return trim("L'equip " . siteNameOf()) . " et respondrà tan aviat com sigui possible.";
+}
+
+function contactSuccessMessage(): string
+{
+    return 'Hem rebut la teva sol·licitud. ' . contactTeamReply();
+}
 
 function processContact(bool $json): array
 {
@@ -20,7 +29,7 @@ function processContact(bool $json): array
     }
 
     if (!siteMailConfigured()) {
-        error_log('Formulari de contacte: falten mail_recipient i mail_sender a includes/site-config.php');
+        error_log('Formulari de contacte: falten VICITY_MAIL_RECIPIENT i VICITY_MAIL_SENDER (entorn o .env)');
 
         return ['code' => 503, 'state' => 'unconfigured', 'message' => 'El formulari encara no està configurat.'];
     }
@@ -42,7 +51,7 @@ function processContact(bool $json): array
     }
 
     if (normalizeInput($_POST['website'] ?? '') !== '') {
-        return ['code' => 200, 'state' => 'success', 'message' => CONTACT_SUCCESS_MESSAGE];
+        return ['code' => 200, 'state' => 'success', 'message' => contactSuccessMessage()];
     }
 
     if ($json && isContactSubmittedTooFast()) {
@@ -80,7 +89,7 @@ function processContact(bool $json): array
 
     markContactSubmitted();
 
-    return ['code' => 200, 'state' => 'success', 'message' => CONTACT_SUCCESS_MESSAGE];
+    return ['code' => 200, 'state' => 'success', 'message' => contactSuccessMessage()];
 }
 
 $json = wantsJson();
@@ -104,8 +113,8 @@ http_response_code($outcome['code']);
 header('Cache-Control: no-store');
 
 $page = [
-    'title' => 'Contacte · Vicity',
-    'description' => "Resultat de l'enviament del formulari de contacte de Vicity.",
+    'title' => sitePageTitle('Contacte'),
+    'description' => trim("Resultat de l'enviament del formulari de contacte " . siteNameOf()) . '.',
     'path' => 'contacto.php',
 ];
 
@@ -125,7 +134,7 @@ require __DIR__ . '/includes/head.php';
 <?php if ($status === 'success') : ?>
           <div role="status" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
             <h1 class="font-head text-3xl leading-tight font-bold text-balance md:text-4xl">Hem rebut la teva sol·licitud</h1>
-            <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg">Gràcies pel teu interès. L'equip de Vicity et respondrà tan aviat com sigui possible.</p>
+            <p class="mt-4 text-base leading-relaxed text-ink/80 md:text-lg">Gràcies pel teu interès. <?= e(contactTeamReply()) ?></p>
           </div>
 <?php elseif ($status === 'invalid') : ?>
           <div role="alert" class="mt-6 w-full rounded-3xl border-1 border-lav-100 bg-white p-6 md:p-10">
