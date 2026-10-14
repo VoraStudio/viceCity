@@ -1,0 +1,5 @@
+# Fitxers que no formen part del paquet de desplegament (git archive i ZIP de GitHub)
+/openspec export-ignore
+/.github export-ignore
+/.gitattributes export-ignore
+*.md export-ignore
