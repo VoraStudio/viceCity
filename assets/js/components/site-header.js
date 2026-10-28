@@ -84,25 +84,32 @@ class SiteHeader extends HTMLElement {
                 >Blog</a
               >
             </li>
-            <li>
-              <a
-                href="${home}#contacte"
-                class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
-                data-i18n="common.nav.contact"
-                >Contacte</a
-              >
-            </li>
           </ul>
 
           <div class="flex items-center gap-1.5 md:gap-3 2xl:gap-4">
             <label for="idioma" class="sr-only" data-i18n="language.label">Idioma</label>
-            <select
-              id="idioma"
-              data-language-select
-              class="h-11 w-16 shrink-0 cursor-pointer rounded-full border-2 border-gray bg-white pr-1 pl-3 font-body text-sm font-bold text-purple-700 transition-colors hover:border-purple-700 motion-reduce:transition-none xl:cursor-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
-            >
-              ${languageOptions()}
-            </select>
+            <div class="relative shrink-0">
+              <select
+                id="idioma"
+                data-language-select
+                class="h-11 w-18 cursor-pointer appearance-none rounded-full border-2 border-gray bg-white pr-6 pl-3 font-body text-sm font-bold text-purple-700 transition-colors hover:border-purple-700 motion-reduce:transition-none md:w-20 xl:cursor-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+              >
+                ${languageOptions()}
+              </select>
+              <!-- Mateix marge lateral que els botons del costat (px-4 / md:px-6) -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="pointer-events-none absolute top-1/2 right-4 size-3 -translate-y-1/2 text-purple-700 md:right-6"
+              >
+                <path d="m2.5 4.5 3.5 3.5 3.5-3.5" />
+              </svg>
+            </div>
             <a
               href="${home}#contacte"
               data-ripple
@@ -212,14 +219,6 @@ class SiteHeader extends HTMLElement {
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
                   data-i18n="common.nav.blog"
                   >Blog</a
-                >
-              </li>
-              <li>
-                <a
-                  href="${home}#contacte"
-                  class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
-                  data-i18n="common.nav.contact"
-                  >Contacte</a
                 >
               </li>
             </ul>
