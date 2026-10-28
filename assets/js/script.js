@@ -1,3 +1,4 @@
+import { initI18n } from "./modules/i18n.js";
 import { initToasts, showToast } from "./modules/toast.js";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -680,6 +681,8 @@ const initContactForm = () => {
       button.disabled = false;
     });
 };
+
+initI18n();
 
 if (!prefersReducedMotion) {
   initHeaderAnimation();

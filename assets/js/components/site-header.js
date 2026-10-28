@@ -1,9 +1,46 @@
+import { SUPPORTED_LANGUAGES, applyTranslations, getLanguage, setLanguage } from "../modules/i18n.js";
 import { home, logoHref } from "./home-href.js";
+
+const languageButtonClass =
+  "cursor-pointer items-center justify-center font-body font-bold text-purple-700 transition-colors not-aria-pressed:hover:bg-lav-100/40 aria-pressed:bg-lav-100 motion-reduce:transition-none xl:cursor-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30";
+
+// Els noms accessibles (autònims) i l'etiqueta del grup surten del diccionari via data-i18n-attr
+const languageSelector = ({ group, button }) => `
+  <div role="group" data-i18n-attr="aria-label:language.label" class="${group}">
+    ${SUPPORTED_LANGUAGES.map(
+      (lang) =>
+        `<button type="button" lang="${lang}" aria-pressed="false" data-lang-option="${lang}" data-i18n-attr="aria-label:language.names.${lang}" class="${languageButtonClass} ${button}">${lang.toUpperCase()}</button>`
+    ).join("")}
+  </div>`;
 
 class SiteHeader extends HTMLElement {
   connectedCallback() {
-    if (this.firstElementChild) return;
+    if (!this.firstElementChild) this.render();
 
+    this.addEventListener("click", this.handleLanguageClick);
+    document.addEventListener("languagechange", this.syncLanguage);
+    applyTranslations(this);
+    this.syncLanguage();
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("click", this.handleLanguageClick);
+    document.removeEventListener("languagechange", this.syncLanguage);
+  }
+
+  handleLanguageClick = (event) => {
+    const option = event.target.closest("[data-lang-option]");
+    if (option) setLanguage(option.dataset.langOption);
+  };
+
+  syncLanguage = () => {
+    const current = getLanguage();
+    this.querySelectorAll("[data-lang-option]").forEach((option) => {
+      option.setAttribute("aria-pressed", String(option.dataset.langOption === current));
+    });
+  };
+
+  render() {
     this.innerHTML = `
     <header id="inici" class="bg-lav-100/60 pt-4 md:pt-6">
       <div class="mx-auto w-full max-w-none px-4 md:px-8">
@@ -70,6 +107,10 @@ class SiteHeader extends HTMLElement {
           </ul>
 
           <div class="flex items-center gap-2 md:gap-3 menu:gap-6">
+            ${languageSelector({
+              group: "hidden h-11 items-center gap-0.5 rounded-full border-2 border-gray p-0.5 menu:flex",
+              button: "inline-flex h-9 min-w-9 rounded-full px-2 text-sm",
+            })}
             <a
               href="${home}#contacte"
               data-ripple
@@ -192,6 +233,10 @@ class SiteHeader extends HTMLElement {
               <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
               <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
             </a>
+            ${languageSelector({
+              group: "mt-2 grid grid-cols-3 gap-1 rounded-3xl border-2 border-gray p-1",
+              button: "inline-flex h-11 rounded-2xl text-base",
+            })}
           </div>
         </nav>
       </div>
