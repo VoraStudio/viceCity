@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 /**
  * Capçalera comuna de les pàgines del blog (fins a <site-header>).
- * Espera $page = ['title', 'description', 'path'] definit abans de fer l'include.
+ * Espera $page = ['title', 'description', 'path'] definit abans de fer l'include, i opcionalment
+ * 'i18n' amb la clau base dels diccionaris (p. ex. 'blog.meta') perquè el títol i la descripció es tradueixin.
  */
 require_once __DIR__ . '/site.php';
 
@@ -19,14 +20,19 @@ $contactEmail = $site['owner']['email_contacto'];
 $contactPhone = $site['owner']['telefono'];
 $hasContactEmail = !siteIsPlaceholder($contactEmail);
 $hasContactPhone = !siteIsPlaceholder($contactPhone);
+// Sense clau (p. ex. el títol d'un article, que és contingut) el títol i la descripció no es tradueixen.
+$metaKey = $page['i18n'] ?? null;
+$titleText = $metaKey !== null ? ' data-i18n="' . e($metaKey . '.title') . '"' : '';
+$titleContent = $metaKey !== null ? ' data-i18n-attr="content:' . e($metaKey . '.title') . '"' : '';
+$descriptionContent = $metaKey !== null ? ' data-i18n-attr="content:' . e($metaKey . '.description') . '"' : '';
 ?>
 <!doctype html>
 <html lang="ca" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><?= e($page['title']) ?></title>
-    <meta name="description" content="<?= e($page['description']) ?>" />
+    <title<?= $titleText ?>><?= e($page['title']) ?></title>
+    <meta name="description" content="<?= e($page['description']) ?>"<?= $descriptionContent ?> />
     <meta name="robots" content="<?= e($robotsContent) ?>" />
 <?php if ($hasBaseUrl) : ?>
     <link rel="canonical" href="<?= e($canonicalUrl) ?>" />
@@ -37,15 +43,15 @@ $hasContactPhone = !siteIsPlaceholder($contactPhone);
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="<?= e($site['site_name']) ?>" />
     <meta property="og:locale" content="ca_ES" />
-    <meta property="og:title" content="<?= e($page['title']) ?>" />
-    <meta property="og:description" content="<?= e($page['description']) ?>" />
+    <meta property="og:title" content="<?= e($page['title']) ?>"<?= $titleContent ?> />
+    <meta property="og:description" content="<?= e($page['description']) ?>"<?= $descriptionContent ?> />
 <?php if ($hasBaseUrl) : ?>
     <meta property="og:url" content="<?= e($canonicalUrl) ?>" />
     <meta property="og:image" content="<?= e($ogImageUrl) ?>" />
 <?php endif; ?>
     <meta property="og:image:width" content="2156" />
     <meta property="og:image:height" content="671" />
-    <meta property="og:image:alt" content="<?= e(trim('Logotip ' . siteNameOf())) ?>" />
+    <meta property="og:image:alt" content="<?= e(trim('Logotip ' . siteNameOf())) ?>" data-i18n-attr="content:common.meta.logoAlt" />
     <meta name="twitter:card" content="summary" />
 
     <link rel="preload" href="assets/fonts/Red_Hat_Display/RedHatDisplay-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
@@ -168,11 +174,12 @@ $hasContactPhone = !siteIsPlaceholder($contactPhone);
     <a
       href="#contingut"
       class="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded-full focus-visible:bg-purple-700 focus-visible:px-4 focus-visible:py-2 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+      data-i18n="common.skipLink"
       >Vés al contingut</a
     >
 
 <?php if ($siteDraft) : ?>
-    <p role="note" class="sticky top-0 z-[80] bg-purple-800 px-4 py-2 text-center font-body text-label font-bold text-white">Esborrany: hi ha dades pendents de configurar (.env o variables d'entorn)</p>
+    <p role="note" class="sticky top-0 z-[80] bg-purple-800 px-4 py-2 text-center font-body text-label font-bold text-white" data-i18n="common.draftBanner">Esborrany: hi ha dades pendents de configurar (.env o variables d'entorn)</p>
 <?php endif; ?>
 
     <noscript>

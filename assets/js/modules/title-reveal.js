@@ -13,7 +13,8 @@ const trigger = (title) => ({
   toggleActions: "play reset play reset",
 });
 
-const initTitleReveal = () => {
+// La crida script.js un cop aplicats els textos de l'idioma actiu
+export const initTitleReveal = () => {
   const titles = [...document.querySelectorAll("[data-title-reveal]")];
   if (!titles.length) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -45,5 +46,3 @@ const initTitleReveal = () => {
     ScrollTrigger.refresh();
   });
 };
-
-initTitleReveal();

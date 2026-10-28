@@ -67,14 +67,31 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 ├── 404.html, 500.html         Pàgines d'error pròpies, servides pel .htaccess
 └── assets/
     ├── fonts/                 Tipografies en local
+    ├── i18n/                  Textos per idioma: ca.json (base), es.json i en.json
     ├── img/                   Logotips i imatges (blog/: imatges dels articles)
-    ├── video/                 Vídeo de la demo i pòster
+    ├── video/                 Vídeos i pòsters (els acabats en -es, en castellà)
     └── js/
         ├── script.js          Animacions d'entrada, una funció per secció
         ├── js-flag.js         Marca <html> amb la classe "js"
         ├── components/        <site-header> i <site-footer>
         └── modules/           Menú, acordió, carrusel, ripple i títols
 ```
+
+## Traduccions
+
+El català és l'idioma base i és el que hi ha escrit a les pàgines. El castellà i l'anglès es tradueixen omplint dos fitxers, sense tocar cap pàgina:
+
+- `assets/i18n/es.json` (castellà) i `assets/i18n/en.json` (anglès) tenen les mateixes claus que `assets/i18n/ca.json`, que conté el text català de referència.
+- Per traduir un text, busqueu-lo a `ca.json`, localitzeu la mateixa clau a `es.json` o `en.json` i escriviu-hi la traducció entre les cometes.
+- **Una clau buida (`""`) mostra el text en català.** Es pot traduir a poc a poc: el que falti es continua veient en català.
+- Respecteu el que va entre claus, com `{label}`, `{limit}` o `{site}`: el web hi posa el valor en el moment. Si el text català porta etiquetes (`<a …>`, `<mark …>`, `<span …>`), copieu-les igual i traduïu només el text.
+- Són fitxers JSON: unes cometes dobles dins d'un text s'escriuen `\"`. Si un fitxer queda mal format, la web es mostra en català; es pot comprovar amb qualsevol validador de JSON.
+
+El visitant tria l'idioma al selector de la capçalera (CA, ES, EN). L'elecció es recorda al navegador i la pàgina es torna a carregar en aquell idioma. Els missatges del formulari de contacte també surten d'aquests fitxers.
+
+**Vídeos en un altre idioma.** Cada vídeo té tres claus al bloc `video`: `src` (el fitxer de vídeo), `poster` (la imatge que es veu abans que comenci) i `label` (la descripció per a lectors de pantalla). Per posar, per exemple, el vídeo principal en anglès, es copien `vicity-hero-en.mp4` i la seva imatge `vicity-hero-en-poster.webp` a `assets/video/` i s'escriuen les rutes a `en.json`, com ja fa `es.json` amb els vídeos en castellà. Si la clau és buida, es veu el vídeo en català.
+
+**Què no es tradueix.** Els articles del blog (títol, resum i text de `data/posts.php`), les dades estructurades per a cercadors de `index.html`, el correu que rep l'equip amb cada sol·licitud i l'avís que es mostra quan el navegador no té JavaScript. Hi ha una sola adreça per pàgina, de manera que els cercadors indexen la versió catalana. En castellà o anglès, el català es veu un instant mentre es carrega la pàgina.
 
 ## Desplegament i pendents
 

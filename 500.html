@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Pàgina d'error servida per ErrorDocument sota la URL que ha fallat: tot en rutes absolutes i <base href="/"> perquè els web components (rutes relatives) no es trenquin en URLs niades -->
     <base href="/" />
-    <title>Error del servidor · Vicity</title>
-    <meta name="description" content="S'ha produït un error al servidor. Torna-ho a provar d'aquí a una estona." />
+    <title data-i18n="errors.serverError.meta.title">Error del servidor · Vicity</title>
+    <meta name="description" content="S'ha produït un error al servidor. Torna-ho a provar d'aquí a una estona." data-i18n-attr="content:errors.serverError.meta.description" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#5e35b1" />
     <link rel="icon" type="image/svg+xml" href="/assets/img/logo/isotip/svg/sense-area-seguretat/1-isotip-fons-blanc.svg" />
@@ -118,18 +118,19 @@
     <main id="contingut">
       <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="pagina-titol">
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <p class="font-head text-lg font-bold text-purple-700">Error 500</p>
-          <h1 id="pagina-titol" class="mt-2 font-head text-4xl leading-tight font-bold text-balance md:text-5xl">Error del servidor</h1>
+          <p class="font-head text-lg font-bold text-purple-700" data-i18n="errors.serverError.label">Error 500</p>
+          <h1 id="pagina-titol" class="mt-2 font-head text-4xl leading-tight font-bold text-balance md:text-5xl" data-i18n="errors.serverError.title">Error del servidor</h1>
         </div>
       </section>
 
       <section class="pb-16 md:pb-24">
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10">
-          <p class="mt-4 text-lg text-ink/80">S'ha produït un error inesperat al servidor. Torna-ho a provar d'aquí a una estona; si el problema continua, posa't en contacte amb nosaltres.</p>
+          <p class="mt-4 text-lg text-ink/80" data-i18n="errors.serverError.text">S'ha produït un error inesperat al servidor. Torna-ho a provar d'aquí a una estona; si el problema continua, posa't en contacte amb nosaltres.</p>
           <div class="mt-8 flex">
             <a
               href="/"
               class="inline-flex h-11 items-center justify-center rounded-full bg-purple-700 px-6 font-bold text-white focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+              data-i18n="common.backHome"
               >Tornar a l'inici</a
             >
           </div>

@@ -1,52 +1,34 @@
-import { SUPPORTED_LANGUAGES, applyTranslations, getLanguage, setLanguage } from "../modules/i18n.js";
+import { LANGUAGES, getLanguage, switchLanguage } from "../modules/i18n.js";
 import { home, logoHref } from "./home-href.js";
 
-const languageButtonClass =
-  "cursor-pointer items-center justify-center font-body font-bold text-purple-700 transition-colors not-aria-pressed:hover:bg-lav-100/40 aria-pressed:bg-lav-100 motion-reduce:transition-none xl:cursor-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30";
-
-// Els noms accessibles (autònims) i l'etiqueta del grup surten del diccionari via data-i18n-attr
-const languageSelector = ({ group, button }) => `
-  <div role="group" data-i18n-attr="aria-label:language.label" class="${group}">
-    ${SUPPORTED_LANGUAGES.map(
-      (lang) =>
-        `<button type="button" lang="${lang}" aria-pressed="false" data-lang-option="${lang}" data-i18n-attr="aria-label:language.names.${lang}" class="${languageButtonClass} ${button}">${lang.toUpperCase()}</button>`
-    ).join("")}
-  </div>`;
+// Es veu el codi (hi cap a qualsevol amplada); l'autònim és el nom accessible de cada opció
+const languageOptions = () => {
+  const current = getLanguage();
+  return Object.entries(LANGUAGES)
+    .map(
+      ([code, name]) =>
+        `<option value="${code}" lang="${code}" aria-label="${name}"${code === current ? " selected" : ""}>${code.toUpperCase()}</option>`
+    )
+    .join("");
+};
 
 class SiteHeader extends HTMLElement {
   connectedCallback() {
-    if (!this.firstElementChild) this.render();
+    if (this.firstElementChild) return;
 
-    this.addEventListener("click", this.handleLanguageClick);
-    document.addEventListener("languagechange", this.syncLanguage);
-    applyTranslations(this);
-    this.syncLanguage();
+    this.render();
+    // Canviar d'idioma desa l'elecció i recarrega la pàgina
+    this.querySelector("[data-language-select]").addEventListener("change", (event) => switchLanguage(event.target.value));
   }
-
-  disconnectedCallback() {
-    this.removeEventListener("click", this.handleLanguageClick);
-    document.removeEventListener("languagechange", this.syncLanguage);
-  }
-
-  handleLanguageClick = (event) => {
-    const option = event.target.closest("[data-lang-option]");
-    if (option) setLanguage(option.dataset.langOption);
-  };
-
-  syncLanguage = () => {
-    const current = getLanguage();
-    this.querySelectorAll("[data-lang-option]").forEach((option) => {
-      option.setAttribute("aria-pressed", String(option.dataset.langOption === current));
-    });
-  };
 
   render() {
     this.innerHTML = `
     <header id="inici" class="bg-lav-100/60 pt-4 md:pt-6">
       <div class="mx-auto w-full max-w-none px-4 md:px-8">
         <nav
-          class="relative flex items-center justify-between gap-2 rounded-full bg-white px-4 py-3 shadow-lg shadow-purple-700/10 md:px-6 xl:px-16"
+          class="relative flex items-center justify-between gap-2 rounded-full bg-white px-3 py-3 shadow-lg shadow-purple-700/10 md:px-6 xl:px-8 2xl:px-16"
           aria-label="Navegació principal"
+          data-i18n-attr="aria-label:header.navLabel"
         >
           <a
             href="${logoHref}"
@@ -57,15 +39,16 @@ class SiteHeader extends HTMLElement {
               alt="Vicity"
               width="129"
               height="40"
-              class="h-8 w-auto md:h-10 mr-4"
+              class="h-8 w-auto md:mr-4 md:h-10"
             />
           </a>
 
-          <ul class="hidden items-center xl:gap-6 gap-2 font-head text-base font-medium menu:flex">
+          <ul class="hidden items-center font-head text-base font-medium menu:flex 2xl:gap-5">
             <li>
               <a
                 href="${home}#solucions"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.solutions"
                 >Solucions</a
               >
             </li>
@@ -73,6 +56,7 @@ class SiteHeader extends HTMLElement {
               <a
                 href="${home}#plataforma"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.platform"
                 >Plataforma</a
               >
             </li>
@@ -80,6 +64,7 @@ class SiteHeader extends HTMLElement {
               <a
                 href="${home}#administracions"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.administrations"
                 >Administracions</a
               >
             </li>
@@ -87,6 +72,7 @@ class SiteHeader extends HTMLElement {
               <a
                 href="${home}#recursos"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.resources"
                 >Recursos</a
               >
             </li>
@@ -94,6 +80,7 @@ class SiteHeader extends HTMLElement {
               <a
                 href="blog.php"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.blog"
                 >Blog</a
               >
             </li>
@@ -101,16 +88,21 @@ class SiteHeader extends HTMLElement {
               <a
                 href="${home}#contacte"
                 class="relative whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                data-i18n="common.nav.contact"
                 >Contacte</a
               >
             </li>
           </ul>
 
-          <div class="flex items-center gap-2 md:gap-3 menu:gap-6">
-            ${languageSelector({
-              group: "hidden h-11 items-center gap-0.5 rounded-full border-2 border-gray p-0.5 menu:flex",
-              button: "inline-flex h-9 min-w-9 rounded-full px-2 text-sm",
-            })}
+          <div class="flex items-center gap-1.5 md:gap-3 2xl:gap-4">
+            <label for="idioma" class="sr-only" data-i18n="language.label">Idioma</label>
+            <select
+              id="idioma"
+              data-language-select
+              class="h-11 w-16 shrink-0 cursor-pointer rounded-full border-2 border-gray bg-white pr-1 pl-3 font-body text-sm font-bold text-purple-700 transition-colors hover:border-purple-700 motion-reduce:transition-none xl:cursor-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+            >
+              ${languageOptions()}
+            </select>
             <a
               href="${home}#contacte"
               data-ripple
@@ -118,18 +110,18 @@ class SiteHeader extends HTMLElement {
               class="relative hidden h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full px-6 font-body menu:inline-flex focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-100 text-purple-700 outline-2 outline-purple-700 font-bold -outline-offset-1"
             >
               <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
-              <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+              <span data-ripple-text class="relative z-10" data-i18n="common.cta.specialist">Parla amb un especialista</span>
             </a>
             <a
               href="${home}#demo"
               data-ripple
               data-ripple-text-color="var(--color-purple-700)"
-              class="relative inline-flex h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full px-6 font-body focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-700 text-white outline-2 -outline-offset-1 outline-purple-700 font-bold"
+              class="relative inline-flex h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full px-4 font-body md:px-6 focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-700 text-white outline-2 -outline-offset-1 outline-purple-700 font-bold"
             >
               <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-100"></span>
               <span data-ripple-text class="relative z-10">
-                <span class="sr-only menu:not-sr-only font-bold">Sol·licita una demo</span>
-                <span aria-hidden="true" class="menu:hidden">Demo</span>
+                <span class="sr-only menu:not-sr-only font-bold" data-i18n="common.cta.demo">Sol·licita una demo</span>
+                <span aria-hidden="true" class="menu:hidden" data-i18n="header.demoShort">Demo</span>
               </span>
             </a>
             <button
@@ -139,6 +131,7 @@ class SiteHeader extends HTMLElement {
               aria-expanded="false"
               aria-controls="menu-mobil"
               data-nav-toggle
+              data-i18n-attr="aria-label:header.menu.open"
             >
               <svg
                 data-icon-open
@@ -185,6 +178,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="${home}#solucions"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.solutions"
                   >Solucions</a
                 >
               </li>
@@ -192,6 +186,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="${home}#plataforma"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.platform"
                   >Plataforma</a
                 >
               </li>
@@ -199,6 +194,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="${home}#administracions"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.administrations"
                   >Administracions</a
                 >
               </li>
@@ -206,6 +202,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="${home}#recursos"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.resources"
                   >Recursos</a
                 >
               </li>
@@ -213,6 +210,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="blog.php"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.blog"
                   >Blog</a
                 >
               </li>
@@ -220,6 +218,7 @@ class SiteHeader extends HTMLElement {
                 <a
                   href="${home}#contacte"
                   class="relative block w-fit rounded-2xl px-4 py-3 transition-colors hover:text-purple-700 after:absolute after:bottom-0.5 after:left-1/2 after:h-1 after:w-4 after:-translate-x-1/2 after:rounded-full after:bg-purple-700 after:opacity-0 hover:after:opacity-100 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
+                  data-i18n="common.nav.contact"
                   >Contacte</a
                 >
               </li>
@@ -231,12 +230,8 @@ class SiteHeader extends HTMLElement {
               class="relative mt-2 flex h-11 overflow-hidden whitespace-nowrap items-center justify-center rounded-full px-6 font-body focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30 bg-purple-100 text-purple-700 outline-2 outline-purple-700 font-bold -outline-offset-1"
             >
               <span data-ripple-fill aria-hidden="true" class="pointer-events-none absolute top-0 left-0 size-2.5 rounded-full bg-purple-700"></span>
-              <span data-ripple-text class="relative z-10">Parla amb un especialista</span>
+              <span data-ripple-text class="relative z-10" data-i18n="common.cta.specialist">Parla amb un especialista</span>
             </a>
-            ${languageSelector({
-              group: "mt-2 grid grid-cols-3 gap-1 rounded-3xl border-2 border-gray p-1",
-              button: "inline-flex h-11 rounded-2xl text-base",
-            })}
           </div>
         </nav>
       </div>

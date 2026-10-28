@@ -40,7 +40,7 @@ if (!is_string($slug) || preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $slug) !== 1
     respond(400, ['error' => 'Article no vàlid.'], 'blog.php');
 }
 
-$result = toggleLike(getDatabase(), $slug);
+$result = toggleLike(getDatabase(), $slug, i18nLanguage($_POST['lang'] ?? null));
 if ($result === null) {
     respond(404, ['error' => 'Article no trobat.'], 'blog.php');
 }

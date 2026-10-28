@@ -1,10 +1,475 @@
 {
   "language": {
-    "label": "",
-    "names": {
-      "ca": "Català",
-      "es": "Castellano",
-      "en": "English"
+    "label": ""
+  },
+  "common": {
+    "backHome": "",
+    "contact": {
+      "address": "",
+      "addressValue": "",
+      "email": "",
+      "phone": ""
+    },
+    "cta": {
+      "demo": "",
+      "specialist": ""
+    },
+    "draftBanner": "",
+    "legal": {
+      "cookies": "",
+      "notice": "",
+      "privacy": ""
+    },
+    "meta": {
+      "logoAlt": ""
+    },
+    "nav": {
+      "administrations": "",
+      "blog": "",
+      "contact": "",
+      "platform": "",
+      "resources": "",
+      "solutions": ""
+    },
+    "newTab": "",
+    "skipLink": "",
+    "tagline": "",
+    "toast": {
+      "close": ""
+    },
+    "video": {
+      "pause": ""
+    }
+  },
+  "header": {
+    "demoShort": "",
+    "menu": {
+      "close": "",
+      "open": ""
+    },
+    "navLabel": ""
+  },
+  "footer": {
+    "copyright": "",
+    "developedBy": "",
+    "legal": "",
+    "links": ""
+  },
+  "video": {
+    "ai": {
+      "label": "",
+      "poster": "",
+      "src": ""
+    },
+    "hero": {
+      "label": "",
+      "poster": "",
+      "src": ""
+    },
+    "integration": {
+      "label": "",
+      "poster": "",
+      "src": ""
+    }
+  },
+  "home": {
+    "meta": {
+      "description": "",
+      "title": "",
+      "twitterDescription": ""
+    },
+    "hero": {
+      "cta": "",
+      "subtitle": "",
+      "title": ""
+    },
+    "solutions": {
+      "ai": "",
+      "azure": "",
+      "badge": "",
+      "mission": "",
+      "missionIntro": "",
+      "platform": ""
+    },
+    "trust": {
+      "logos": {
+        "olesa": "",
+        "santVicenc": "",
+        "torroella": ""
+      },
+      "title": ""
+    },
+    "platform": {
+      "collection": {
+        "chip": "",
+        "label": "",
+        "text": "",
+        "title": ""
+      },
+      "control": {
+        "chip": "",
+        "label": "",
+        "text": "",
+        "title": ""
+      },
+      "description": "",
+      "evolution": {
+        "assistant": "",
+        "channels": "",
+        "label": "",
+        "text": "",
+        "title": ""
+      },
+      "next": "",
+      "previous": "",
+      "status": "",
+      "tax": {
+        "chip": "",
+        "fees": "",
+        "prices": "",
+        "taxes": "",
+        "text": "",
+        "title": ""
+      },
+      "title": ""
+    },
+    "integration": {
+      "highlight": "",
+      "subtitle": "",
+      "systems": "",
+      "text": "",
+      "title": ""
+    },
+    "ai": {
+      "agents": "",
+      "analytics": "",
+      "description": "",
+      "efficient": "",
+      "experience": "",
+      "natural": "",
+      "naturalLanguage": "",
+      "smart": "",
+      "subtitle": "",
+      "title": ""
+    },
+    "azure": {
+      "availability": {
+        "text": "",
+        "title": ""
+      },
+      "description": "",
+      "innovation": {
+        "text": "",
+        "title": ""
+      },
+      "scalability": {
+        "text": "",
+        "title": ""
+      },
+      "security": {
+        "text": "",
+        "title": ""
+      },
+      "title": ""
+    },
+    "resources": {
+      "data": {
+        "decide": "",
+        "lead": "",
+        "see": "",
+        "text": "",
+        "title": "",
+        "understand": ""
+      },
+      "future": {
+        "combination": "",
+        "cta": "",
+        "ctaText": "",
+        "ctaTitle": "",
+        "text": "",
+        "title": ""
+      },
+      "label": "",
+      "public": {
+        "highlight": "",
+        "notAdaptation": "",
+        "notGeneric": "",
+        "text": "",
+        "title": ""
+      }
+    },
+    "blog": {
+      "cta": "",
+      "title": ""
+    },
+    "contact": {
+      "description": "",
+      "title": ""
+    }
+  },
+  "contact": {
+    "errors": {
+      "invalidChars": "",
+      "messageTooLong": "",
+      "phone": "",
+      "privacy": "",
+      "reason": "",
+      "required": "",
+      "tooLong": ""
+    },
+    "form": {
+      "choose": "",
+      "connectionError": "",
+      "fields": {
+        "carrec": "",
+        "email": "",
+        "missatge": "",
+        "motiu": "",
+        "nom": "",
+        "organitzacio": "",
+        "telefon": ""
+      },
+      "fieldsMessage": "",
+      "invalidEmail": "",
+      "privacy": "",
+      "reasons": {
+        "altres": "",
+        "demo": "",
+        "especialista": ""
+      },
+      "required": "",
+      "requiredNote": "",
+      "sending": "",
+      "submit": ""
+    },
+    "page": {
+      "back": "",
+      "error": {
+        "title": ""
+      },
+      "forbidden": {
+        "title": ""
+      },
+      "info": {
+        "text": "",
+        "title": ""
+      },
+      "invalid": {
+        "intro": "",
+        "title": ""
+      },
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "rate": {
+        "title": ""
+      },
+      "success": {
+        "text": "",
+        "title": ""
+      },
+      "unconfigured": {
+        "title": ""
+      }
+    },
+    "server": {
+      "expired": "",
+      "invalid": "",
+      "method": "",
+      "origin": "",
+      "rate": "",
+      "recaptchaFailed": "",
+      "recaptchaUnavailable": "",
+      "sendFailed": "",
+      "success": "",
+      "tooFast": "",
+      "unconfigured": ""
+    }
+  },
+  "blog": {
+    "article": {
+      "back": "",
+      "like": "",
+      "moreInfo": "",
+      "readTime": ""
+    },
+    "categories": {
+      "all": "",
+      "casos-us": "",
+      "ia": "",
+      "integracio": "",
+      "recaptacio": ""
+    },
+    "categoriesLabel": "",
+    "empty": {
+      "cta": "",
+      "text": "",
+      "title": ""
+    },
+    "featured": "",
+    "featuredTagline": "",
+    "intro": "",
+    "latest": "",
+    "likes": {
+      "one": "",
+      "other": ""
+    },
+    "meta": {
+      "description": "",
+      "title": ""
+    },
+    "minutes": "",
+    "notFound": {
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "text": "",
+      "title": ""
+    },
+    "readArticle": "",
+    "title": "",
+    "views": {
+      "one": "",
+      "other": ""
+    }
+  },
+  "legal": {
+    "cookies": {
+      "manage": {
+        "text": "",
+        "title": ""
+      },
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "moreInfo": "",
+      "thirdParty": {
+        "text": "",
+        "title": ""
+      },
+      "title": "",
+      "used": {
+        "advertising": "",
+        "analytics": "",
+        "technical": "",
+        "text": "",
+        "title": ""
+      },
+      "what": {
+        "text": "",
+        "title": ""
+      }
+    },
+    "draftNotice": "",
+    "moreInfo": "",
+    "notice": {
+      "dataProtection": {
+        "text": "",
+        "title": ""
+      },
+      "intellectualProperty": {
+        "text": "",
+        "title": ""
+      },
+      "law": {
+        "text": "",
+        "title": ""
+      },
+      "liability": {
+        "text": "",
+        "title": ""
+      },
+      "links": {
+        "text": "",
+        "title": ""
+      },
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "owner": {
+        "address": "",
+        "email": "",
+        "intro": "",
+        "name": "",
+        "nif": "",
+        "registry": "",
+        "title": ""
+      },
+      "purpose": {
+        "text": "",
+        "title": ""
+      },
+      "terms": {
+        "text": "",
+        "title": ""
+      },
+      "title": ""
+    },
+    "privacy": {
+      "basis": {
+        "text": "",
+        "title": ""
+      },
+      "controller": {
+        "address": "",
+        "dpo": "",
+        "email": "",
+        "identity": "",
+        "nif": "",
+        "title": ""
+      },
+      "data": {
+        "text": "",
+        "title": ""
+      },
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "moreInfo": "",
+      "purpose": {
+        "text": "",
+        "title": ""
+      },
+      "recipients": {
+        "text": "",
+        "title": ""
+      },
+      "retention": {
+        "text": "",
+        "title": ""
+      },
+      "rights": {
+        "complaint": "",
+        "text": "",
+        "title": ""
+      },
+      "title": ""
+    }
+  },
+  "errors": {
+    "notFound": {
+      "blog": "",
+      "label": "",
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "text": "",
+      "title": ""
+    },
+    "serverError": {
+      "label": "",
+      "meta": {
+        "description": "",
+        "title": ""
+      },
+      "text": "",
+      "title": ""
     }
   }
 }

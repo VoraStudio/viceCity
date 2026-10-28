@@ -1,4 +1,5 @@
-import { initI18n } from "./modules/i18n.js";
+import { getLanguage, initI18n, t } from "./modules/i18n.js";
+import { initTitleReveal } from "./modules/title-reveal.js";
 import { initToasts, showToast } from "./modules/toast.js";
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -510,9 +511,12 @@ const initLikeButtons = () => {
     button.disabled = true;
 
     try {
+      const data = new FormData(form);
+      data.set("lang", getLanguage());
+
       const response = await fetch(form.action, {
         method: "POST",
-        body: new FormData(form),
+        body: data,
         headers: { Accept: "application/json" },
         credentials: "same-origin",
       });
@@ -527,9 +531,6 @@ const initLikeButtons = () => {
     }
   });
 };
-
-const contactFieldsMessage = "Revisa els camps marcats.";
-const contactConnectionError = "No hem pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.";
 
 const loadRecaptcha = (siteKey) =>
   new Promise((resolve, reject) => {
@@ -581,6 +582,7 @@ const initContactForm = () => {
   };
 
   const showError = (message) => showToast({ type: "error", message });
+  const showConnectionError = () => showError(t("contact.form.connectionError"));
 
   const showFieldErrors = (errors) => {
     const unmapped = [];
@@ -625,14 +627,18 @@ const initContactForm = () => {
   const setBusy = (busy) => {
     button.disabled = busy;
     form.setAttribute("aria-busy", String(busy));
-    label.textContent = busy ? "Enviant…" : idleLabel;
+    label.textContent = busy ? t("contact.form.sending") : idleLabel;
   };
 
   const handleFailure = (status, result) => {
     if (status === 403) tokenInput.value = "";
 
     const unmapped = result?.errors ? showFieldErrors(result.errors) : [];
-    showError(result?.errors ? [contactFieldsMessage, ...unmapped].join(" ") : (result?.message ?? contactConnectionError));
+    showError(
+      result?.errors
+        ? [t("contact.form.fieldsMessage"), ...unmapped].join(" ")
+        : (result?.message ?? t("contact.form.connectionError"))
+    );
     form.querySelector("[aria-invalid='true']")?.focus();
   };
 
@@ -649,6 +655,8 @@ const initContactForm = () => {
       if (!tokenInput.value) await loadToken();
 
       const data = new FormData(form);
+      // El servidor respon en el mateix idioma que la pàgina
+      data.set("lang", getLanguage());
       if (siteKey) data.set("recaptcha_response", await window.grecaptcha.execute(siteKey, { action: "contacte" }));
 
       const response = await fetch(form.action, {
@@ -668,7 +676,7 @@ const initContactForm = () => {
 
       handleFailure(response.status, result);
     } catch {
-      showError(contactConnectionError);
+      showConnectionError();
     } finally {
       setBusy(false);
     }
@@ -676,15 +684,17 @@ const initContactForm = () => {
 
   button.disabled = true;
   loadToken()
-    .catch(() => showError(contactConnectionError))
+    .catch(showConnectionError)
     .finally(() => {
       button.disabled = false;
     });
 };
 
-initI18n();
+// Els textos es tradueixen abans de les animacions: SplitText ha de dividir el text definitiu
+await initI18n();
 
 if (!prefersReducedMotion) {
+  initTitleReveal();
   initHeaderAnimation();
   initHeroAnimation();
   initHeroBorderAnimation();

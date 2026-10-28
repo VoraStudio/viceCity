@@ -1,7 +1,8 @@
+import { t } from "./i18n.js";
+
 const MAX_TOASTS = 3;
 const DURATIONS = { success: 6000, error: 8000 };
 const MIN_RESUME = 1500;
-const CLOSE_LABEL = "Tanca l'avís";
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 const icons = {
@@ -107,7 +108,7 @@ const buildToast = (type, message) => {
 
   const close = document.createElement("button");
   close.type = "button";
-  close.setAttribute("aria-label", CLOSE_LABEL);
+  close.setAttribute("aria-label", t("common.toast.close"));
   close.className =
     "absolute top-2 right-2 inline-flex size-8 items-center justify-center rounded-full text-ink transition-colors hover:text-purple-700 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30";
   close.append(createIcon("close", "size-4"));

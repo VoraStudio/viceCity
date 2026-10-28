@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/i18n.php';
 
 const CATALAN_MONTHS = ['gen.', 'febr.', 'març', 'abr.', 'maig', 'juny', 'jul.', 'ag.', 'set.', 'oct.', 'nov.', 'des.'];
 
@@ -191,7 +192,7 @@ function hasLiked(string $slug): bool
     return in_array($slug, getCookieSlugs(LIKES_COOKIE), true);
 }
 
-function toggleLike(PDO $pdo, string $slug): ?array
+function toggleLike(PDO $pdo, string $slug, string $lang): ?array
 {
     $liked = getCookieSlugs(LIKES_COOKIE);
     $wasLiked = in_array($slug, $liked, true);
@@ -214,7 +215,7 @@ function toggleLike(PDO $pdo, string $slug): ?array
 
     $likes = (int) $count->fetchColumn();
 
-    return ['liked' => !$wasLiked, 'likes' => $likes, 'label' => formatCount($likes) . " m'agrada"];
+    return ['liked' => !$wasLiked, 'likes' => $likes, 'label' => formatCount($likes) . ' ' . t(countNounKey('likes', $likes), $lang)];
 }
 
 function formatCount(int $value): string
@@ -232,14 +233,18 @@ function formatCount(int $value): string
     return preg_replace('/,0$/', '', $thousands) . ' k';
 }
 
-function likesLabel(int $value): string
+/** Clau del nom que acompanya un recompte: blog.likes.one, blog.views.other… */
+function countNounKey(string $noun, int $value): string
 {
-    return $value . " m'agrada";
+    return 'blog.' . $noun . ($value === 1 ? '.one' : '.other');
 }
 
-function viewsLabel(int $value): string
+/** Recompte en català amb el nom marcat perquè el front el tradueixi (p. ex. «3 visites»). */
+function countLabelHtml(string $count, string $noun, int $value): string
 {
-    return $value . ($value === 1 ? ' visita' : ' visites');
+    $key = countNounKey($noun, $value);
+
+    return e($count) . ' <span data-i18n="' . e($key) . '">' . e(t($key)) . '</span>';
 }
 
 function iconHeart(string $class = 'size-4 shrink-0'): string
@@ -259,8 +264,8 @@ function renderPostStats(array $post, string $class = ''): string
 
     return '<p class="flex items-center gap-4 text-label font-medium text-ink/70' . ($class !== '' ? ' ' . e($class) : '') . '">'
         . '<span class="inline-flex items-center gap-1.5">' . iconHeart()
-        . '<span aria-hidden="true">' . e(formatCount($likes)) . '</span><span class="sr-only">' . e(likesLabel($likes)) . '</span></span>'
+        . '<span aria-hidden="true">' . e(formatCount($likes)) . '</span><span class="sr-only">' . countLabelHtml((string) $likes, 'likes', $likes) . '</span></span>'
         . '<span class="inline-flex items-center gap-1.5">' . iconEye()
-        . '<span aria-hidden="true">' . e(formatCount($views)) . '</span><span class="sr-only">' . e(viewsLabel($views)) . '</span></span>'
+        . '<span aria-hidden="true">' . e(formatCount($views)) . '</span><span class="sr-only">' . countLabelHtml((string) $views, 'views', $views) . '</span></span>'
         . '</p>';
 }

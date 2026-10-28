@@ -1,123 +1,67 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import {
-  SUPPORTED_LANGUAGES,
-  findTranslation,
-  hasTranslations,
-  isSupportedLanguage,
-  lookupKey,
-  parseAttributeSpec,
-  resolveTranslation,
-} from "../assets/js/modules/i18n.js";
+import { LANGUAGES, fillPlaceholders, findTranslation, parseAttributeSpec } from "../assets/js/modules/i18n.js";
 
-describe("SUPPORTED_LANGUAGES", () => {
-  it("lists the languages in display order with Catalan first", () => {
-    assert.deepEqual(SUPPORTED_LANGUAGES, ["ca", "es", "en"]);
+describe("LANGUAGES", () => {
+  it("lists the languages with their autonyms, Catalan first", () => {
+    assert.deepEqual(LANGUAGES, { ca: "Català", es: "Castellano", en: "English" });
+    assert.deepEqual(Object.keys(LANGUAGES), ["ca", "es", "en"]);
   });
 });
 
-describe("hasTranslations", () => {
-  const autonyms = { ca: "Català", es: "Castellano", en: "English" };
-
-  it("is false for a skeleton that only has autonyms and empty values", () => {
-    assert.equal(hasTranslations({ language: { label: "", names: autonyms } }), false);
-  });
-
-  it("is true as soon as one value outside language.names has text", () => {
-    assert.equal(hasTranslations({ language: { label: "Idioma", names: autonyms } }), true);
-    assert.equal(hasTranslations({ language: { label: "", names: autonyms }, hero: { title: "Hola" } }), true);
-  });
-
-  it("finds text at any depth", () => {
-    assert.equal(hasTranslations({ a: { b: { c: { d: "deep" } } } }), true);
-    assert.equal(hasTranslations({ a: { b: { c: { d: "" } } } }), false);
-  });
-
-  it("only excludes the exact language.names path from the root", () => {
-    assert.equal(hasTranslations({ language: { namesExtra: "x" } }), true);
-    assert.equal(hasTranslations({ other: { language: { names: { ca: "x" } } } }), true);
-    assert.equal(hasTranslations({ language: { names: { ca: "x" } } }), false);
-  });
-
-  it("ignores non-string leaves", () => {
-    assert.equal(hasTranslations({ count: 3, flag: true, nothing: null }), false);
-  });
-
-  it("is false for empty or missing dictionaries", () => {
-    for (const value of [{}, undefined, null, "", "text-at-root"]) {
-      assert.equal(hasTranslations(value), false, String(value));
-    }
-  });
-});
-
-describe("isSupportedLanguage", () => {
-  it("accepts the three supported languages", () => {
-    assert.equal(isSupportedLanguage("ca"), true);
-    assert.equal(isSupportedLanguage("es"), true);
-    assert.equal(isSupportedLanguage("en"), true);
-  });
-
-  it("rejects anything else, including near misses and non-strings", () => {
-    for (const value of ["fr", "", "CA", "ca ", "ca-ES", null, undefined, 42]) {
-      assert.equal(isSupportedLanguage(value), false, String(value));
-    }
-  });
-});
-
-describe("lookupKey", () => {
-  const dictionary = {
-    title: "Títol",
-    language: { label: "Idioma", names: { ca: "Català" } },
-    empty: "",
-    count: 3,
+describe("findTranslation: lookup by dotted key", () => {
+  const dictionaries = {
+    ca: {
+      title: "Títol",
+      language: { label: "Idioma", nested: { deep: "Profund" } },
+      empty: "",
+      count: 3,
+    },
   };
+  const find = (key) => findTranslation(key, "ca", dictionaries);
 
-  it("reads top-level and nested keys by dotted path", () => {
-    assert.equal(lookupKey(dictionary, "title"), "Títol");
-    assert.equal(lookupKey(dictionary, "language.label"), "Idioma");
-    assert.equal(lookupKey(dictionary, "language.names.ca"), "Català");
+  it("reads top-level and nested keys", () => {
+    assert.equal(find("title"), "Títol");
+    assert.equal(find("language.label"), "Idioma");
+    assert.equal(find("language.nested.deep"), "Profund");
   });
 
   it("returns undefined for unknown keys and unknown intermediate nodes", () => {
-    assert.equal(lookupKey(dictionary, "nope"), undefined);
-    assert.equal(lookupKey(dictionary, "language.nope"), undefined);
-    assert.equal(lookupKey(dictionary, "nope.deeper.still"), undefined);
-    assert.equal(lookupKey(dictionary, "title.deeper"), undefined);
+    assert.equal(find("nope"), undefined);
+    assert.equal(find("language.nope"), undefined);
+    assert.equal(find("nope.deeper.still"), undefined);
+    assert.equal(find("title.deeper"), undefined);
   });
 
   it("treats an empty string as missing", () => {
-    assert.equal(lookupKey(dictionary, "empty"), undefined);
+    assert.equal(find("empty"), undefined);
   });
 
-  it("returns undefined when the path points to a namespace or a non-string", () => {
-    assert.equal(lookupKey(dictionary, "language"), undefined);
-    assert.equal(lookupKey(dictionary, "count"), undefined);
-  });
-
-  it("returns undefined when the dictionary is not loaded", () => {
-    assert.equal(lookupKey(undefined, "title"), undefined);
-    assert.equal(lookupKey(null, "title"), undefined);
+  it("returns undefined when the key points to a namespace or a non-string", () => {
+    assert.equal(find("language"), undefined);
+    assert.equal(find("count"), undefined);
   });
 
   it("never walks the prototype chain", () => {
-    assert.equal(lookupKey({}, "constructor"), undefined);
-    assert.equal(lookupKey({}, "toString.name"), undefined);
-    assert.equal(lookupKey({}, "__proto__"), undefined);
+    assert.equal(find("constructor"), undefined);
+    assert.equal(find("toString.name"), undefined);
+    assert.equal(find("__proto__"), undefined);
+    assert.equal(find("title.length"), undefined);
   });
 });
 
-describe("findTranslation", () => {
+describe("findTranslation: fallback to Catalan", () => {
   const dictionaries = {
     ca: { greeting: "Hola", only: { catalan: "Només català" }, blank: "" },
     es: { greeting: "Buenas", only: {}, blank: "" },
     en: { greeting: "" },
   };
 
-  it("uses the active language when it has the key", () => {
+  it("uses the active language when it has the value", () => {
     assert.equal(findTranslation("greeting", "es", dictionaries), "Buenas");
   });
 
-  it("falls back to Catalan when the active language leaves the value empty", () => {
+  it("falls back to Catalan when the active value is empty", () => {
     assert.equal(findTranslation("greeting", "en", dictionaries), "Hola");
   });
 
@@ -135,26 +79,31 @@ describe("findTranslation", () => {
     assert.equal(findTranslation("greeting", "es", {}), undefined);
   });
 
-  it("does not loop when the active language is Catalan", () => {
+  it("works when the active language is Catalan itself", () => {
     assert.equal(findTranslation("greeting", "ca", dictionaries), "Hola");
     assert.equal(findTranslation("blank", "ca", dictionaries), undefined);
   });
 });
 
-describe("resolveTranslation", () => {
-  const dictionaries = { ca: { greeting: "Hola" }, es: { greeting: "Buenas" } };
-
-  it("returns the translation of the active language", () => {
-    assert.equal(resolveTranslation("greeting", "es", dictionaries), "Buenas");
+describe("fillPlaceholders", () => {
+  it("replaces each {name} with its value", () => {
+    assert.equal(fillPlaceholders("Targeta {current} de {total}", { current: 2, total: 4 }), "Targeta 2 de 4");
   });
 
-  it("falls back to Catalan", () => {
-    assert.equal(resolveTranslation("greeting", "en", dictionaries), "Hola");
+  it("replaces a placeholder every time it appears", () => {
+    assert.equal(fillPlaceholders("{a} i {a}", { a: "x" }), "x i x");
   });
 
-  it("returns the key itself as the last resort", () => {
-    assert.equal(resolveTranslation("unknown.key", "es", dictionaries), "unknown.key");
-    assert.equal(resolveTranslation("greeting", "es", {}), "greeting");
+  it("leaves unknown placeholders untouched", () => {
+    assert.equal(fillPlaceholders("Hola {name}", {}), "Hola {name}");
+  });
+
+  it("does not read inherited properties", () => {
+    assert.equal(fillPlaceholders("{constructor}", {}), "{constructor}");
+  });
+
+  it("returns text without placeholders as is", () => {
+    assert.equal(fillPlaceholders("Sense res", { a: 1 }), "Sense res");
   });
 });
 
@@ -164,10 +113,6 @@ describe("parseAttributeSpec", () => {
       { attribute: "alt", key: "image.alt" },
       { attribute: "aria-label", key: "menu.open" },
     ]);
-  });
-
-  it("parses a single pair", () => {
-    assert.deepEqual(parseAttributeSpec("title:nav.title"), [{ attribute: "title", key: "nav.title" }]);
   });
 
   it("trims whitespace around attributes and keys", () => {
@@ -186,7 +131,6 @@ describe("parseAttributeSpec", () => {
 
   it("returns an empty list for empty or missing specs", () => {
     assert.deepEqual(parseAttributeSpec(""), []);
-    assert.deepEqual(parseAttributeSpec(null), []);
     assert.deepEqual(parseAttributeSpec(undefined), []);
   });
 });

@@ -1,3 +1,5 @@
+import { t } from "./i18n.js";
+
 // Carrusel vertical cíclic de la secció 2: la roda del ratolí passa de targeta quan el cursor és sobre la pila
 const section = document.querySelector("[data-stack-carousel]");
 
@@ -28,7 +30,11 @@ const initStackCarousel = () => {
     const indice = ((Math.round(activa) % cards.length) + cards.length) % cards.length;
     if (!estatus || indice === indiceAnunciado) return;
     indiceAnunciado = indice;
-    estatus.textContent = `Targeta ${indice + 1} de ${cards.length}: ${cards[indice].querySelector("h3")?.textContent.trim() ?? ""}`;
+    estatus.textContent = t("home.platform.status", {
+      current: indice + 1,
+      total: cards.length,
+      title: cards[indice].querySelector("h3")?.textContent.trim() ?? "",
+    });
   };
 
   // Col·loca cada targeta segons la distància a la targeta activa

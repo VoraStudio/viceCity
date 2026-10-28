@@ -1,3 +1,5 @@
+import { t } from './i18n.js';
+
 // Menú mòbil: obre/tanca el panell i manté aria-expanded sincronitzat
 const toggle = document.querySelector('[data-nav-toggle]');
 const menu = document.querySelector('[data-nav-menu]');
@@ -8,7 +10,7 @@ if (toggle && menu) {
 
   const setOpen = (open) => {
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Tanca el menú' : 'Obre el menú');
+    toggle.setAttribute('aria-label', t(open ? 'header.menu.close' : 'header.menu.open'));
     menu.classList.toggle('hidden', !open);
     iconOpen.classList.toggle('hidden', open);
     iconClose.classList.toggle('hidden', !open);

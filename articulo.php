@@ -15,6 +15,7 @@ if ($post === null) {
         'title' => sitePageTitle('Article no trobat'),
         'description' => "L'article que busques no existeix o s'ha retirat.",
         'path' => 'blog.php',
+        'i18n' => 'blog.notFound.meta',
     ];
 } else {
     recordView($pdo, $post['slug']);
@@ -38,22 +39,22 @@ require __DIR__ . '/includes/head.php';
 <?php if ($post === null) : ?>
       <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24" aria-labelledby="article-titol">
         <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
-          <h1 id="article-titol" class="font-head text-3xl leading-tight font-bold text-balance md:text-5xl">Article no trobat</h1>
-          <p class="mt-5 text-base leading-relaxed text-ink/80 md:text-lg">L'article que busques no existeix o s'ha retirat.</p>
-          <a href="blog.php" class="mt-6 <?= e($backLinkClass) ?>">Torna al blog</a>
+          <h1 id="article-titol" class="font-head text-3xl leading-tight font-bold text-balance md:text-5xl" data-i18n="blog.notFound.title">Article no trobat</h1>
+          <p class="mt-5 text-base leading-relaxed text-ink/80 md:text-lg" data-i18n="blog.notFound.text">L'article que busques no existeix o s'ha retirat.</p>
+          <a href="blog.php" class="mt-6 <?= e($backLinkClass) ?>" data-i18n="blog.article.back">Torna al blog</a>
         </div>
       </section>
 <?php else : ?>
       <section class="bg-linear-to-b from-lav-100/60 to-paper pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24" aria-labelledby="article-titol">
         <div class="mx-auto w-full max-w-3xl px-4 md:px-8">
-          <a href="blog.php" class="<?= e($backLinkClass) ?>">Torna al blog</a>
+          <a href="blog.php" class="<?= e($backLinkClass) ?>" data-i18n="blog.article.back">Torna al blog</a>
 
           <article class="mt-8">
             <header>
-              <p class="inline-flex h-7 items-center rounded-full border-1 border-lav-300 bg-lav-100/60 px-3 font-body text-label font-bold tracking-wide text-purple-700 uppercase"><?= e(BLOG_CATEGORIES[$post['category']]) ?></p>
+              <p class="inline-flex h-7 items-center rounded-full border-1 border-lav-300 bg-lav-100/60 px-3 font-body text-label font-bold tracking-wide text-purple-700 uppercase" data-i18n="blog.categories.<?= e($post['category']) ?>"><?= e(BLOG_CATEGORIES[$post['category']]) ?></p>
               <h1 id="article-titol" class="mt-5 font-head text-3xl leading-tight font-bold text-balance md:text-5xl"><?= e($post['title']) ?></h1>
               <p class="mt-4 text-label font-medium text-ink/70">
-                <time datetime="<?= e($post['published_at']) ?>"><?= e(formatDateCatalan($post['published_at'])) ?></time> · <?= e($post['read_minutes']) ?> min de lectura
+                <time datetime="<?= e($post['published_at']) ?>"><?= e(formatDateCatalan($post['published_at'])) ?></time> · <?= e($post['read_minutes']) ?> <span data-i18n="blog.article.readTime">min de lectura</span>
               </p>
             </header>
 
@@ -76,11 +77,11 @@ require __DIR__ . '/includes/head.php';
 <?php endif; ?>
 <?php if ($post['links'] !== []) : ?>
             <section class="mt-10" aria-labelledby="enllacos-titol">
-              <h2 id="enllacos-titol" class="font-head text-xl leading-tight font-bold md:text-2xl">Per saber-ne més</h2>
+              <h2 id="enllacos-titol" class="font-head text-xl leading-tight font-bold md:text-2xl" data-i18n="blog.article.moreInfo">Per saber-ne més</h2>
               <ul class="mt-4 flex flex-col gap-2">
 <?php foreach ($post['links'] as $link) : ?>
                 <li>
-                  <a href="<?= e($link['url']) ?>" rel="noopener noreferrer" class="<?= e($backLinkClass) ?>"><?= e($link['label']) ?></a>
+                  <a href="<?= e($link['url']) ?>" target="_blank" rel="noopener noreferrer" class="<?= e($backLinkClass) ?>"><?= e($link['label']) ?><span class="sr-only" data-i18n="common.newTab"><?= e(t('common.newTab')) ?></span></a>
                 </li>
 <?php endforeach; ?>
               </ul>
@@ -97,18 +98,18 @@ require __DIR__ . '/includes/head.php';
                   class="group inline-flex h-10 items-center gap-2 rounded-full border-1 border-lav-300 bg-white px-4 font-head text-sm font-semibold text-purple-700 transition-colors hover:bg-lav-100/60 aria-pressed:border-purple-700 aria-pressed:bg-purple-700 aria-pressed:text-white aria-pressed:hover:bg-purple-800 motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30"
                 >
                   <?= iconHeart('size-5 shrink-0 group-aria-pressed:fill-current') ?>
-                  M'agrada
+                  <span data-i18n="blog.article.like">M'agrada</span>
                 </button>
               </form>
               <p class="flex items-center gap-4 text-label font-medium text-ink/70">
                 <span class="inline-flex items-center gap-1.5">
                   <?= iconHeart() ?>
-                  <span data-like-count aria-live="polite"><?= e(formatCount((int) $post['likes']) . " m'agrada") ?></span>
+                  <span data-like-count aria-live="polite"><?= countLabelHtml(formatCount((int) $post['likes']), 'likes', (int) $post['likes']) ?></span>
                 </span>
                 <span class="inline-flex items-center gap-1.5">
                   <?= iconEye() ?>
                   <span aria-hidden="true"><?= e(formatCount((int) $post['views'])) ?></span>
-                  <span class="sr-only"><?= e(viewsLabel((int) $post['views'])) ?></span>
+                  <span class="sr-only"><?= countLabelHtml((string) $post['views'], 'views', (int) $post['views']) ?></span>
                 </span>
               </p>
             </footer>

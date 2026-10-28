@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/i18n.php';
+
 // Camps de text d'una sola línia: mai poden dur salts de línia (injecció de capçaleres).
 const CONTACT_SINGLE_LINE_LIMITS = [
     'nom' => 100,
@@ -19,14 +21,6 @@ const CONTACT_REASONS = [
     'altres' => 'Altres consultes',
 ];
 
-const CONTACT_FIELD_LABELS = [
-    'nom' => 'Nom i cognoms',
-    'organitzacio' => 'Organització',
-    'carrec' => 'Càrrec',
-    'email' => 'Correu electrònic',
-    'telefon' => 'Telèfon',
-];
-
 /** Retalla un valor de POST; qualsevol cosa que no sigui text (p. ex. arrays) es converteix en cadena buida. */
 function normalizeInput(mixed $value): string
 {
@@ -40,61 +34,63 @@ function hasLineBreaks(string $value): bool
 }
 
 /**
- * Valida les dades del formulari.
+ * Valida les dades del formulari. Els missatges surten dels diccionaris en l'idioma $lang
+ * (les etiquetes dels camps són les mateixes claus que fa servir el formulari).
  *
  * @param array<string, mixed> $input Normalment $_POST.
  * @return array{data: array<string, string>, errors: list<string>, fieldErrors: array<string, string>}
  */
-function validateContact(array $input): array
+function validateContact(array $input, string $lang): array
 {
     $data = [];
     $errors = [];
     $fieldErrors = [];
-    $fail = static function (string $field, string $message) use (&$errors, &$fieldErrors): void {
+    $fail = static function (string $field, string $key, array $params = []) use (&$errors, &$fieldErrors, $lang): void {
+        $message = t($key, $lang, $params);
         $errors[] = $message;
         $fieldErrors[$field] ??= $message;
     };
+    $label = static fn (string $field): string => t('contact.form.fields.' . $field, $lang);
 
     foreach (CONTACT_SINGLE_LINE_LIMITS as $field => $limit) {
         $value = normalizeInput($input[$field] ?? '');
         $data[$field] = $value;
-        $label = CONTACT_FIELD_LABELS[$field];
 
         if (hasLineBreaks($value)) {
-            $fail($field, "El camp «{$label}» conté caràcters no permesos.");
+            $fail($field, 'contact.errors.invalidChars', ['label' => $label($field)]);
         } elseif (mb_strlen($value) > $limit) {
-            $fail($field, "El camp «{$label}» no pot superar els {$limit} caràcters.");
+            $fail($field, 'contact.errors.tooLong', ['label' => $label($field), 'limit' => $limit]);
         }
     }
 
     foreach (['nom', 'organitzacio', 'email'] as $requiredField) {
         if ($data[$requiredField] === '') {
-            $fail($requiredField, 'El camp «' . CONTACT_FIELD_LABELS[$requiredField] . '» és obligatori.');
+            $fail($requiredField, 'contact.errors.required', ['label' => $label($requiredField)]);
         }
     }
 
     $email = $data['email'];
     if ($email !== '' && !hasLineBreaks($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        $fail('email', 'Introdueix un correu electrònic vàlid.');
+        $fail('email', 'contact.form.invalidEmail');
     }
 
     if ($data['telefon'] !== '' && preg_match('/^\+?[0-9 ().-]{6,30}$/', $data['telefon']) !== 1) {
-        $fail('telefon', 'Introdueix un telèfon vàlid.');
+        $fail('telefon', 'contact.errors.phone');
     }
 
     $data['motiu'] = normalizeInput($input['motiu'] ?? '');
     if (!array_key_exists($data['motiu'], CONTACT_REASONS)) {
-        $fail('motiu', 'Selecciona una opció a «Què necessites?».');
+        $fail('motiu', 'contact.errors.reason', ['label' => $label('motiu')]);
     }
 
     // El missatge és l'únic camp multilínia i només va al cos del correu, mai a les capçaleres.
     $data['missatge'] = normalizeInput($input['missatge'] ?? '');
     if (mb_strlen($data['missatge']) > CONTACT_MESSAGE_LIMIT) {
-        $fail('missatge', 'El missatge no pot superar els ' . CONTACT_MESSAGE_LIMIT . ' caràcters.');
+        $fail('missatge', 'contact.errors.messageTooLong', ['limit' => CONTACT_MESSAGE_LIMIT]);
     }
 
     if (normalizeInput($input['privacitat'] ?? '') !== 'si') {
-        $fail('privacitat', 'Cal acceptar la política de privacitat.');
+        $fail('privacitat', 'contact.errors.privacy');
     }
 
     return ['data' => $data, 'errors' => $errors, 'fieldErrors' => $fieldErrors];

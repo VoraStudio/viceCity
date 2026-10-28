@@ -1,10 +1,475 @@
 {
   "language": {
-    "label": "Idioma",
-    "names": {
-      "ca": "Català",
-      "es": "Castellano",
-      "en": "English"
+    "label": "Idioma"
+  },
+  "common": {
+    "backHome": "Tornar a l'inici",
+    "contact": {
+      "address": "Adreça",
+      "addressValue": "Carrer Pic de Peguera 11, Edifici Giro emprèn, Despatx A2/18B, 17003 Girona",
+      "email": "Correu electrònic",
+      "phone": "Telèfon"
+    },
+    "cta": {
+      "demo": "Sol·licita una demo",
+      "specialist": "Parla amb un especialista"
+    },
+    "draftBanner": "Esborrany: hi ha dades pendents de configurar (.env o variables d'entorn)",
+    "legal": {
+      "cookies": "Cookies",
+      "notice": "Avís legal",
+      "privacy": "Privacitat"
+    },
+    "meta": {
+      "logoAlt": "Logotip de Vicity"
+    },
+    "nav": {
+      "administrations": "Administracions",
+      "blog": "Blog",
+      "contact": "Contacte",
+      "platform": "Plataforma",
+      "resources": "Recursos",
+      "solutions": "Solucions"
+    },
+    "newTab": "(s'obre en una pestanya nova)",
+    "skipLink": "Vés al contingut",
+    "tagline": "Gestiona avui. Prepara't per demà.",
+    "toast": {
+      "close": "Tanca l'avís"
+    },
+    "video": {
+      "pause": "Pausa el vídeo"
+    }
+  },
+  "header": {
+    "demoShort": "Demo",
+    "menu": {
+      "close": "Tanca el menú",
+      "open": "Obre el menú"
+    },
+    "navLabel": "Navegació principal"
+  },
+  "footer": {
+    "copyright": "© 2026 Vicity. Tots els drets reservats.",
+    "developedBy": "Desenvolupat per",
+    "legal": "Legal",
+    "links": "Enllaços"
+  },
+  "video": {
+    "ai": {
+      "label": "Conversa amb l'assistent d'IA de Vicity: es pregunta quins expedients porten més de 90 dies sense moviment i l'assistent els troba, els agrupa per tipus de tribut i ofereix generar-ne l'informe",
+      "poster": "assets/video/vicity-conversa-poster.webp",
+      "src": "assets/video/vicity-conversa.mp4"
+    },
+    "hero": {
+      "label": "Presentació de Vicity: gestió tributària, recaptació, dades i intel·ligència artificial sobre Microsoft Azure",
+      "poster": "assets/video/vicity-hero-poster.webp",
+      "src": "assets/video/vicity-hero.mp4"
+    },
+    "integration": {
+      "label": "Vicity connectat amb gestors d'expedients, registres electrònics, plataformes corporatives i serveis d'interoperabilitat",
+      "poster": "assets/video/vicity-animacio-poster.webp",
+      "src": "assets/video/vicity-animacio.mp4"
+    }
+  },
+  "home": {
+    "meta": {
+      "description": "Vicity és una plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur, pensada per a les administracions públiques.",
+      "title": "Vicity · La gestió tributària preparada per al que vindrà",
+      "twitterDescription": "Plataforma de gestió tributària i recaptació oberta, intel·ligent i preparada per al futur."
+    },
+    "hero": {
+      "cta": "Sol·licita una demostració",
+      "subtitle": "Les administracions públiques necessiten eines capaces d'evolucionar al mateix ritme que els nous reptes tecnològics i les expectatives de la ciutadania.",
+      "title": "La gestió tributària preparada per al que vindrà"
+    },
+    "solutions": {
+      "ai": "La <span class=\"font-bold\">intel·ligència artificial</span>, les dades i els nous canals digitals estan transformant la manera com les administracions treballen i es relacionen amb la ciutadania.",
+      "azure": "Construïda sobre <span class=\"font-bold\">Microsoft Azure</span> i integrada amb l'ecosistema tecnològic de cada administració.",
+      "badge": "La transformació digital ja no és una opció",
+      "mission": "Ajudar les administracions públiques a evolucionar la seva gestió tributària sense renunciar al que ja funciona.",
+      "missionIntro": "Vicity neix amb una missió clara:",
+      "platform": "Vicity és una <span class=\"font-bold\">plataforma de gestió tributària</span> i recaptació oberta, intel·ligent i preparada per al futur."
+    },
+    "trust": {
+      "logos": {
+        "olesa": "Escut d'Olesa",
+        "santVicenc": "Escut de Sant Vicenç",
+        "torroella": "Escut de Torroella"
+      },
+      "title": "Administracions que ja confien en la transformació digital municipal"
+    },
+    "platform": {
+      "collection": {
+        "chip": "Tracker",
+        "label": "Cicle recaptatori",
+        "text": "Gestiona tot el cicle recaptatori amb agilitat i control.",
+        "title": "Recaptació"
+      },
+      "control": {
+        "chip": "Dades",
+        "label": "Informació actualitzada",
+        "text": "Disposa d'informació actualitzada per prendre decisions amb confiança.",
+        "title": "Control i seguiment"
+      },
+      "description": "La gestió tributària és una de les funcions més importants de qualsevol administració. Per això Vicity està dissenyat específicament per donar resposta als processos que impacten directament en els ingressos públics.",
+      "evolution": {
+        "assistant": "Assistent d'IA",
+        "channels": "Nous canals digitals",
+        "label": "Noves capacitats",
+        "text": "Una plataforma preparada per incorporar les oportunitats de demà.",
+        "title": "Evolució contínua"
+      },
+      "next": "Targeta següent",
+      "previous": "Targeta anterior",
+      "status": "Targeta {current} de {total}: {title}",
+      "tax": {
+        "chip": "Mòdul",
+        "fees": "Taxes",
+        "prices": "Preus públics",
+        "taxes": "Impostos",
+        "text": "Administra impostos, taxes i preus públics amb una visió completa i integrada.",
+        "title": "Gestió tributària"
+      },
+      "title": "Especialització que genera confiança"
+    },
+    "integration": {
+      "highlight": "Perquè la innovació és més efectiva quan es construeix sobre una base sòlida.",
+      "subtitle": "La tecnologia ha de sumar. No substituir.",
+      "systems": "Gestors d'expedients, registres electrònics, plataformes corporatives i serveis d'interoperabilitat poden continuar treballant conjuntament dins d'un ecosistema connectat.",
+      "text": "Vicity s'integra amb els sistemes que ja formen part del dia a dia de la teva organització.",
+      "title": "Integració sense barreres"
+    },
+    "ai": {
+      "agents": "Desplegar agents d'IA especialitzats per executar processos tributaris de forma autònoma.",
+      "analytics": "Visió 360° de l'activitat tributària mitjançant analítica avançada.",
+      "description": "Amb Vicity, la Intel·ligència Artificial deixa de ser una promesa de futur per convertir-se en una eina real al servei de les administracions públiques.",
+      "efficient": "Més eficient.",
+      "experience": "Una nova experiència de treball.",
+      "natural": "Més natural.",
+      "naturalLanguage": "Consultar dades amb llenguatge natural.",
+      "smart": "Més intel·ligent.",
+      "subtitle": "Imagineu poder trobar informació en segons.",
+      "title": "La Intel·ligència Artificial arriba a la gestió tributària"
+    },
+    "azure": {
+      "availability": {
+        "text": "Accés als serveis quan els necessites.",
+        "title": "Disponibilitat"
+      },
+      "description": "La innovació només és útil quan es construeix sobre uns fonaments sòlids. Vicity utilitza una arquitectura cloud basada en Microsoft Azure per oferir una plataforma preparada per créixer, adaptar-se i evolucionar de forma contínua.",
+      "innovation": {
+        "text": "Preparat per incorporar les últimes capacitats d'intel·ligència artificial.",
+        "title": "Innovació"
+      },
+      "scalability": {
+        "text": "Creix al ritme de les necessitats de cada organització.",
+        "title": "Escalabilitat"
+      },
+      "security": {
+        "text": "Protecció de la informació amb tecnologia empresarial.",
+        "title": "Seguretat"
+      },
+      "title": "Construït sobre la confiança de Microsoft Azure"
+    },
+    "resources": {
+      "data": {
+        "decide": "Decidir amb criteri.",
+        "lead": "Cada operació tributària genera informació valuosa.",
+        "see": "Veure més enllà de les dades.",
+        "text": "Vicity transforma aquestes dades en coneixement útil perquè responsables polítics, tècnics i directius disposin de la informació necessària per actuar amb més agilitat i confiança.",
+        "title": "Dades que impulsen decisions",
+        "understand": "Entendre què està passant."
+      },
+      "future": {
+        "combination": "Vicity combina especialització, integració i intel·ligència artificial per ajudar les organitzacions públiques a avançar amb confiança cap a aquesta nova etapa.",
+        "cta": "Sol·licitar demostració",
+        "ctaText": "Demana una demostració personalitzada i explora una nova manera d'entendre la gestió tributària.",
+        "ctaTitle": "Descobreix què pot aportar Vicity a la teva organització",
+        "text": "Les administracions necessiten eines que no només resolguin les necessitats actuals, sinó que també estiguin preparades per als reptes dels pròxims anys.",
+        "title": "El futur de la gestió tributària comença avui"
+      },
+      "label": "Dades, administracions públiques i demostració",
+      "public": {
+        "highlight": "Amb una arquitectura oberta, capacitat d'integració i una visió enfocada a llarg termini.",
+        "notAdaptation": "No és una adaptació.",
+        "notGeneric": "No és una eina genèrica.",
+        "text": "Vicity ha estat concebut des del primer dia per respondre a les necessitats específiques de les administracions públiques.",
+        "title": "Pensat per a les administracions públiques"
+      }
+    },
+    "blog": {
+      "cta": "Visitar el blog",
+      "title": "Descobreix el nostre blog"
+    },
+    "contact": {
+      "description": "Explica'ns el teu cas i un especialista de Vicity es posarà en contacte amb tu per concertar una demostració o resoldre els teus dubtes.",
+      "title": "Parlem de la teva organització"
+    }
+  },
+  "contact": {
+    "errors": {
+      "invalidChars": "El camp «{label}» conté caràcters no permesos.",
+      "messageTooLong": "El missatge no pot superar els {limit} caràcters.",
+      "phone": "Introdueix un telèfon vàlid.",
+      "privacy": "Cal acceptar la política de privacitat.",
+      "reason": "Selecciona una opció a «{label}».",
+      "required": "El camp «{label}» és obligatori.",
+      "tooLong": "El camp «{label}» no pot superar els {limit} caràcters."
+    },
+    "form": {
+      "choose": "Selecciona una opció",
+      "connectionError": "No hem pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.",
+      "fields": {
+        "carrec": "Càrrec",
+        "email": "Correu electrònic",
+        "missatge": "Missatge",
+        "motiu": "Què necessites?",
+        "nom": "Nom i cognoms",
+        "organitzacio": "Organització",
+        "telefon": "Telèfon"
+      },
+      "fieldsMessage": "Revisa els camps marcats.",
+      "invalidEmail": "Introdueix un correu electrònic vàlid.",
+      "privacy": "He llegit i accepto la <a href=\"privacitat.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">política de privacitat</a>.",
+      "reasons": {
+        "altres": "Altres consultes",
+        "demo": "Sol·licitud de demostració",
+        "especialista": "Parlar amb un especialista"
+      },
+      "required": "Aquest camp és obligatori.",
+      "requiredNote": "Els camps marcats amb * són obligatoris. Respondrem el més aviat possible.",
+      "sending": "Enviant…",
+      "submit": "Envia la sol·licitud"
+    },
+    "page": {
+      "back": "Torna al formulari",
+      "error": {
+        "title": "Ha passat un error"
+      },
+      "forbidden": {
+        "title": "No s'ha pogut verificar la sol·licitud"
+      },
+      "info": {
+        "text": "Per contactar amb nosaltres, omple el formulari de contacte.",
+        "title": "Aquesta pàgina només rep el formulari"
+      },
+      "invalid": {
+        "intro": "Revisa els punts següents i torna a omplir el formulari:",
+        "title": "No hem pogut enviar la sol·licitud"
+      },
+      "meta": {
+        "description": "Resultat de l'enviament del formulari de contacte de Vicity.",
+        "title": "Contacte · Vicity"
+      },
+      "rate": {
+        "title": "Massa enviaments seguits"
+      },
+      "success": {
+        "text": "Gràcies pel teu interès. L'equip de {site} et respondrà tan aviat com sigui possible.",
+        "title": "Hem rebut la teva sol·licitud"
+      },
+      "unconfigured": {
+        "title": "El formulari encara no està configurat"
+      }
+    },
+    "server": {
+      "expired": "La sessió ha caducat. Torna-ho a provar.",
+      "invalid": "Revisa els camps marcats i torna-ho a provar.",
+      "method": "Aquest punt només accepta el formulari de contacte.",
+      "origin": "No s'ha pogut verificar l'origen de la sol·licitud.",
+      "rate": "Has enviat un missatge fa molt poc. Espera uns segons i torna-ho a provar.",
+      "recaptchaFailed": "No hem pogut verificar que no ets un robot. Torna-ho a provar.",
+      "recaptchaUnavailable": "No hem pogut completar la verificació de seguretat. Torna-ho a provar d'aquí a una estona.",
+      "sendFailed": "No hem pogut enviar la teva sol·licitud. Torna-ho a provar d'aquí a una estona.",
+      "success": "Hem rebut la teva sol·licitud. L'equip de {site} et respondrà tan aviat com sigui possible.",
+      "tooFast": "Espera un moment i torna a enviar el formulari.",
+      "unconfigured": "El formulari encara no està configurat."
+    }
+  },
+  "blog": {
+    "article": {
+      "back": "Torna al blog",
+      "like": "M'agrada",
+      "moreInfo": "Per saber-ne més",
+      "readTime": "min de lectura"
+    },
+    "categories": {
+      "all": "Tots",
+      "casos-us": "Casos d'ús",
+      "ia": "IA",
+      "integracio": "Integració",
+      "recaptacio": "Recaptació"
+    },
+    "categoriesLabel": "Categories d'articles",
+    "empty": {
+      "cta": "Veure tots els articles",
+      "text": "Torna més endavant o consulta tots els articles publicats.",
+      "title": "Encara no hi ha articles en aquesta categoria"
+    },
+    "featured": "Destacat",
+    "featuredTagline": "Innovació en fiscalitat local",
+    "intro": "Articles pràctics sobre recaptació, control i seguiment, integració i intel·ligència artificial per a ajuntaments, diputacions i consells comarcals.",
+    "latest": "Últims articles publicats",
+    "likes": {
+      "one": "m'agrada",
+      "other": "m'agrada"
+    },
+    "meta": {
+      "description": "El blog de Vicity: articles sobre gestió tributària i transformació digital de les administracions públiques.",
+      "title": "Blog · Vicity"
+    },
+    "minutes": "min",
+    "notFound": {
+      "meta": {
+        "description": "L'article que busques no existeix o s'ha retirat.",
+        "title": "Article no trobat · Vicity"
+      },
+      "text": "L'article que busques no existeix o s'ha retirat.",
+      "title": "Article no trobat"
+    },
+    "readArticle": "Llegir l'article",
+    "title": "Idees i recursos per a la gestió tributària municipal",
+    "views": {
+      "one": "visita",
+      "other": "visites"
+    }
+  },
+  "legal": {
+    "cookies": {
+      "manage": {
+        "text": "Pots permetre, bloquejar o eliminar les cookies des de la configuració del teu navegador. Consulta l'ajuda del navegador que utilitzis per conèixer-ne el procediment.",
+        "title": "Com gestionar o eliminar les cookies"
+      },
+      "meta": {
+        "description": "Política de cookies del web de Vicity: què són, quines s'utilitzen i com gestionar-les.",
+        "title": "Política de cookies · Vicity"
+      },
+      "moreInfo": "Consulta també l'<a href=\"avis-legal.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">avís legal</a> i la <a href=\"privacitat.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">política de privacitat</a>.",
+      "thirdParty": {
+        "text": "Aquest web carrega biblioteques de codi des d'una xarxa de distribució de contingut (jsDelivr). <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: confirmar si implica tractament de dades i, si escau, informar-ne]</mark>.",
+        "title": "Recursos de tercers"
+      },
+      "title": "Política de cookies",
+      "used": {
+        "advertising": "Cookies publicitàries: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark>",
+        "analytics": "Cookies d'anàlisi: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark>",
+        "technical": "Cookies tècniques: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: detallar o indicar que no n'hi ha]</mark>",
+        "text": "<mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: confirmar l'inventari real de cookies i tecnologies similars abans de la publicació; si només s'utilitzen cookies tècniques, indicar-ho aquí]</mark>.",
+        "title": "Cookies que utilitza aquest web"
+      },
+      "what": {
+        "text": "Les cookies són petits fitxers que un web desa al dispositiu de l'usuari per recordar informació sobre la seva visita.",
+        "title": "Què són les cookies"
+      }
+    },
+    "draftNotice": "Aquest text és un esborrany pendent de revisió jurídica. Els apartats marcats amb <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR]</mark> s'han d'omplir amb les dades reals de la titularitat del web abans de la publicació.",
+    "moreInfo": "Més informació",
+    "notice": {
+      "dataProtection": {
+        "text": "Consulta la <a href=\"privacitat.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">política de privacitat</a> i la <a href=\"cookies.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">política de cookies</a>.",
+        "title": "Protecció de dades i cookies"
+      },
+      "intellectualProperty": {
+        "text": "Els continguts, el disseny, els logotips i les marques d'aquest web són titularitat de <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: titular]</mark> o dels seus llicenciants. No se'n permet la reproducció, distribució ni comunicació pública sense autorització expressa.",
+        "title": "Propietat intel·lectual i industrial"
+      },
+      "law": {
+        "text": "Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia, les parts se sotmeten als jutjats i tribunals que corresponguin segons la normativa aplicable <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: confirmar fur]</mark>.",
+        "title": "Legislació aplicable i jurisdicció"
+      },
+      "liability": {
+        "text": "El titular treballa per mantenir els continguts actualitzats, però no garanteix l'absència d'errors ni la disponibilitat permanent del web, i no respon dels danys derivats d'un ús indegut o d'interrupcions del servei alienes al seu control.",
+        "title": "Responsabilitat"
+      },
+      "links": {
+        "text": "Aquest web pot incloure enllaços a llocs de tercers. El titular no controla ni respon dels seus continguts ni de les seves polítiques.",
+        "title": "Enllaços"
+      },
+      "meta": {
+        "description": "Avís legal del web de Vicity: titularitat, condicions d'ús, propietat intel·lectual i legislació aplicable.",
+        "title": "Avís legal · Vicity"
+      },
+      "owner": {
+        "address": "Domicili social: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: adreça completa]</mark>",
+        "email": "Correu electrònic de contacte: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: adreça de correu]</mark>",
+        "intro": "En compliment de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic, s'informa que el titular d'aquest web és:",
+        "name": "Denominació social: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: raó social]</mark>",
+        "nif": "NIF/CIF: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: NIF/CIF]</mark>",
+        "registry": "Dades registrals: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: registre mercantil, tom, foli i full]</mark>",
+        "title": "Titular del web"
+      },
+      "purpose": {
+        "text": "Aquest web té per objecte donar a conèixer la plataforma Vicity de gestió tributària i recaptació, i facilitar el contacte amb les persones interessades.",
+        "title": "Objecte"
+      },
+      "terms": {
+        "text": "L'accés i la navegació pel web atribueixen la condició d'usuari i impliquen l'acceptació d'aquestes condicions. L'usuari es compromet a fer-ne un ús lícit, sense danyar-ne el funcionament ni els drets de tercers.",
+        "title": "Condicions d'ús"
+      },
+      "title": "Avís legal"
+    },
+    "privacy": {
+      "basis": {
+        "text": "El consentiment de la persona interessada, que s'atorga en marcar la casella d'acceptació del formulari (article 6.1.a del Reglament (UE) 2016/679, RGPD).",
+        "title": "Base jurídica"
+      },
+      "controller": {
+        "address": "Adreça postal: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: adreça completa]</mark>",
+        "dpo": "Delegat de protecció de dades (si escau): <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: contacte del DPD]</mark>",
+        "email": "Correu electrònic: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: adreça de correu]</mark>",
+        "identity": "Identitat: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: raó social]</mark>",
+        "nif": "NIF/CIF: <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: NIF/CIF]</mark>",
+        "title": "Responsable del tractament"
+      },
+      "data": {
+        "text": "Mitjançant el formulari de contacte es recullen les dades que la persona interessada introdueix: nom i cognoms, organització, càrrec (opcional), correu electrònic, telèfon (opcional), motiu de la consulta i missatge (opcional).",
+        "title": "Dades que recollim"
+      },
+      "meta": {
+        "description": "Política de privacitat de Vicity: responsable del tractament, finalitat, base jurídica i drets de les persones interessades.",
+        "title": "Política de privacitat · Vicity"
+      },
+      "moreInfo": "Consulta també l'<a href=\"avis-legal.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">avís legal</a> i la <a href=\"cookies.html\" class=\"rounded-sm text-purple-700 underline focus-visible:outline-2 focus-visible:outline-purple-500 focus-visible:ring-4 focus-visible:ring-purple-500/30\">política de cookies</a>.",
+      "purpose": {
+        "text": "Atendre les sol·licituds de demostració i les consultes rebudes a través del web.",
+        "title": "Finalitat"
+      },
+      "recipients": {
+        "text": "Les dades no es cediran a tercers, tret d'obligació legal <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: indicar encarregats del tractament, com ara el proveïdor d'allotjament o de correu]</mark>.",
+        "title": "Destinataris"
+      },
+      "retention": {
+        "text": "<mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: indicar termini]</mark>, o fins que la persona interessada en sol·liciti la supressió.",
+        "title": "Termini de conservació"
+      },
+      "rights": {
+        "complaint": "Si consideres que el tractament no s'ajusta a la normativa, pots presentar una reclamació davant l'autoritat de control competent <mark class=\"rounded-sm bg-lav-100 px-1 font-bold text-purple-700\">[A COMPLETAR: confirmar autoritat: AEPD o Autoritat Catalana de Protecció de Dades]</mark>.",
+        "text": "Pots exercir els drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat, així com retirar el consentiment en qualsevol moment, escrivint a l'adreça de correu indicada més amunt.",
+        "title": "Drets de les persones interessades"
+      },
+      "title": "Política de privacitat"
+    }
+  },
+  "errors": {
+    "notFound": {
+      "blog": "Anar al blog",
+      "label": "Error 404",
+      "meta": {
+        "description": "La pàgina que busques no existeix o s'ha mogut.",
+        "title": "Pàgina no trobada · Vicity"
+      },
+      "text": "La pàgina que busques no existeix o s'ha mogut. Comprova que l'adreça sigui correcta o torna a l'inici.",
+      "title": "Pàgina no trobada"
+    },
+    "serverError": {
+      "label": "Error 500",
+      "meta": {
+        "description": "S'ha produït un error al servidor. Torna-ho a provar d'aquí a una estona.",
+        "title": "Error del servidor · Vicity"
+      },
+      "text": "S'ha produït un error inesperat al servidor. Torna-ho a provar d'aquí a una estona; si el problema continua, posa't en contacte amb nosaltres.",
+      "title": "Error del servidor"
     }
   }
 }
