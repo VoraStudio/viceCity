@@ -67,9 +67,9 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 ├── 404.html, 500.html         Pàgines d'error pròpies, servides pel .htaccess
 └── assets/
     ├── fonts/                 Tipografies en local
-    ├── i18n/                  Textos per idioma: ca.json (base), es.json i en.json
+    ├── i18n/                  Textos per idioma: ca.json (base), es.json, en.json i fr.json
     ├── img/                   Logotips i imatges (blog/: imatges dels articles)
-    ├── video/                 Vídeos i pòsters (els acabats en -es, en castellà)
+    ├── video/                 Vídeos i pòsters, una carpeta per idioma (ca/, es/, en/, fr/)
     └── js/
         ├── script.js          Animacions d'entrada, una funció per secció
         ├── js-flag.js         Marca <html> amb la classe "js"
@@ -79,19 +79,19 @@ Les rutes són relatives, així que la web funciona des de l'arrel d'un servidor
 
 ## Traduccions
 
-El català és l'idioma base i és el que hi ha escrit a les pàgines. El castellà i l'anglès es tradueixen omplint dos fitxers, sense tocar cap pàgina:
+El català és l'idioma base i és el que hi ha escrit a les pàgines. El castellà, l'anglès i el francès es tradueixen omplint tres fitxers, sense tocar cap pàgina. L'idioma per defecte és el català: qui entra per primer cop veu la web en català.
 
-- `assets/i18n/es.json` (castellà) i `assets/i18n/en.json` (anglès) tenen les mateixes claus que `assets/i18n/ca.json`, que conté el text català de referència.
-- Per traduir un text, busqueu-lo a `ca.json`, localitzeu la mateixa clau a `es.json` o `en.json` i escriviu-hi la traducció entre les cometes.
+- `assets/i18n/es.json` (castellà), `assets/i18n/en.json` (anglès) i `assets/i18n/fr.json` (francès) tenen les mateixes claus que `assets/i18n/ca.json`, que conté el text català de referència.
+- Per traduir un text, busqueu-lo a `ca.json`, localitzeu la mateixa clau a `es.json`, `en.json` o `fr.json` i escriviu-hi la traducció entre les cometes.
 - **Una clau buida (`""`) mostra el text en català.** Es pot traduir a poc a poc: el que falti es continua veient en català.
 - Respecteu el que va entre claus, com `{label}`, `{limit}` o `{site}`: el web hi posa el valor en el moment. Si el text català porta etiquetes (`<a …>`, `<mark …>`, `<span …>`), copieu-les igual i traduïu només el text.
 - Són fitxers JSON: unes cometes dobles dins d'un text s'escriuen `\"`. Si un fitxer queda mal format, la web es mostra en català; es pot comprovar amb qualsevol validador de JSON.
 
-El visitant tria l'idioma al selector de la capçalera (CA, ES, EN). L'elecció es recorda al navegador i la pàgina es torna a carregar en aquell idioma. Els missatges del formulari de contacte també surten d'aquests fitxers.
+El visitant tria l'idioma al selector de la capçalera (CA, ES, EN, FR), que per defecte és el català. L'elecció es recorda al navegador i la pàgina es torna a carregar en aquell idioma. Els missatges del formulari de contacte també surten d'aquests fitxers.
 
-**Vídeos en un altre idioma.** Cada vídeo té tres claus al bloc `video`: `src` (el fitxer de vídeo), `poster` (la imatge que es veu abans que comenci) i `label` (la descripció per a lectors de pantalla). Per posar, per exemple, el vídeo principal en anglès, es copien `vicity-hero-en.mp4` i la seva imatge `vicity-hero-en-poster.webp` a `assets/video/` i s'escriuen les rutes a `en.json`, com ja fa `es.json` amb els vídeos en castellà. Si la clau és buida, es veu el vídeo en català.
+**Vídeos en un altre idioma.** Cada vídeo té tres claus al bloc `video`: `src` (el fitxer de vídeo), `poster` (la imatge que es veu abans que comenci) i `label` (la descripció per a lectors de pantalla). Els vídeos de cada idioma van a `assets/video/<idioma>/` amb el nom de la secció (`hero.mp4`, `integration.mp4`, `ai.mp4`) i la seva imatge (`hero-poster.webp`, …), i les rutes s'escriuen al JSON d'aquell idioma. Si un idioma no té vídeo propi, s'hi escriu la ruta del vídeo en català, com ja fa `en.json` amb el vídeo d'integració. Una clau buida mostraria el vídeo en català. Perquè pesin poc, els vídeos són H.264 d'un màxim de 1280 px d'amplada, sense àudio i amb l'opció `faststart`.
 
-**Què no es tradueix.** Els articles del blog (títol, resum i text de `data/posts.php`), les dades estructurades per a cercadors de `index.html`, el correu que rep l'equip amb cada sol·licitud i l'avís que es mostra quan el navegador no té JavaScript. Hi ha una sola adreça per pàgina, de manera que els cercadors indexen la versió catalana. En castellà o anglès, el català es veu un instant mentre es carrega la pàgina.
+**Què no es tradueix.** Els articles del blog (títol, resum i text de `data/posts.php`), les dades estructurades per a cercadors de `index.html`, el correu que rep l'equip amb cada sol·licitud i l'avís que es mostra quan el navegador no té JavaScript. Hi ha una sola adreça per pàgina, de manera que els cercadors indexen la versió catalana. Si l'idioma no és el català, aquest es veu un instant mentre es carrega la pàgina.
 
 ## Desplegament i pendents
 

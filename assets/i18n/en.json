@@ -58,18 +58,18 @@
   "video": {
     "ai": {
       "label": "",
-      "poster": "",
-      "src": ""
+      "poster": "assets/video/en/ai-poster.webp",
+      "src": "assets/video/en/ai.mp4"
     },
     "hero": {
       "label": "",
-      "poster": "",
-      "src": ""
+      "poster": "assets/video/en/hero-poster.webp",
+      "src": "assets/video/en/hero.mp4"
     },
     "integration": {
       "label": "",
-      "poster": "",
-      "src": ""
+      "poster": "assets/video/ca/integration-poster.webp",
+      "src": "assets/video/ca/integration.mp4"
     }
   },
   "home": {

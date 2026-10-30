@@ -58,18 +58,18 @@
   "video": {
     "ai": {
       "label": "Conversa amb l'assistent d'IA de Vicity: es pregunta quins expedients porten més de 90 dies sense moviment i l'assistent els troba, els agrupa per tipus de tribut i ofereix generar-ne l'informe",
-      "poster": "assets/video/vicity-conversa-poster.webp",
-      "src": "assets/video/vicity-conversa.mp4"
+      "poster": "assets/video/ca/ai-poster.webp",
+      "src": "assets/video/ca/ai.mp4"
     },
     "hero": {
       "label": "Presentació de Vicity: gestió tributària, recaptació, dades i intel·ligència artificial sobre Microsoft Azure",
-      "poster": "assets/video/vicity-hero-poster.webp",
-      "src": "assets/video/vicity-hero.mp4"
+      "poster": "assets/video/ca/hero-poster.webp",
+      "src": "assets/video/ca/hero.mp4"
     },
     "integration": {
       "label": "Vicity connectat amb gestors d'expedients, registres electrònics, plataformes corporatives i serveis d'interoperabilitat",
-      "poster": "assets/video/vicity-animacio-poster.webp",
-      "src": "assets/video/vicity-animacio.mp4"
+      "poster": "assets/video/ca/integration-poster.webp",
+      "src": "assets/video/ca/integration.mp4"
     }
   },
   "home": {

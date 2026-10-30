@@ -58,18 +58,18 @@
   "video": {
     "ai": {
       "label": "",
-      "poster": "assets/video/vicity-conversa-es-poster.webp",
-      "src": "assets/video/vicity-conversa-es.mp4"
+      "poster": "assets/video/es/ai-poster.webp",
+      "src": "assets/video/es/ai.mp4"
     },
     "hero": {
       "label": "",
-      "poster": "assets/video/vicity-hero-es-poster.webp",
-      "src": "assets/video/vicity-hero-es.mp4"
+      "poster": "assets/video/es/hero-poster.webp",
+      "src": "assets/video/es/hero.mp4"
     },
     "integration": {
       "label": "",
-      "poster": "assets/video/vicity-animacio-es-poster.webp",
-      "src": "assets/video/vicity-animacio-es.mp4"
+      "poster": "assets/video/es/integration-poster.webp",
+      "src": "assets/video/es/integration.mp4"
     }
   },
   "home": {

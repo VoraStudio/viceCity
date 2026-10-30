@@ -1,6 +1,8 @@
 // Idiomes: diccionaris JSON a assets/i18n. El català és la base i ja és al HTML.
 // Canviar d'idioma desa l'elecció i recarrega la pàgina: els textos s'apliquen abans de les animacions.
-export const LANGUAGES = { ca: "Català", es: "Castellano", en: "English" };
+export const LANGUAGES = { ca: "Català", es: "Castellano", en: "English", fr: "Français" };
+// BASE_LANGUAGE és el que hi ha escrit al HTML i el respatller de les claus buides; DEFAULT_LANGUAGE, l'idioma de qui no n'ha triat cap
+const BASE_LANGUAGE = "ca";
 const DEFAULT_LANGUAGE = "ca";
 const STORAGE_KEY = "vicity-lang";
 const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" };
@@ -20,7 +22,7 @@ const lookup = (dictionary, key) => {
 };
 
 export const findTranslation = (key, language, sources) =>
-  lookup(sources[language], key) ?? lookup(sources[DEFAULT_LANGUAGE], key);
+  lookup(sources[language], key) ?? lookup(sources[BASE_LANGUAGE], key);
 
 export const fillPlaceholders = (text, params) =>
   text.replace(/\{(\w+)\}/g, (placeholder, name) => (Object.hasOwn(params, name) ? String(params[name]) : placeholder));
@@ -46,7 +48,7 @@ export const switchLanguage = (language) => {
   try {
     localStorage.setItem(STORAGE_KEY, language);
   } catch {
-    // Emmagatzematge bloquejat: en recarregar es tornarà a veure el català
+    // Emmagatzematge bloquejat: en recarregar es tornarà a l'idioma per defecte
   }
   location.reload();
 };
@@ -56,7 +58,8 @@ export const t = (key, params = {}) => fillPlaceholders(findTranslation(key, get
 
 const loadDictionary = async (language) => {
   try {
-    const response = await fetch(new URL(`../../i18n/${language}.json`, import.meta.url));
+    // no-cache: el navegador revalida el diccionari i els canvis del client es veuen de seguida
+    const response = await fetch(new URL(`../../i18n/${language}.json`, import.meta.url), { cache: "no-cache" });
     if (response.ok) dictionaries[language] = await response.json();
   } catch {
     // Sense diccionari es manté el text català que ja té el HTML
@@ -96,8 +99,8 @@ const applyTranslations = (language) => {
 
 export const initI18n = async () => {
   const language = getLanguage();
-  await Promise.all([...new Set([DEFAULT_LANGUAGE, language])].map(loadDictionary));
-  if (language === DEFAULT_LANGUAGE || !dictionaries[language]) return;
+  await Promise.all([...new Set([BASE_LANGUAGE, language])].map(loadDictionary));
+  if (language === BASE_LANGUAGE || !dictionaries[language]) return;
 
   document.documentElement.lang = language;
   applyTranslations(language);

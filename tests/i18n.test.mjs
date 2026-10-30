@@ -4,8 +4,8 @@ import { LANGUAGES, fillPlaceholders, findTranslation, parseAttributeSpec } from
 
 describe("LANGUAGES", () => {
   it("lists the languages with their autonyms, Catalan first", () => {
-    assert.deepEqual(LANGUAGES, { ca: "Català", es: "Castellano", en: "English" });
-    assert.deepEqual(Object.keys(LANGUAGES), ["ca", "es", "en"]);
+    assert.deepEqual(LANGUAGES, { ca: "Català", es: "Castellano", en: "English", fr: "Français" });
+    assert.deepEqual(Object.keys(LANGUAGES), ["ca", "es", "en", "fr"]);
   });
 });
 
